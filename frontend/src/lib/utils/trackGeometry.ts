@@ -6,10 +6,19 @@ export const getStationMainY = (station: any, effectiveLane: number) => {
   const startY = CENTER_Y + station.yOffset - ((station.p - 1) * TRACK_GAP) / 2;
   for (let i = 0; i < station.p; i++) pYs.push(startY + i * TRACK_GAP);
   
-  const third = Math.floor(station.p / 3);
-  const idxTop = Math.floor(third / 2);
-  const idxMid = third + Math.floor(third / 2);
-  const idxBot = third * 2 + Math.floor((station.p - third * 2) / 2);
+  const numLanes = station.p <= 4 ? 2 : 3;
+  let idxTop, idxMid, idxBot;
+  if (numLanes === 3) {
+    const third = Math.floor(station.p / 3);
+    idxTop = Math.floor(third / 2);
+    idxMid = third + Math.floor(third / 2);
+    idxBot = third * 2 + Math.floor((station.p - third * 2) / 2);
+  } else {
+    const half = Math.floor(station.p / 2);
+    idxTop = Math.floor(half / 2);
+    idxMid = idxTop; // Mid merges into Top for 2-lane stations
+    idxBot = half + Math.floor((station.p - half) / 2);
+  }
   
   const yTop = pYs[idxTop];
   const yMid = pYs[idxMid];

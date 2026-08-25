@@ -29,14 +29,21 @@ export const STATIONS: Station[] = VISIBLE_STATIONS.map(st => {
   const startY = CENTER_Y + st.yOffset - ((st.p - 1) * TRACK_GAP) / 2;
   for (let i = 0; i < st.p; i++) pYs.push(startY + i * TRACK_GAP);
 
+  const numLanes = st.p <= 4 ? 2 : 3;
   const thirdCount = Math.floor(st.p / 3);
+  const halfCount = Math.floor(st.p / 2);
 
   const pData = [];
   for (let i = 0; i < st.p; i++) {
     let laneId;
-    if (i < thirdCount) laneId = -1;
-    else if (i < thirdCount * 2) laneId = 0;
-    else laneId = 1;
+    if (numLanes === 3) {
+      if (i < thirdCount) laneId = -1;
+      else if (i < thirdCount * 2) laneId = 0;
+      else laneId = 1;
+    } else {
+      if (i < halfCount) laneId = -1;
+      else laneId = 1;
+    }
     
     const mainLineY = getStationMainY(st, laneId);
     const isMainline = Math.abs(pYs[i] - mainLineY) < 1;
@@ -48,25 +55,26 @@ export const STATIONS: Station[] = VISIBLE_STATIONS.map(st => {
   for (let i = 0; i < st.p; i++) {
     const p = pData[i];
     
+    // Make diverging highly random and organic
     const rndDiv = pseudoRandom(`${st.id}-${i}-divChaos`);
     const rndCon = pseudoRandom(`${st.id}-${i}-conChaos`);
     const rnd2 = pseudoRandom(`${st.id}-${i}-s1`);
     const rnd3 = pseudoRandom(`${st.id}-${i}-s2`);
     
     const isBigYard = st.p >= 8;
-    const stretch = isBigYard ? 700 : 230;
+    const stretch = isBigYard ? 1200 : 600; // Drastically increased stretch for natural weaving
     
-    const divergeStartOffset = -120 - (rndDiv * stretch);
-    const convergeEndOffset = 120 + (rndCon * stretch);
+    const divergeStartOffset = -150 - (rndDiv * stretch);
+    const convergeEndOffset = 150 + (rndCon * stretch);
     
     platforms.push({
       y: p.y,
       mainLineY: p.mainLineY,
       isMainline: p.isMainline,
-      divergeStartOffset: p.isMainline ? -120 : divergeStartOffset,
-      sZoneStartOffset: -80 + (rnd2 * 20),
-      sZoneEndOffset: 80 - (rnd3 * 20),
-      convergeEndOffset: p.isMainline ? 120 : convergeEndOffset
+      divergeStartOffset: p.isMainline ? -150 : divergeStartOffset,
+      sZoneStartOffset: -80 + (rnd2 * 40),
+      sZoneEndOffset: 80 - (rnd3 * 40),
+      convergeEndOffset: p.isMainline ? 150 : convergeEndOffset,
     });
   }
 
