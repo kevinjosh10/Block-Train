@@ -41,77 +41,84 @@ export function EnterpriseHeader({ currentModule, badgeText }: EnterpriseHeaderP
   ];
 
   return (
-    <header className="border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md sticky top-0 z-50 text-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 gap-4">
-          
-          {/* Brand & Zone */}
-          <div className="flex items-center gap-3">
-            <Link href="/" className="flex flex-col justify-center py-1 group">
-              <div className="flex items-baseline gap-2.5">
-                <span className="text-[15px] font-bold text-slate-100 tracking-wide">
-                  BLOCKTRAIN
-                </span>
-                <span className="text-[11px] font-semibold text-slate-400 border-l border-slate-700 pl-2.5">
-                  CRIS / SR
-                </span>
-              </div>
-              <span className="text-[11px] text-slate-500 font-medium tracking-wide mt-0.5">
-                Southern Railway • MAS–AJJ Quadruple Corridor
-              </span>
-            </Link>
+    <header className="flex flex-col sticky top-0 z-50 w-full shadow-sm">
+      {/* Top Utility Bar (System Context) */}
+      <div className="bg-slate-900 text-slate-300 h-8 flex items-center justify-between px-4 sm:px-6 lg:px-8 border-b border-slate-800 text-[11px] font-medium tracking-wide">
+        <div className="flex items-center gap-4">
+          <span className="flex items-center gap-1.5 text-slate-100 font-bold tracking-wider">
+            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+            CRIS &bull; SOUTHERN RAILWAY
+          </span>
+          <span className="hidden sm:inline border-l border-slate-700 pl-4 text-slate-400">
+            MAS &ndash; AJJ Quadruple Corridor
+          </span>
+        </div>
 
-            {badgeText && (
-              <span className="hidden xl:inline-flex items-center gap-1.5 text-[11px] text-slate-400 font-medium ml-4 border-l border-slate-700/50 pl-4">
-                {badgeText}
-              </span>
-            )}
-          </div>
+        <div className="flex items-center gap-4 font-mono">
+          <span className="hidden md:inline flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            COA &amp; Kavach 4.0 Active
+          </span>
+          <span className="border-l border-slate-700 pl-4 text-slate-300">
+            {timeStr || 'LIVE IST'}
+          </span>
+          <a
+            href="/neural_network_layers.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border-l border-slate-700 pl-4 text-indigo-400 hover:text-indigo-300 transition-colors flex items-center gap-1"
+            title="View Interactive Neural Network Architecture"
+          >
+            NN Visualizer &rarr;
+          </a>
+        </div>
+      </div>
 
-          {/* Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors flex items-center gap-1.5 ${
-                    isActive
-                      ? 'text-white border-b-2 border-blue-500 font-semibold'
-                      : 'text-slate-400 hover:text-slate-100'
-                  }`}
-                >
-                  <span>{link.label}</span>
-
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Live Status & Clock */}
-          <div className="flex items-center gap-4">
-            <div className="hidden lg:flex flex-col items-end text-right font-mono">
-              <span className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                {timeStr || 'LIVE IST'}
-              </span>
-              <span className="text-[10px] text-slate-500">
-                COA &amp; Kavach 4.0 Active
-              </span>
+      {/* Main Navigation Bar (App Level) */}
+      <div className="bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            
+            {/* Brand Logo */}
+            <div className="flex items-center gap-6">
+              <Link href="/" className="flex items-center gap-2 group">
+                <div className="bg-indigo-600 text-white p-1.5 rounded-lg shadow-sm group-hover:bg-indigo-700 transition-colors flex items-center justify-center">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[22px] font-black text-slate-900 tracking-tighter leading-none">
+                    BLOCKTRAIN
+                  </span>
+                  {(badgeText || currentModule) && (
+                    <span className="text-[10px] text-slate-500 font-bold tracking-widest uppercase mt-0.5">
+                      {badgeText || currentModule}
+                    </span>
+                  )}
+                </div>
+              </Link>
             </div>
 
-            <a
-              href="/neural_network_layers.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-medium text-indigo-300 hover:text-white transition-colors border border-indigo-700/50 hover:border-indigo-500 px-3 py-1.5 rounded-lg"
-              title="View Interactive 5-Layer Neural Network Architecture"
-            >
-              NN Visualizer &rarr;
-            </a>
+            {/* Premium Navigation Pills */}
+            <nav className="hidden md:flex items-center gap-1 bg-slate-100/80 p-1 rounded-xl border border-slate-200/60 shadow-inner">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                      isActive
+                        ? 'bg-white text-indigo-700 shadow-sm border border-slate-200/50'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 border border-transparent'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </nav>
+            
           </div>
-
         </div>
       </div>
     </header>
