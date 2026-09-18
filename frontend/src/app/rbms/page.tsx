@@ -390,14 +390,17 @@ export default function RBMSPage() {
     useMaintenanceStore.getState().fetchBlocks();
 
     const timer = setInterval(() => {
-      setRollingBlocks((prev) =>
-        prev.map((b) => {
+      setRollingBlocks((prev) => {
+        let changed = false;
+        const next = prev.map((b) => {
           if (b.status === 'ACTIVE' && b.remainingSeconds !== undefined && b.remainingSeconds > 0) {
+            changed = true;
             return { ...b, remainingSeconds: b.remainingSeconds - 1 };
           }
           return b;
-        })
-      );
+        });
+        return changed ? next : prev;
+      });
     }, 1000);
     return () => clearInterval(timer);
   }, []);

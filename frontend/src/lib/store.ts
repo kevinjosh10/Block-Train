@@ -72,11 +72,14 @@ export const useMaintenanceStore = create<MaintenanceStore>((set, get) => ({
         // Merge server blocks with locally preserved active blocks
         set((state) => {
           const current = [...state.activeBlocks];
+          let changed = false;
           for (const sb of data.blocks) {
             if (!current.some((b) => b.id === sb.id)) {
               current.push(sb);
+              changed = true;
             }
           }
+          if (!changed) return state; // Don't trigger a re-render if nothing changed!
           saveBlocks(current);
           return { activeBlocks: current };
         });

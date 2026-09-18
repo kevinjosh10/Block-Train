@@ -419,14 +419,22 @@ export const useTrainPhysics = (userSpeedMultiplier: number = DEFAULT_SPEED_MULT
   useEffect(() => {
     const physicsFactor = Math.min(10, Math.max(0.1, userSpeedMultiplier)); 
     
-    const interval = setInterval(() => {
-      const state = useMaintenanceStore.getState();
-      const hazardZones = getHazardZones(state.activeBlocks);
-      const now = Date.now();
+      let animationFrameId: number;
+      let lastTime = performance.now();
 
-      setTrains(curr => {
-        const nextTrains: Train[] = curr.map((t): Train => {
-          const tLen = t.length || getTrainLength(t.type);
+      const loop = (time: number) => {
+        const delta = time - lastTime;
+        
+        // Target roughly 60fps (16ms per frame)
+        if (delta >= 16) {
+          const state = useMaintenanceStore.getState();
+          const hazardZones = getHazardZones(state.activeBlocks);
+          const now = Date.now();
+
+          setTrains(curr => {
+            const nextTrains: Train[] = curr.map((t): Train => {
+              const tLen = t.length || getTrainLength(t.type);
+
 
           // 1. Station Dwell Timer Check
           if (t.stopUntil && now < t.stopUntil) {
@@ -795,18 +803,23 @@ export const useTrainPhysics = (userSpeedMultiplier: number = DEFAULT_SPEED_MULT
             scheduledDeparture: t.scheduledDeparture,
             nextStop: t.nextStop,
             timetableActive: t.timetableActive
-          };
-        });
-        
-        queueMicrotask(() => {
-          useMaintenanceStore.getState().setTrains(nextTrains);
-        });
-        return nextTrains;
-      });
-    }, 16); 
-    
-    return () => clearInterval(interval);
-  }, [userSpeedMultiplier]);
+            };
+          });
 
-  return trains;
-};
+          queueMicrotask(() => {
+            useMaintenanceStore.getState().setTrains(nextTrains);
+          });
+          return nextTrains;
+        });
+          lastTime = time - (delta % 16);
+        }
+        animationFrameId = requestAnimationFrame(loop);
+      };
+      
+      animationFrameId = requestAnimationFrame(loop);
+      
+      return () => cancelAnimationFrame(animationFrameId);
+    }, [userSpeedMultiplier]);
+  
+    return trains;
+  };
