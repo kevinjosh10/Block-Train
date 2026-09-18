@@ -222,10 +222,10 @@ export default function AIBlockPlannerPage() {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-xs font-mono tracking-widest text-blue-400 uppercase font-bold">
-                  Problem Statement ID: 26027
+                  Automated Shadow Block Bundling
                 </span>
                 <span className="text-xs font-mono text-slate-400">
-                  • All Model Accuracies &gt; 85%
+                  • System Accuracy &gt; 85%
                 </span>
               </div>
               <h1 className="text-xl md:text-2xl font-black uppercase tracking-tight text-white mt-0.5">

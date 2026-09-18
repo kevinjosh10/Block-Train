@@ -155,7 +155,7 @@ export default function LandingPage() {
           
           <div className="relative" style={{ transform: 'translateZ(20px)' }}>
             <div className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest mb-1">
-              PS 26027 // AI CORE
+              AI DECISION ENGINE
             </div>
             <h2 className="text-2xl font-black uppercase tracking-tighter mb-4 text-white group-hover:text-cyan-400 transition-colors">
               AI Planner

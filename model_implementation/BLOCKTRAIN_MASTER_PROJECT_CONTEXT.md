@@ -1,5 +1,5 @@
 # BLOCKTRAIN: The Mega Master Technical Blueprint & System Context
-**Problem Statement ID:** 26027  
+**Problem Statement ID:**   
 **Problem Statement Title:** AI-Powered Automatic Block Planning to Maximize Asset Availability for Train Operations on Indian Railways  
 **Organization:** Ministry of Railways, Government of India  
 **Theme:** Transportation & Logistics | **Category:** Software  
@@ -20,7 +20,7 @@
 9. [Empirical Validation, Research Foundations & Benchmark Results](#9-empirical-validation-research-foundations--benchmark-results)
 10. [Field Operations, Legal Compliance & Grassroots Safety](#10-field-operations-legal-compliance--grassroots-safety)
 11. [Codebase Architecture & File Map](#11-codebase-architecture--file-map)
-12. [Verification Matrix Against Official PS 26027 Requirements](#12-verification-matrix-against-official-ps-26027-requirements)
+12. [Verification Matrix Against Official Indian Railways Requirements](#12-verification-matrix-against-official-ps--requirements)
 
 ---
 
@@ -401,8 +401,8 @@ Block-Train/
 │   │   ├── block_planning_optimizer.py        # MILP & CP-SAT spatial shadow-block optimizer
 │   │   ├── ai_inference_service.py            # FastAPI REST microservice (Port 5001)
 │   │   ├── simulate_railway_data.py           # Southern Railway MAS-AJJ 73 km corridor generator
-│   │   ├── generate_sih_deck.py               # Automated 6-slide presentation generator
-│   │   └── populate_sih_official_template.py  # Official SIH template populator
+│   │   ├── generate_demo_deck.py               # Automated 6-slide presentation generator
+│   │   └── populate_demo_official_template.py  # Official demo template populator
 │   ├── data/
 │   │   ├── tms_track_defects.csv              # Civil engineering defect repository (234 records)
 │   │   ├── smms_signal_defects.csv            # S&T switch & signal defect repository (312 records)
@@ -414,16 +414,16 @@ Block-Train/
 │   │   └── neural_network_layers.html         # Interactive 5-layer neural architecture visualizer
 │   └── src/                                   # Next.js 14 dispatch console (Port 3000)
 ├── apps/api/                                  # Express.js backend API
-└── SIH2026_BlockTrain_Final_Submission.pptx   # Populated Official SIH 2026 Presentation Submission
+└── demo2026_BlockTrain_Final_Submission.pptx   # Populated Official demo 2026 Presentation Submission
 ```
 
 ---
 
-# 12. Verification Matrix Against Official PS 26027 Requirements
+# 12. Verification Matrix Against Official Indian Railways Requirements
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      OFFICIAL REQUIREMENTS VERIFICATION MATRIX (PS 26027)                        │
+│                      OFFICIAL REQUIREMENTS VERIFICATION MATRIX (Indian Railways)                        │
 ├──────────────────────────────────────┬───────────────────────────────────┬───────────────────────┤
 │ OFFICIAL REQUIREMENT                 │ BLOCKTRAIN IMPLEMENTATION         │ STATUS                │
 ├──────────────────────────────────────┼───────────────────────────────────┼───────────────────────┤

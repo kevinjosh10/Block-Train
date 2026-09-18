@@ -33,8 +33,8 @@ export function EnterpriseHeader({ currentModule, badgeText }: EnterpriseHeaderP
 
   const navLinks = [
     { href: '/', label: 'Command Hub' },
-    { href: '/ai-planner', label: 'AI Planner', tag: 'PS 26027' },
-    { href: '/rbms', label: 'RBMS Suite', tag: 'SR Ops' },
+    { href: '/ai-planner', label: 'AI Planner' },
+    { href: '/rbms', label: 'RBMS Suite' },
     { href: '/map', label: 'Corridor Twin' },
     { href: '/maintenance', label: 'Possessions' },
     { href: '/workers', label: 'Gang Logistics' },

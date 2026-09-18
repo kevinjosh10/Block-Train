@@ -131,7 +131,7 @@ Smart Scheduling & Dispatch:
 
 ```
 ┌────────────────────────────────┬──────────────────────────────────┐
-│     PROBLEM STATEMENT 26027    │   BLOCKTRAIN SOLUTION            │
+│     CURRENT RAILWAY PROCESS    │   BLOCKTRAIN SOLUTION            │
 ├────────────────────────────────┼──────────────────────────────────┤
 │ ❌ Data Silos                  │ ✅ Unified 39-Feature Tensor     │
 │ TMS, SMMS, TDMS work alone     │ All 3 departments integrated     │
@@ -460,7 +460,7 @@ Legal Automation
 
 #### **Section 2 Title**
 ```
-💡 PROBLEM STATEMENT 26027 → BLOCKTRAIN SOLUTION MAPPING
+💡 CURRENT RAILWAY PROCESS → BLOCKTRAIN SOLUTION MAPPING
 (How Every Requirement is Addressed)
 ```
 

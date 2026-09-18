@@ -1,5 +1,5 @@
 # AI-Powered Automatic Block Planning to Maximize Asset Availability for Train Operations on Indian Railways
-### Ministry of Railways — Problem Statement ID: 26027
+### Ministry of Railways — Indian Railways Block Management
 **Corridor Application: Southern Railway Chennai Division (Chennai Beach [MSB] to Chengalpattu [CGL] — 59.84 km, 26 Stations)**
 
 ---
@@ -103,7 +103,7 @@ Benchmarked across the real-world **Chennai Beach to Chengalpattu Corridor**:
 * **Total Corridor Track Capacity:** 672.0 Track-Hours ($4\text{ parallel tracks} \times 168\text{ hours}$).
 * **Note on Railway Terminology:** Possession time is measured in cumulative **Track-Hours** across the corridor's parallel lines (Lines 1 to 4).
 
-| Metric | Manual Decentralized Planning (BDMS Baseline) | AI-Powered Automatic Block Planning (PS 26027) | Operational Gain | Target Benchmark |
+| Metric | Manual Decentralized Planning (BDMS Baseline) | AI-Powered Automatic Block Planning (Indian Railways) | Operational Gain | Target Benchmark |
 | :--- | :---: | :---: | :---: | :---: |
 | **Fixed Infrastructure Asset Availability** | $82.74\%$ | **$97.59\%$** | **$+14.85\%$ pure uptime gain** | **$\ge 85.0\%$ (Passed: 97.59%)** |
 | **Train Delay Simulation Accuracy** | Baseline manual | **$96.15\%$** | **Predictive dispatching** | **$\ge 85.0\%$ (Passed: 96.15%)** |
