@@ -47,28 +47,22 @@ export function EnterpriseHeader({ currentModule, badgeText }: EnterpriseHeaderP
           
           {/* Brand & Zone */}
           <div className="flex items-center gap-3">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-xs shadow-sm">
-                BT
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold tracking-tight text-white group-hover:text-blue-400 transition-colors">
-                    BLOCKTRAIN
-                  </span>
-                  <span className="text-[11px] font-mono uppercase text-blue-400 font-semibold tracking-wider">
-                    CRIS / SR
-                  </span>
-                </div>
-                <span className="text-[11px] text-slate-400 font-medium">
-                  Southern Railway • MAS–AJJ Quadruple Corridor
+            <Link href="/" className="flex flex-col justify-center py-1 group">
+              <div className="flex items-baseline gap-2.5">
+                <span className="text-[15px] font-bold text-slate-100 tracking-wide">
+                  BLOCKTRAIN
+                </span>
+                <span className="text-[11px] font-semibold text-slate-400 border-l border-slate-700 pl-2.5">
+                  CRIS / SR
                 </span>
               </div>
+              <span className="text-[11px] text-slate-500 font-medium tracking-wide mt-0.5">
+                Southern Railway • MAS–AJJ Quadruple Corridor
+              </span>
             </Link>
 
             {badgeText && (
-              <span className="hidden xl:inline-flex items-center gap-1.5 text-xs text-emerald-400 font-medium ml-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="hidden xl:inline-flex items-center gap-1.5 text-[11px] text-slate-400 font-medium ml-4 border-l border-slate-700/50 pl-4">
                 {badgeText}
               </span>
             )}
@@ -102,11 +96,11 @@ export function EnterpriseHeader({ currentModule, badgeText }: EnterpriseHeaderP
           {/* Live Status & Clock */}
           <div className="flex items-center gap-4">
             <div className="hidden lg:flex flex-col items-end text-right font-mono">
-              <span className="text-xs font-semibold text-slate-200 flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                 {timeStr || 'LIVE IST'}
               </span>
-              <span className="text-[10px] text-slate-400">
+              <span className="text-[10px] text-slate-500">
                 COA &amp; Kavach 4.0 Active
               </span>
             </div>
