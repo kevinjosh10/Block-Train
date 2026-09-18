@@ -81,20 +81,15 @@ export function EnterpriseHeader({ currentModule, badgeText }: EnterpriseHeaderP
             
             {/* Brand Logo */}
             <div className="flex items-center gap-6">
-              <Link href="/" className="flex items-center gap-2 group">
-                <div className="bg-indigo-600 text-white p-1.5 rounded-lg shadow-sm group-hover:bg-indigo-700 transition-colors flex items-center justify-center">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-[22px] font-black text-slate-900 tracking-tighter leading-none">
-                    BLOCKTRAIN
+              <Link href="/" className="flex flex-col group pt-1 pb-1">
+                <span className="text-[24px] font-black text-slate-900 tracking-tighter leading-none group-hover:text-indigo-600 transition-colors">
+                  BLOCKTRAIN
+                </span>
+                {(badgeText || currentModule) && (
+                  <span className="text-[10px] text-slate-500 font-bold tracking-widest uppercase mt-1 group-hover:text-slate-600 transition-colors">
+                    {badgeText || currentModule}
                   </span>
-                  {(badgeText || currentModule) && (
-                    <span className="text-[10px] text-slate-600 font-bold tracking-widest uppercase mt-0.5">
-                      {badgeText || currentModule}
-                    </span>
-                  )}
-                </div>
+                )}
               </Link>
             </div>
 
