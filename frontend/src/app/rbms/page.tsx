@@ -270,6 +270,7 @@ export default function RBMSPage() {
     detonatorsDeployed: true
   });
   const [isBurstSimulated, setIsBurstSimulated] = useState(false);
+  const [isExtended, setIsExtended] = useState(false);
   const [actionSuccessMessage, setActionSuccessMessage] = useState<string | null>(null);
 
   // Official Documents (Dossier) State
@@ -1070,22 +1071,35 @@ export default function RBMSPage() {
 
               {/* Live Countdown & Burst Detection */}
               {selectedBlockForControl.status === 'ACTIVE' && (
-                <div className={`p-2.5 rounded-sm border ${isBurstSimulated ? 'bg-red-950/60 border-red-500 animate-pulse' : 'bg-cyan-950/40 border-amber-500 text-indigo-600/60'}`}>
-                  <div className="flex justify-between items-center mb-1">
-                    <span className={`text-xs font-mono font-bold ${isBurstSimulated ? 'text-red-400' : 'text-indigo-600'}`}>
-                      {isBurstSimulated ? '🚨 CRITICAL: BLOCK BURST! (OVERSTAYING)' : '⏱️ LIVE POSSESSION COUNTDOWN'}
+                <div className={`p-4 rounded-xl border shadow-sm ${isBurstSimulated ? 'bg-red-50 border-red-200' : isExtended ? 'bg-indigo-50 border-indigo-200' : 'bg-slate-50 border-slate-200 text-slate-600'}`}>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className={`text-xs font-sans uppercase tracking-wider font-bold ${isBurstSimulated ? 'text-red-600' : isExtended ? 'text-indigo-700' : 'text-slate-500'}`}>
+                      {isBurstSimulated ? '⚠️ CRITICAL: BLOCK BURST! (OVERSTAYING)' : isExtended ? '✅ BLOCK EXTENDED VIA AI RESCHEDULING' : '⏱️ LIVE POSSESSION COUNTDOWN'}
                     </span>
-                    <button
-                      onClick={() => setIsBurstSimulated(!isBurstSimulated)}
-                      className="text-[10px] font-mono underline text-slate-700 hover:text-indigo-600 cursor-pointer"
-                    >
-                      {isBurstSimulated ? 'Reset Burst' : 'Simulate Burst'}
-                    </button>
+                    <div className="flex items-center gap-3">
+                      {isBurstSimulated && !isExtended && (
+                        <button
+                          onClick={() => setIsExtended(true)}
+                          className="text-[10px] font-bold uppercase tracking-widest bg-indigo-600 hover:bg-indigo-700 text-white px-2.5 py-1 rounded-md shadow-sm transition-colors cursor-pointer flex items-center gap-1"
+                        >
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                          AI Extend +15m
+                        </button>
+                      )}
+                      <button
+                        onClick={() => { setIsBurstSimulated(!isBurstSimulated); setIsExtended(false); }}
+                        className="text-[10px] font-mono underline text-slate-500 hover:text-indigo-600 cursor-pointer"
+                      >
+                        {isBurstSimulated ? 'Reset' : 'Simulate Burst'}
+                      </button>
+                    </div>
                   </div>
 
-                  <div className="text-lg font-black font-mono text-white tracking-widest text-center py-2">
+                  <div className={`text-2xl font-black font-mono tracking-widest text-center py-2 ${isBurstSimulated ? 'text-red-600' : isExtended ? 'text-indigo-600' : 'text-slate-900'}`}>
                     {isBurstSimulated
-                      ? '+ 00:14:32 OVERSTAY'
+                      ? isExtended 
+                         ? '00:14:59 REMAINING'
+                         : '+ 00:14:32 OVERSTAY'
                       : `${Math.floor((selectedBlockForControl.remainingSeconds || 3600) / 3600)
                           .toString()
                           .padStart(2, '0')}:${Math.floor(((selectedBlockForControl.remainingSeconds || 3600) % 3600) / 60)
@@ -1095,14 +1109,25 @@ export default function RBMSPage() {
                           .padStart(2, '0')}`}
                   </div>
 
-                  {isBurstSimulated && (
-                    <div className="text-[11px] font-mono text-red-300 mt-2 bg-red-900/40 p-2.5 rounded-sm border border-red-700/60 space-y-1">
-                      <div className="font-bold text-red-200 flex items-center gap-1.5">
-                        <span>🚨</span> BURST ESCALATION LOGGED IN COA (#MAS-INC-8912)
+                  {isBurstSimulated && !isExtended && (
+                    <div className="text-[11px] font-sans text-red-800 mt-2 bg-red-100/50 p-3 rounded-lg border border-red-200 space-y-1.5">
+                      <div className="font-bold text-red-900 flex items-center gap-1.5">
+                        <span>⚠️</span> BURST ESCALATION LOGGED IN COA (#MAS-INC-8912)
                       </div>
                       <div>• Defaulter Branch: <strong>{selectedBlockForControl.primaryDept}</strong></div>
-                      <div>• Penalty Charge: <strong className="text-indigo-700">₹1,45,200</strong> (COA Operational Delay Debit)</div>
+                      <div>• Penalty Charge: <strong className="text-red-700">₹11,45,200</strong> (COA Operational Delay Debit)</div>
                       <div>• Relief Action: <strong>Emergency Diesel Tower Wagon (TW-RU-112)</strong> alerted at Tambaram Loco Siding for emergency clearance.</div>
+                    </div>
+                  )}
+                  
+                  {isExtended && (
+                    <div className="text-[11px] font-sans text-indigo-800 mt-2 bg-white p-3 rounded-lg border border-indigo-200 shadow-sm space-y-1.5">
+                      <div className="font-bold text-indigo-900 flex items-center gap-1.5">
+                        <span>✨</span> AI DYNAMIC RESCHEDULING EXECUTED
+                      </div>
+                      <div>• <strong>Train 40012 (Chennai Beach EMU)</strong> successfully delayed by 8 mins at Tambaram Loop.</div>
+                      <div>• <strong>Train 12635 (Vaigai Express)</strong> dynamically diverted to Suburban Down Line.</div>
+                      <div>• Status: <strong>Zero cascading delays.</strong> +15 min maintenance extension formally sanctioned.</div>
                     </div>
                   )}
                 </div>
