@@ -101,8 +101,8 @@ export default function LandingPage() {
           )}
         </div>
         
-        <p className="mt-8 max-w-2xl mx-auto text-sm md:text-base text-zinc-400 font-mono lowercase tracking-widest leading-relaxed px-4">
-          system initialization ... connected ... 0x7FA4 ... ready for input.
+        <p className="mt-8 max-w-2xl mx-auto text-sm md:text-base text-zinc-400 font-mono tracking-widest leading-relaxed px-4">
+          CENTRALIZED BLOCK PLANNING & COMMAND
         </p>
       </div>
 
@@ -135,13 +135,13 @@ export default function LandingPage() {
               &gt; controller desk &amp; burst alert
             </p>
             <div className="flex justify-between items-center text-xs font-mono font-bold tracking-widest text-zinc-700 group-hover:text-white transition-colors">
-              <span>ENTER_RBMS</span>
-              <span className="text-amber-400 font-black">[{'>'}]</span>
+              <span>OPEN DASHBOARD</span>
+              <span className="text-amber-400 font-black">&rarr;</span>
             </div>
           </div>
         </Link>
 
-        {/* AI Planner Link (PS 26027) */}
+        {/* AI Planner Link */}
         <Link 
           href="/ai-planner"
           className="group relative bg-[#050505] border border-zinc-900 p-6 hover:bg-black transition-all duration-300 shadow-2xl"
@@ -167,8 +167,8 @@ export default function LandingPage() {
               &gt; 86.1% downtime saved
             </p>
             <div className="flex justify-between items-center text-xs font-mono font-bold tracking-widest text-zinc-700 group-hover:text-white transition-colors">
-              <span>LAUNCH_AI_MODEL</span>
-              <span className="text-cyan-400 font-black">[{'>'}]</span>
+              <span>OPEN PLANNER</span>
+              <span className="text-cyan-400 font-black">&rarr;</span>
             </div>
           </div>
         </Link>
@@ -199,8 +199,8 @@ export default function LandingPage() {
               &gt; telemetry parsing
             </p>
             <div className="flex justify-between items-center text-xs font-mono font-bold tracking-widest text-zinc-700 group-hover:text-white transition-colors">
-              <span>INITIATE_MODULE</span>
-              <span className="text-red-600 font-black">[{'>'}]</span>
+              <span>VIEW CORRIDOR</span>
+              <span className="text-red-600 font-black">&rarr;</span>
             </div>
           </div>
         </Link>
@@ -231,8 +231,8 @@ export default function LandingPage() {
               &gt; maintenance override
             </p>
             <div className="flex justify-between items-center text-xs font-mono font-bold tracking-widest text-zinc-700 group-hover:text-white transition-colors">
-              <span>OVERRIDE_SYSTEM</span>
-              <span className="text-yellow-500 font-black">[{'>'}]</span>
+              <span>SCHEDULE BLOCK</span>
+              <span className="text-yellow-500 font-black">&rarr;</span>
             </div>
           </div>
         </Link>
@@ -263,8 +263,8 @@ export default function LandingPage() {
               &gt; personnel routing
             </p>
             <div className="flex justify-between items-center text-xs font-mono font-bold tracking-widest text-zinc-700 group-hover:text-white transition-colors">
-              <span>TWILIO_INTEGRATION</span>
-              <span className="text-emerald-400 font-black">[{'>'}]</span>
+              <span>MANAGE CREWS</span>
+              <span className="text-emerald-400 font-black">&rarr;</span>
             </div>
           </div>
         </Link>
@@ -273,12 +273,12 @@ export default function LandingPage() {
       
       {/* Footer Details */}
       <div className="absolute bottom-4 left-4 font-mono text-[9px] text-zinc-600 uppercase tracking-widest">
-        SR-SYS-CORE // 10.42.1.0<br/>
-        ENCRYPTION: ACTIVE
+        SOUTHERN RAILWAY IT DIVISION<br/>
+        CENTRAL CONTROL ROOM
       </div>
       <div className="absolute bottom-4 right-4 font-mono text-[9px] text-zinc-600 uppercase tracking-widest text-right">
-        AUTHORIZED ACCESS ONLY<br/>
-        SECURE TERMINAL
+        FOR AUTHORIZED PERSONNEL ONLY<br/>
+        ALL ACTIONS LOGGED
       </div>
     </div>
   );
