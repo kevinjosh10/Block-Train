@@ -14,7 +14,6 @@ export default function LandingPage() {
       category: 'ai',
       badge: 'PS 26027 Engine',
       route: '/ai-planner',
-      icon: '🧠',
       stat: '93.21% R² Regressor Accuracy',
       description:
         'Two-Stage GBDT (630 Trees) & Google OR-Tools CP-SAT for multi-department spatial shadow block clustering (±2.5 km).',
@@ -26,7 +25,6 @@ export default function LandingPage() {
       category: 'ops',
       badge: '14-Day Rolling RBP',
       route: '/rbms',
-      icon: '📅',
       stat: '>53% Downtime Cut (99.8 hrs/wk)',
       description:
         'Standard operating workflow for 14-day rolling schedules, digital vetting, Private Number sanctioning, and TSR relaxation.',
@@ -38,7 +36,6 @@ export default function LandingPage() {
       category: 'safety',
       badge: 'MAS–AJJ 73 KM Quadruple',
       route: '/map',
-      icon: '🗺️',
       stat: '19 Interlocked Stations',
       description:
         'Real-time corridor GIS twin tracking active line possessions, live train locations, signal aspects, and speed restrictions.',
@@ -50,7 +47,6 @@ export default function LandingPage() {
       category: 'ops',
       badge: 'TMS • SMMS • TDMS',
       route: '/maintenance',
-      icon: '🚧',
       stat: 'Unified Defect Ingestion',
       description:
         'Cross-departmental possession logging unifying Track (Civil), Signal (S&T), and Overhead Traction (25kV OHE).',
@@ -62,7 +58,6 @@ export default function LandingPage() {
       category: 'ops',
       badge: 'Field Operations',
       route: '/workers',
-      icon: '👷',
       stat: 'Active Roster Directory',
       description:
         'Logistics coordination for track machinery (BCM, CSM, Tower Wagons) and field supervisor assignments.',
@@ -224,7 +219,6 @@ export default function LandingPage() {
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-lg">{m.icon}</span>
                     <span className="text-xs font-mono text-slate-400 border border-slate-800 px-2 py-0.5 rounded">
                       {m.badge}
                     </span>

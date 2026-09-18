@@ -218,7 +218,7 @@ export default function AIBlockPlannerPage() {
       <div className="border-b border-slate-800/80 bg-slate-900/40 px-6 py-4">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+            <div className="w-2 h-2 rounded-full bg-blue-500" />
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-xs font-mono tracking-widest text-blue-400 uppercase font-bold">
@@ -251,7 +251,7 @@ export default function AIBlockPlannerPage() {
       <main className="flex-1 p-6 max-w-7xl mx-auto w-full space-y-8">
         {/* Toast Notification */}
         {appliedNotification && (
-          <div className="bg-emerald-950/90 border border-emerald-500 text-emerald-100 px-5 py-3.5 rounded-xl flex flex-wrap items-center justify-between gap-3 text-sm shadow-[0_0_30px_rgba(16,185,129,0.35)] animate-pulse">
+          <div className="bg-emerald-950/90 border border-emerald-500 text-emerald-100 px-5 py-3.5 rounded-xl flex flex-wrap items-center justify-between gap-3 text-sm shadow-[0_0_30px_rgba(16,185,129,0.35)]">
             <span className="font-mono text-xs md:text-sm font-semibold">{appliedNotification}</span>
             <div className="flex items-center gap-2">
               <button
@@ -262,9 +262,9 @@ export default function AIBlockPlannerPage() {
               </button>
               <Link
                 href="/map"
-                className="bg-emerald-400 hover:bg-emerald-300 text-black px-4 py-1.5 rounded-lg font-bold font-mono text-xs transition-colors flex items-center gap-1.5 shadow-[0_0_15px_rgba(52,211,153,0.5)]"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-1.5 rounded-lg font-bold font-mono text-xs transition-colors flex items-center gap-1.5 shadow-[0_0_15px_rgba(52,211,153,0.5)]"
               >
-                <span>🗺️</span> View Live on Digital Twin Map &rarr;
+                View Live on Digital Twin Map &rarr;
               </Link>
             </div>
           </div>
@@ -483,25 +483,23 @@ export default function AIBlockPlannerPage() {
             <button
               onClick={runInference}
               disabled={loading}
-              className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-bold text-sm tracking-wider uppercase transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)] flex items-center justify-center gap-2"
+              className="w-full py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm tracking-wider uppercase transition-all flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
-                  <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                   Running Inference...
                 </>
               ) : (
                 <>
-                  <span>⚡</span> Execute Live AI Decision
+                  Execute Live AI Decision
                 </>
               )}
             </button>
           </div>
 
           {/* Decision Results Display (7 cols) */}
-          <div className="lg:col-span-7 bg-zinc-950 border border-zinc-800 rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
-
+          <div className="lg:col-span-7 bg-zinc-950 border border-zinc-800 rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden">
             <div>
               <div className="flex items-center justify-between border-b border-zinc-800 pb-4 mb-6">
                 <div>
@@ -674,9 +672,9 @@ export default function AIBlockPlannerPage() {
               <button
                 type="button"
                 onClick={applyScheduleToLiveMap}
-                className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-black font-bold text-xs uppercase tracking-wider transition-all shadow-sm flex items-center gap-2 cursor-pointer"
+                className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-sm flex items-center gap-2 cursor-pointer"
               >
-                <span>🚀</span> Apply Schedule to Live Digital Twin
+                Apply Schedule to Live Digital Twin
               </button>
             </div>
           </div>

@@ -114,19 +114,19 @@ export default function WorkersPage() {
               href="/ai-planner"
               className="px-3 py-1.5 rounded-lg bg-blue-950/80 text-blue-300 border border-blue-800 hover:bg-blue-900 transition-colors"
             >
-              🧠 AI Planner
+              AI Planner
             </Link>
             <Link
               href="/rbms"
               className="px-3 py-1.5 rounded-lg bg-amber-950/80 text-amber-300 border border-amber-800 hover:bg-amber-900 transition-colors"
             >
-              📅 RBMS
+              RBMS
             </Link>
             <Link
               href="/map"
               className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 transition-colors"
             >
-              🗺️ Map
+              Live Map
             </Link>
           </div>
         </div>
@@ -203,9 +203,9 @@ export default function WorkersPage() {
             <div className="flex items-end">
               <button 
                 type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition-all duration-200 shadow-md shadow-blue-600/20 flex items-center justify-center gap-1.5"
+                className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5"
               >
-                <span>➕</span> Enroll Supervisor
+                Enroll Supervisor
               </button>
             </div>
           </form>

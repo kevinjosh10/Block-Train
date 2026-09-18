@@ -94,7 +94,7 @@ export default function MaintenancePage() {
         {activeBlocks.length > 0 && (
           <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-6 backdrop-blur-md pointer-events-auto flex flex-col max-h-full">
             <h2 className="text-sm font-medium text-white mb-4 uppercase tracking-widest flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-amber-500" />
               Active Blocks ({activeBlocks.length})
             </h2>
             <div className="overflow-y-auto pr-2 space-y-3">
@@ -240,7 +240,7 @@ export default function MaintenancePage() {
                           disabled={evaluatingAi}
                           className="text-[10px] font-mono px-2.5 py-1 rounded bg-cyan-950 text-cyan-400 border border-cyan-800/60 hover:bg-cyan-900 transition-colors flex items-center gap-1.5"
                         >
-                          {evaluatingAi ? 'Evaluating...' : '⚡ Auto-Evaluate with AI'}
+                          {evaluatingAi ? 'Evaluating...' : 'Auto-Evaluate with AI'}
                         </button>
                       </div>
 
@@ -285,7 +285,7 @@ export default function MaintenancePage() {
                 </div>
 
                 <div className="mt-auto pt-4 border-t border-zinc-800">
-                  <button type="submit" className="w-full bg-emerald-500 text-black font-bold text-lg py-4 rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:bg-emerald-400 hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] transition-all">
+                  <button type="submit" className="w-full bg-emerald-600 text-white font-bold text-lg py-4 rounded-xl hover:bg-emerald-500 transition-all">
                     CONFIRM BLOCK & DISPATCH NOTIFICATIONS
                   </button>
                 </div>

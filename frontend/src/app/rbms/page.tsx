@@ -521,10 +521,10 @@ export default function RBMSPage() {
       <EnterpriseHeader badgeText="RBMS Suite • 14-Day Rolling Horizon" />
 
       {/* Subheader Banner */}
-      <div className="border-b border-slate-800 bg-slate-900/60 backdrop-blur-md px-6 py-4">
+      <div className="border-b border-slate-800 bg-slate-900/60 px-6 py-4">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shadow-sm shadow-amber-500/50" />
+            <div className="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-sm shadow-amber-500/50" />
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-[11px] font-mono tracking-widest text-amber-400 uppercase font-bold">
@@ -546,19 +546,19 @@ export default function RBMSPage() {
               className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-bold transition-all shadow-sm flex items-center gap-1.5"
               title="Sync Coordinated AI Shadow Blocks directly to Digital Twin"
             >
-              <span>🤖</span> Sync AI Shadow Blocks
+              Sync AI Shadow Blocks
             </button>
             <Link
               href="/ai-planner"
               className="px-3 py-1.5 rounded-lg bg-blue-950/80 text-blue-300 border border-blue-800 hover:bg-blue-900 font-mono text-xs transition-colors"
             >
-              🧠 AI Triage
+              AI Triage
             </Link>
             <Link
               href="/map"
               className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 font-mono text-xs transition-colors"
             >
-              🗺️ Map
+              Live Map
             </Link>
           </div>
         </div>
@@ -566,7 +566,7 @@ export default function RBMSPage() {
 
       {/* Global Notification Banner */}
       {actionSuccessMessage && (
-        <div className="bg-emerald-950/90 border-b border-emerald-500 text-emerald-100 px-6 py-3 text-xs font-mono font-bold flex justify-between items-center shadow-lg animate-pulse">
+        <div className="bg-emerald-950/90 border-b border-emerald-500 text-emerald-100 px-6 py-3 text-xs font-mono font-bold flex justify-between items-center shadow-lg">
           <span>{actionSuccessMessage}</span>
           <button onClick={() => setActionSuccessMessage(null)} className="text-emerald-400 hover:text-white">
             ✕
@@ -577,12 +577,12 @@ export default function RBMSPage() {
       {/* Navigation Sub-Tabs */}
       <nav className="border-b border-slate-800 bg-slate-900/50 px-6 flex flex-wrap gap-2 pt-3">
         {[
-          { id: 'RBP', label: '14-Day Rolling Schedule', icon: '📅' },
-          { id: 'DEMAND', label: 'Joint Requisition', icon: '📝' },
-          { id: 'CONTROLLER', label: 'Controller Desk', icon: '🚦' },
-          { id: 'TSR', label: 'TSR Caution Register', icon: '⚠️' },
-          { id: 'REGULATION', label: 'Train Regulations', icon: '🚆' },
-          { id: 'MEMO', label: 'Sanction Dossier', icon: '📜' },
+          { id: 'RBP', label: '14-Day Rolling Schedule' },
+          { id: 'DEMAND', label: 'Joint Requisition' },
+          { id: 'CONTROLLER', label: 'Controller Desk' },
+          { id: 'TSR', label: 'TSR Caution Register' },
+          { id: 'REGULATION', label: 'Train Regulations' },
+          { id: 'MEMO', label: 'Sanction Dossier' },
         ].map((tab) => {
           const isActive = activeTab === tab.id;
           return (
@@ -595,7 +595,6 @@ export default function RBMSPage() {
                   : 'text-slate-400 border-transparent hover:text-slate-200 hover:bg-slate-800/40'
               }`}
             >
-              <span>{tab.icon}</span>
               <span>{tab.label}</span>
             </button>
           );
@@ -706,7 +705,7 @@ export default function RBMSPage() {
                     </div>
 
                     <h3 className="text-base font-bold text-white tracking-tight flex items-center gap-2">
-                      <span>📍</span> {b.stationName} <span className="text-zinc-500 text-xs font-mono font-normal">[{b.trackId}]</span>
+                      {b.stationName} <span className="text-zinc-500 text-xs font-mono font-normal">[{b.trackId}]</span>
                     </h3>
 
                     <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-zinc-400">
