@@ -330,15 +330,12 @@ export default function AIBlockPlannerPage() {
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-sm font-bold uppercase tracking-widest text-white flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-blue-500" />
-                  1. Real-Time Defect Simulator
+                  Real-Time Defect Input
                 </h2>
                 <span className="text-xs font-mono text-blue-400">
-                  Module 1: ML Model
+                  GBDT Two-Stage Pipeline
                 </span>
               </div>
-              <p className="text-xs text-zinc-400 mb-6 leading-relaxed">
-                Adjust defect parameters below and execute the model. The two-stage Gradient Boosting pipeline predicts the continuous <strong>Maintenance Priority Index (MPI)</strong> and classifies the required urgency tier in real time.
-              </p>
 
               <div className="space-y-4">
                 {/* Department */}
@@ -681,31 +678,6 @@ export default function AIBlockPlannerPage() {
               >
                 <span>🚀</span> Apply Schedule to Live Digital Twin
               </button>
-            </div>
-          </div>
-
-          {/* Shadow Block Comparison Explainer */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="border border-red-900/40 p-4 rounded-xl">
-              <span className="text-xs font-bold text-red-400 uppercase font-mono block mb-2">
-                ❌ Traditional Decentralized Demand (BDMS Manual)
-              </span>
-              <p className="text-xs text-zinc-300 leading-relaxed">
-                Civil, S&T, and TRD file separate possession requests on different days.
-                <br />• <strong>Total Line Downtime = 116.0 track-hours/week</strong> across the corridor.
-                <br />• Results in frequent passenger train delays and low asset availability (82.74%).
-              </p>
-            </div>
-
-            <div className="border border-emerald-900/40 p-4 rounded-xl">
-              <span className="text-xs font-bold text-emerald-400 uppercase font-mono block mb-2">
-                ✓ AI Coordinated Shadow Blocks (PS 26027)
-              </span>
-              <p className="text-xs text-zinc-300 leading-relaxed">
-                AI bundles Civil, S&T, and Electrical TRD into <strong>shared midnight possession windows</strong>.
-                <br />• <strong>Optimized Line Downtime = 16.2 track-hours/week</strong>.
-                <br />• <strong>Net Saved for Trains = 99.8 track-hours</strong> (Uptime boosted to 97.59%).
-              </p>
             </div>
           </div>
 

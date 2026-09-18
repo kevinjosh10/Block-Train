@@ -572,72 +572,31 @@ export default function RBMSPage() {
       )}
 
       {/* Navigation Sub-Tabs */}
-      <nav className="border-b border-zinc-800/80 bg-[#090b10] px-6 flex flex-wrap gap-2 pt-3 pb-0">
-        <button
-          onClick={() => setActiveTab('RBP')}
-          className={`px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider rounded-t-xl transition-all border-t border-x ${
-            activeTab === 'RBP'
-              ? 'bg-[#0f1420] text-amber-400 border-amber-500/60 border-b-transparent shadow-[0_-4px_10px_rgba(245,158,11,0.1)]'
-              : 'bg-transparent text-zinc-400 border-transparent hover:text-white'
-          }`}
-        >
-          📅 1. 14-Day Rolling Schedule (RBP)
-        </button>
-
-        <button
-          onClick={() => setActiveTab('DEMAND')}
-          className={`px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider rounded-t-xl transition-all border-t border-x ${
-            activeTab === 'DEMAND'
-              ? 'bg-[#0f1420] text-amber-400 border-amber-500/60 border-b-transparent shadow-[0_-4px_10px_rgba(245,158,11,0.1)]'
-              : 'bg-transparent text-zinc-400 border-transparent hover:text-white'
-          }`}
-        >
-          📝 2. Joint Multi-Dept Requisition
-        </button>
-
-        <button
-          onClick={() => setActiveTab('CONTROLLER')}
-          className={`px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider rounded-t-xl transition-all border-t border-x ${
-            activeTab === 'CONTROLLER'
-              ? 'bg-[#0f1420] text-amber-400 border-amber-500/60 border-b-transparent shadow-[0_-4px_10px_rgba(245,158,11,0.1)]'
-              : 'bg-transparent text-zinc-400 border-transparent hover:text-white'
-          }`}
-        >
-          🚦 3. Section Controller Live Desk
-        </button>
-
-        <button
-          onClick={() => setActiveTab('TSR')}
-          className={`px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider rounded-t-xl transition-all border-t border-x ${
-            activeTab === 'TSR'
-              ? 'bg-[#0f1420] text-amber-400 border-amber-500/60 border-b-transparent shadow-[0_-4px_10px_rgba(245,158,11,0.1)]'
-              : 'bg-transparent text-zinc-400 border-transparent hover:text-white'
-          }`}
-        >
-          ⚠️ 4. Caution Order (TSR) Register
-        </button>
-
-        <button
-          onClick={() => setActiveTab('REGULATION')}
-          className={`px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider rounded-t-xl transition-all border-t border-x ${
-            activeTab === 'REGULATION'
-              ? 'bg-[#0f1420] text-amber-400 border-amber-500/60 border-b-transparent shadow-[0_-4px_10px_rgba(245,158,11,0.1)]'
-              : 'bg-transparent text-zinc-400 border-transparent hover:text-white'
-          }`}
-        >
-          🚆 5. Train Regulation & Detention
-        </button>
-
-        <button
-          onClick={() => setActiveTab('MEMO')}
-          className={`px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider rounded-t-xl transition-all border-t border-x ${
-            activeTab === 'MEMO'
-              ? 'bg-[#0f1420] text-amber-400 border-amber-500/60 border-b-transparent shadow-[0_-4px_10px_rgba(245,158,11,0.1)]'
-              : 'bg-transparent text-zinc-400 border-transparent hover:text-white'
-          }`}
-        >
-          📜 6. Official Sanction Dossier
-        </button>
+      <nav className="border-b border-slate-800 bg-slate-900/50 px-6 flex flex-wrap gap-2 pt-3">
+        {[
+          { id: 'RBP', label: '14-Day Rolling Schedule', icon: '📅' },
+          { id: 'DEMAND', label: 'Joint Requisition', icon: '📝' },
+          { id: 'CONTROLLER', label: 'Controller Desk', icon: '🚦' },
+          { id: 'TSR', label: 'TSR Caution Register', icon: '⚠️' },
+          { id: 'REGULATION', label: 'Train Regulations', icon: '🚆' },
+          { id: 'MEMO', label: 'Sanction Dossier', icon: '📜' },
+        ].map((tab) => {
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id as any)}
+              className={`px-3.5 py-2 font-mono text-xs font-semibold uppercase tracking-wider rounded-t-lg transition-colors border-b-2 flex items-center gap-1.5 ${
+                isActive
+                  ? 'text-white border-blue-500 bg-slate-800/80 font-bold'
+                  : 'text-slate-400 border-transparent hover:text-slate-200 hover:bg-slate-800/40'
+              }`}
+            >
+              <span>{tab.icon}</span>
+              <span>{tab.label}</span>
+            </button>
+          );
+        })}
       </nav>
 
       {/* Main Container */}
