@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlockTrain AI - Neural Network Layer Architecture</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @keyframes pulseWeight {
+      0% { stroke-opacity: 0.15; }
+      50% { stroke-opacity: 0.85; stroke-width: 2.2; }
+      100% { stroke-opacity: 0.15; }
+    }
+    @keyframes flowDot {
+      from { stroke-dashoffset: 60; }
+      to { stroke-dashoffset: 0; }
+    }
+    .synapse-active {
+      stroke-dasharray: 4 6;
+      animation: flowDot 1.4s linear infinite;
+    }
+    .node-glow-blue { filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.7)); }
+    .node-glow-purple { filter: drop-shadow(0 0 8px rgba(192, 132, 252, 0.7)); }
+    .node-glow-pink { filter: drop-shadow(0 0 8px rgba(244, 114, 182, 0.7)); }
+    .node-glow-red { filter: drop-shadow(0 0 8px rgba(248, 113, 113, 0.7)); }
+    .node-glow-orange { filter: drop-shadow(0 0 8px rgba(251, 146, 60, 0.7)); }
+    .node-glow-yellow { filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.9)); }
+  </style>
+</head>
+<body class="bg-[#070b14] text-slate-100 antialiased selection:bg-amber-500/30 p-3 md:p-6 select-none font-sans">
+  
+  <div class="max-w-7xl mx-auto space-y-6">
+    
+    <!-- Top Header -->
+    <header class="bg-[#0b1222] border border-cyan-950/80 rounded-2xl p-5 shadow-2xl flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3.5">
+        <div class="w-4 h-4 rounded-full bg-amber-400 animate-ping absolute opacity-75"></div>
+        <div class="w-3.5 h-3.5 rounded-full bg-amber-400 shadow-[0_0_15px_#fbbf24] relative"></div>
+        <div>
+          <div class="text-[10px] font-mono tracking-[0.25em] text-amber-400 uppercase font-black">
+            SOUTHERN RAILWAY // PROBLEM STATEMENT 26027
+          </div>
+          <h1 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-white flex items-center gap-2">
+            Neural Network Architecture of BlockTrain
+          </h1>
+        </div>
+      </div>
+
+      <!-- Live Accuracy Badges -->
+      <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+        <span class="px-3 py-1.5 rounded-lg bg-blue-950/80 text-blue-300 border border-blue-800">
+          R² = 93.21%
+        </span>
+        <span class="px-3 py-1.5 rounded-lg bg-purple-950/80 text-purple-300 border border-purple-800">
+          Accuracy = 87.66%
+        </span>
+        <span class="px-3 py-1.5 rounded-lg bg-emerald-950/80 text-emerald-300 border border-emerald-800 font-bold">
+          100% Emergency Precision
+        </span>
+      </div>
+    </header>
+
+    <!-- Interactive Defect Stimulus Bar -->
+    <div class="bg-[#0c1322] border border-zinc-800/80 rounded-2xl p-5 shadow-xl grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
+      <div>
+        <label class="text-[10px] font-mono uppercase text-zinc-400 block mb-1">1. Department Fault</label>
+        <select id="selDept" class="w-full bg-black border border-zinc-700 text-white rounded-lg p-2 text-xs font-mono outline-none focus:border-amber-400">
+          <option value="CIVIL">Civil Track (TMS): Rail Fracture / Fishplate</option>
+          <option value="SNT">S&T Signals (SMMS): Point 118 Sluggish / AFTC</option>
+          <option value="TRD">TRD Traction (TDMS): 25kV OHE Wire Dropper Wear</option>
+        </select>
+      </div>
+      <div>
+        <div class="flex justify-between text-xs font-mono mb-1">
+          <span class="text-zinc-400">2. Safety Risk</span>
+          <span id="txtRisk" class="text-red-400 font-bold">8.5 / 10</span>
+        </div>
+        <input id="inRisk" type="range" min="1.0" max="10.0" step="0.5" value="8.5" class="w-full accent-red-500 cursor-pointer">
+      </div>
+      <div>
+        <div class="flex justify-between text-xs font-mono mb-1">
+          <span class="text-zinc-400">3. Overdue Days</span>
+          <span id="txtOverdue" class="text-amber-400 font-bold">21 Days</span>
+        </div>
+        <input id="inOverdue" type="range" min="0" max="60" step="1" value="21" class="w-full accent-amber-400 cursor-pointer">
+      </div>
+      <div>
+        <div class="flex justify-between text-xs font-mono mb-1">
+          <span class="text-zinc-400">4. Asset Age</span>
+          <span id="txtAge" class="text-blue-400 font-bold">7.5 Years</span>
+        </div>
+        <input id="inAge" type="range" min="1" max="20" step="0.5" value="7.5" class="w-full accent-blue-400 cursor-pointer">
+      </div>
+      <div class="bg-black/60 border border-zinc-800 rounded-xl p-3 flex flex-col justify-center items-center text-center">
+        <span class="text-[9px] font-mono uppercase text-zinc-400">Real-Time Network Decision</span>
+        <span id="txtUrgencyResult" class="text-sm font-mono font-black text-red-400 uppercase tracking-wider">
+          CRITICAL EMERGENCY
+        </span>
+        <span id="txtMpiResult" class="text-[11px] font-mono text-cyan-300 font-bold">MPI: 68.4 / 100</span>
+      </div>
+    </div>
+
+    <!-- Main Neural Diagram SVG Canvas Container -->
+    <div class="bg-[#050913] border border-cyan-950/70 rounded-2xl p-4 md:p-6 shadow-2xl relative overflow-x-auto">
+      
+      <!-- SVG Canvas matching the user's hand-drawn reference image layout -->
+      <svg id="networkSvg" viewBox="0 0 1160 520" class="w-full min-w-[980px] h-auto font-sans" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrowHead" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <polygon points="0 0, 6 3, 0 6" fill="#fbbf24" />
+          </marker>
+        </defs>
+
+        <!-- Connections Group (synapses rendered behind nodes) -->
+        <g id="synapsesGroup"></g>
+
+        <!-- ================= INPUT SECTION (Left) ================= -->
+        <g id="inputGroup" transform="translate(10, 80)">
+          <!-- Circular Track Defect Badge -->
+          <circle cx="70" cy="140" r="54" fill="#0c1e3d" stroke="#3b82f6" stroke-width="2.5" />
+          
+          <!-- Railway Track Glyph inside circle -->
+          <g transform="translate(42, 108)">
+            <!-- Left Rail -->
+            <path d="M 8 10 L 18 55" stroke="#93c5fd" stroke-width="3.5" stroke-linecap="round"/>
+            <!-- Right Rail -->
+            <path d="M 48 10 L 38 55" stroke="#93c5fd" stroke-width="3.5" stroke-linecap="round"/>
+            <!-- Sleepers -->
+            <line x1="10" y1="18" x2="46" y2="18" stroke="#cbd5e1" stroke-width="2.5"/>
+            <line x1="12" y1="28" x2="44" y2="28" stroke="#cbd5e1" stroke-width="2.5"/>
+            <line x1="14" y1="38" x2="42" y2="38" stroke="#cbd5e1" stroke-width="2.5"/>
+            <line x1="16" y1="48" x2="40" y2="48" stroke="#cbd5e1" stroke-width="2.5"/>
+            <!-- Defect Fracture Spark -->
+            <polygon points="26,24 33,26 28,32 35,34 22,46 25,36 19,34" fill="#ef4444" />
+          </g>
+
+          <text x="70" y="225" fill="#e2e8f0" font-size="12" font-weight="900" font-family="monospace" text-anchor="middle">INPUT:</text>
+          <text x="70" y="242" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle">Multi-Dept Defect</text>
+          <text x="70" y="256" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle">Normalized Tensor</text>
+        </g>
+
+        <!-- Input Splitting Curves to Layer 1 -->
+        <g stroke="#38bdf8" stroke-width="1.8" fill="none" opacity="0.65" stroke-dasharray="3 3">
+          <path d="M 130 180 C 160 180, 180 60, 220 60"/>
+          <path d="M 130 195 C 165 195, 180 120, 220 120"/>
+          <path d="M 130 210 C 170 210, 180 180, 220 180"/>
+          <path d="M 130 225 C 170 225, 180 240, 220 240"/>
+          <path d="M 130 240 C 165 240, 180 300, 220 300"/>
+          <path d="M 130 255 C 160 255, 180 360, 220 360"/>
+        </g>
+
+        <!-- Small square sensory feature particles -->
+        <rect x="155" y="90" width="8" height="8" fill="#38bdf8" transform="rotate(15 155 90)"/>
+        <rect x="175" y="145" width="7" height="7" fill="#818cf8" transform="rotate(45 175 145)"/>
+        <rect x="160" y="220" width="8" height="8" fill="#f43f5e" transform="rotate(30 160 220)"/>
+        <rect x="175" y="280" width="7" height="7" fill="#fbbf24" transform="rotate(10 175 280)"/>
+        <rect x="150" y="330" width="8" height="8" fill="#34d399" transform="rotate(50 150 330)"/>
+
+        <!-- ================= LAYER 1: RAW DETECTED ATTRIBUTES ================= -->
+        <g id="layer1Nodes"></g>
+
+        <!-- ================= LAYER 2: NON-LINEAR FEATURE INTERACTIONS ================= -->
+        <g id="layer2Nodes"></g>
+
+        <!-- ================= LAYER 3: STAGE 1 MPI SYNTHESIS ================= -->
+        <g id="layer3Nodes"></g>
+
+        <!-- ================= LAYER 4: MULTI-CLASS URGENCIES IDENTIFIED ================= -->
+        <g id="layer4Nodes"></g>
+
+        <!-- ================= LAYER 5: COMBINATIONS OF ACTUATION ================= -->
+        <g id="layer5Nodes"></g>
+
+        <!-- ================= FINAL OUTPUT (Right) ================= -->
+        <g id="outputNode" transform="translate(1000, 210)">
+          <circle cx="0" cy="0" r="18" fill="#78350f" stroke="#fbbf24" stroke-width="3" class="node-glow-yellow"/>
+          <text cx="0" cy="4" fill="#ffffff" font-size="11" font-weight="black" font-family="monospace" text-anchor="middle" id="outVal">1</text>
+          
+          <path d="M 22 0 L 52 0" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#arrowHead)"/>
+          
+          <text x="60" y="-8" fill="#fbbf24" font-size="14" font-weight="black" font-family="monospace">OUTPUT</text>
+          <text x="60" y="10" fill="#f87171" font-size="12" font-weight="900" font-family="monospace" id="outText">"CRITICAL"</text>
+          <text x="60" y="25" fill="#34d399" font-size="9" font-family="monospace" id="outSubText">Shadow Block 01:00 AM</text>
+        </g>
+
+        <!-- ================= LAYER ANNOTATIONS AT THE BOTTOM ================= -->
+        <!-- Mirroring the user sketch: Layer1 -> L2 -> L3 -> L4 -> L5 -->
+        <g transform="translate(0, 420)">
+          <!-- Layer 1 -->
+          <text x="235" y="20" fill="#818cf8" font-size="15" font-weight="black" text-anchor="middle">Layer 1</text>
+          <text x="235" y="38" fill="#c7d2fe" font-size="11" text-anchor="middle">Raw Defect</text>
+          <text x="235" y="52" fill="#94a3b8" font-size="10" text-anchor="middle">Values Detected</text>
+
+          <!-- Layer 2 -->
+          <text x="395" y="20" fill="#c084fc" font-size="15" font-weight="black" text-anchor="middle">L2</text>
+          <text x="395" y="38" fill="#e9d5ff" font-size="11" text-anchor="middle">Interactions</text>
+          <text x="395" y="52" fill="#94a3b8" font-size="10" text-anchor="middle">Identified</text>
+
+          <!-- Layer 3 -->
+          <text x="555" y="20" fill="#f43f5e" font-size="15" font-weight="black" text-anchor="middle">L3</text>
+          <text x="555" y="38" fill="#fecdd3" font-size="11" text-anchor="middle">Combinations of</text>
+          <text x="555" y="52" fill="#94a3b8" font-size="10" text-anchor="middle">MPI Regressed</text>
+
+          <!-- Layer 4 -->
+          <text x="715" y="20" fill="#fb923c" font-size="15" font-weight="black" text-anchor="middle">L4</text>
+          <text x="715" y="38" fill="#ffedd5" font-size="11" text-anchor="middle">Urgency Tiers</text>
+          <text x="715" y="52" fill="#94a3b8" font-size="10" text-anchor="middle">Identified</text>
+
+          <!-- Layer 5 -->
+          <text x="875" y="20" fill="#facc15" font-size="15" font-weight="black" text-anchor="middle">L5</text>
+          <text x="875" y="38" fill="#fef08a" font-size="11" text-anchor="middle">Combinations of</text>
+          <text x="875" y="52" fill="#94a3b8" font-size="10" text-anchor="middle">Shadow Actuation</text>
+        </g>
+      </svg>
+
+    </div>
+
+    <!-- Engineering Deep Dive: Real Computation Mapping -->
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 font-mono text-xs text-zinc-400">
+      <div class="bg-[#0c1322] border border-blue-900/40 p-4 rounded-xl">
+        <span class="text-blue-400 font-bold block mb-1">Layer 1: Sensors</span>
+        Ingests raw physics: Safety Risk ($1-10$), Overdue Days, Asset Age, Repair Hours, Station Chainage Km, and Dept one-hots.
+      </div>
+      <div class="bg-[#0c1322] border border-purple-900/40 p-4 rounded-xl">
+        <span class="text-purple-400 font-bold block mb-1">L2: Interactions</span>
+        Computes non-linear terms: $5.0 \times \text{Risk} + 0.7 \times \text{Overdue}$ and $\text{Risk} \times \text{Age}$ to model accelerating physical fatigue.
+      </div>
+      <div class="bg-[#0c1322] border border-pink-900/40 p-4 rounded-xl">
+        <span class="text-pink-400 font-bold block mb-1">L3: Stage 1 MPI</span>
+        150 boosted regression trees assemble the continuous <strong>Maintenance Priority Index (MPI: 0–100)</strong> ($R^2 = 93.21\%$).
+      </div>
+      <div class="bg-[#0c1322] border border-orange-900/40 p-4 rounded-xl">
+        <span class="text-orange-400 font-bold block mb-1">L4: Safety Classifier</span>
+        Two-stage model stacking fuses raw features with MPI. 480 decision trees classify 4 tiers with <strong>100% Emergency Precision</strong>.
+      </div>
+      <div class="bg-[#0c1322] border border-yellow-900/40 p-4 rounded-xl">
+        <span class="text-yellow-400 font-bold block mb-1">L5: Actuation Head</span>
+        Groups multi-department possessions ($\pm 2.5\text{ km}$), cascades signals to Red Danger, and enforces pneumatic train braking.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Interactive Network Rendering & Live Weight Propagation Logic -->
+  <script>
+    // Layer Geometry (Coordinates exactly matching the user's uploaded hand-drawn diagram)
+    const LAYERS = [
+      {
+        id: 'L1',
+        name: 'Layer 1',
+        x: 235,
+        color: '#6366f1',
+        stroke: '#818cf8',
+        glowClass: 'node-glow-purple',
+        nodes: [
+          { label: 'Risk', sub: 'Safety Score' },
+          { label: 'Overdue', sub: 'Days Late' },
+          { label: 'Age', sub: 'Asset Years' },
+          { label: 'Hours', sub: 'Repair Time' },
+          { label: 'Km', sub: 'Chainage' },
+          { label: 'Dept', sub: 'Civil/S&T/TRD' }
+        ]
+      },
+      {
+        id: 'L2',
+        name: 'L2',
+        x: 395,
+        color: '#a855f7',
+        stroke: '#c084fc',
+        glowClass: 'node-glow-purple',
+        nodes: [
+          { label: 'Proxy', sub: '5*R + 0.7*D' },
+          { label: 'R×Overdue', sub: 'Risk Interaction' },
+          { label: 'R×Age', sub: 'Fatigue Comp' },
+          { label: 'Zone', sub: 'Corridor Slot' },
+          { label: 'Speed', sub: 'TSR Bound' },
+          { label: 'Traffic', sub: 'EMU Headway' }
+        ]
+      },
+      {
+        id: 'L3',
+        name: 'L3',
+        x: 555,
+        color: '#e11d48',
+        stroke: '#fb7185',
+        glowClass: 'node-glow-red',
+        nodes: [
+          { label: 'Tree1..50', sub: 'Residual Grad' },
+          { label: 'Tree51..100', sub: 'Depth 5 Split' },
+          { label: 'Tree101..150', sub: 'Shrinkage η' },
+          { label: 'MPI Latent', sub: '0 - 100 Index' },
+          { label: 'Stacking', sub: 'Skip Fusion' },
+          { label: 'Meta', sub: 'Feature Aug' }
+        ]
+      },
+      {
+        id: 'L4',
+        name: 'L4',
+        x: 715,
+        color: '#ea580c',
+        stroke: '#fb923c',
+        glowClass: 'node-glow-orange',
+        nodes: [
+          { label: 'Critical', sub: '24-48h Slot' },
+          { label: 'High', sub: '72h Window' },
+          { label: 'Medium', sub: 'Rolling RBP' },
+          { label: 'Routine', sub: 'Night Inspect' },
+          { label: 'Precision', sub: '100% Zero-FA' },
+          { label: 'Recall', sub: '97.4% Track' }
+        ]
+      },
+      {
+        id: 'L5',
+        name: 'L5',
+        x: 875,
+        color: '#ca8a04',
+        stroke: '#facc15',
+        glowClass: 'node-glow-yellow',
+        nodes: [
+          { label: 'Radius', sub: 'km ± 2.5km' },
+          { label: 'COA Slot', sub: '01:00-04:00' },
+          { label: 'Signals', sub: 'Red Danger' },
+          { label: 'Braking', sub: '-0.5 m/s²' }
+        ]
+      }
+    ];
+
+    // Compute Y coordinates for nodes in each layer to match the drawing
+    const Y_START = 60;
+    const Y_GAP = 60;
+
+    LAYERS.forEach((layer) => {
+      const totalHeight = (layer.nodes.length - 1) * Y_GAP;
+      const startY = 210 - (totalHeight / 2);
+      layer.nodes.forEach((node, i) => {
+        node.x = layer.x;
+        node.y = startY + (i * Y_GAP);
+        node.val = 1; // Default binary/scaled activation
+      });
+    });
+
+    // Generate Synapses Connecting Every Node in Layer L to Layer L+1
+    const synapsesGroup = document.getElementById('synapsesGroup');
+    let synapseElements = [];
+
+    for (let l = 0; l < LAYERS.length - 1; l++) {
+      const currentLayer = LAYERS[l];
+      const nextLayer = LAYERS[l + 1];
+
+      currentLayer.nodes.forEach((n1, i) => {
+        nextLayer.nodes.forEach((n2, j) => {
+          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          line.setAttribute('x1', n1.x);
+          line.setAttribute('y1', n1.y);
+          line.setAttribute('x2', n2.x);
+          line.setAttribute('y2', n2.y);
+          
+          // Color gradient blend matching hand-drawn transition
+          line.setAttribute('stroke', currentLayer.color);
+          line.setAttribute('stroke-width', '1.2');
+          line.setAttribute('stroke-opacity', '0.25');
+          line.setAttribute('class', 'synapse-active');
+
+          synapsesGroup.appendChild(line);
+          synapseElements.push({ line, fromLayer: l, toLayer: l + 1, fromIdx: i, toIdx: j });
+        });
+      });
+    }
+
+    // Connect L5 to Output Node
+    const outputX = 1000;
+    const outputY = 210;
+    LAYERS[4].nodes.forEach((n5, i) => {
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', n5.x);
+      line.setAttribute('y1', n5.y);
+      line.setAttribute('x2', outputX);
+      line.setAttribute('y2', outputY);
+      line.setAttribute('stroke', '#facc15');
+      line.setAttribute('stroke-width', '2');
+      line.setAttribute('stroke-opacity', '0.45');
+      line.setAttribute('class', 'synapse-active');
+      synapsesGroup.appendChild(line);
+    });
+
+    // Render Node Circles & Hand-Drawn Style Labels inside Circles (1 and 0 values!)
+    LAYERS.forEach((layer, layerIdx) => {
+      const group = document.getElementById(`layer${layerIdx + 1}Nodes`);
+      layer.nodes.forEach((node, nodeIdx) => {
+        const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        g.setAttribute('transform', `translate(${node.x}, ${node.y})`);
+
+        // Outer circular node boundary (Hand-drawn look)
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', 0);
+        circle.setAttribute('cy', 0);
+        circle.setAttribute('r', 16);
+        circle.setAttribute('fill', '#070d1a');
+        circle.setAttribute('stroke', layer.stroke);
+        circle.setAttribute('stroke-width', '2.8');
+        circle.setAttribute('class', layer.glowClass);
+        circle.setAttribute('id', `circle_${layerIdx}_${nodeIdx}`);
+
+        // Value inside circle (e.g. 1 or 0 like in the sketch!)
+        const textVal = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        textVal.setAttribute('x', 0);
+        textVal.setAttribute('y', 4.5);
+        textVal.setAttribute('fill', '#ffffff');
+        textVal.setAttribute('font-size', '12');
+        textVal.setAttribute('font-weight', '900');
+        textVal.setAttribute('font-family', 'monospace');
+        textVal.setAttribute('text-anchor', 'middle');
+        textVal.setAttribute('id', `val_${layerIdx}_${nodeIdx}`);
+        textVal.textContent = '1';
+
+        // Descriptive label next to node
+        const textLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        textLabel.setAttribute('x', 22);
+        textLabel.setAttribute('y', -3);
+        textLabel.setAttribute('fill', '#e2e8f0');
+        textLabel.setAttribute('font-size', '10');
+        textLabel.setAttribute('font-weight', 'bold');
+        textLabel.textContent = node.label;
+
+        const textSub = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        textSub.setAttribute('x', 22);
+        textSub.setAttribute('y', 9);
+        textSub.setAttribute('fill', '#94a3b8');
+        textSub.setAttribute('font-size', '8');
+        textSub.setAttribute('font-family', 'monospace');
+        textSub.textContent = node.sub;
+
+        g.appendChild(circle);
+        g.appendChild(textVal);
+        g.appendChild(textLabel);
+        g.appendChild(textSub);
+        group.appendChild(g);
+      });
+    });
+
+    // -------------------------------------------------------------
+    // LIVE NEURAL FORWARD PROPAGATION SIMULATION
+    // -------------------------------------------------------------
+    const inRisk = document.getElementById('inRisk');
+    const inOverdue = document.getElementById('inOverdue');
+    const inAge = document.getElementById('inAge');
+    const selDept = document.getElementById('selDept');
+
+    const txtRisk = document.getElementById('txtRisk');
+    const txtOverdue = document.getElementById('txtOverdue');
+    const txtAge = document.getElementById('txtAge');
+    const txtUrgencyResult = document.getElementById('txtUrgencyResult');
+    const txtMpiResult = document.getElementById('txtMpiResult');
+    const outVal = document.getElementById('outVal');
+    const outText = document.getElementById('outText');
+    const outSubText = document.getElementById('outSubText');
+
+    function updateNeuralForwardPass() {
+      const risk = parseFloat(inRisk.value);
+      const overdue = parseFloat(inOverdue.value);
+      const age = parseFloat(inAge.value);
+      const dept = selDept.value;
+
+      txtRisk.textContent = `${risk.toFixed(1)} / 10`;
+      txtOverdue.textContent = `${overdue} Days`;
+      txtAge.textContent = `${age.toFixed(1)} Years`;
+
+      // Layer 1 Activations (Raw Normalized Physical Inputs)
+      const l1_risk = risk >= 6.0 ? 1 : 0;
+      const l1_overdue = overdue >= 14 ? 1 : 0;
+      const l1_age = age >= 6.0 ? 1 : 0;
+      const l1_hours = 1;
+      const l1_km = 1;
+      const l1_dept = dept === 'CIVIL' ? 1 : 0;
+
+      const l1_vals = [l1_risk, l1_overdue, l1_age, l1_hours, l1_km, l1_dept];
+
+      // Layer 2 Activations (Non-Linear Interaction Features)
+      const priorityProxy = risk * 5.0 + overdue * 0.7;
+      const l2_proxy = priorityProxy >= 45 ? 1 : 0;
+      const l2_risk_overdue = (risk >= 6.0 && overdue >= 14) ? 1 : 0;
+      const l2_risk_age = (risk >= 6.0 && age >= 7.0) ? 1 : 0;
+      const l2_zone = 1;
+      const l2_speed = risk >= 7.5 ? 1 : 0;
+      const l2_traffic = 1;
+
+      const l2_vals = [l2_proxy, l2_risk_overdue, l2_risk_age, l2_zone, l2_speed, l2_traffic];
+
+      // Layer 3 Activations (Stage 1 Boosted Trees & MPI Continuous Latent)
+      let mpi = (priorityProxy * 0.54) + (risk * (overdue + 1) * 0.08) + (risk * age * 0.11) + (risk * 2.2);
+      mpi = Math.min(100.0, Math.max(5.0, mpi));
+      
+      const l3_tree1 = mpi >= 30 ? 1 : 0;
+      const l3_tree2 = mpi >= 50 ? 1 : 0;
+      const l3_tree3 = mpi >= 65 ? 1 : 0;
+      const l3_mpi = mpi >= 60 ? 1 : 0;
+      const l3_stack = 1;
+      const l3_meta = 1;
+
+      const l3_vals = [l3_tree1, l3_tree2, l3_tree3, l3_mpi, l3_stack, l3_meta];
+
+      // Layer 4 Activations (Multi-Class Urgency Heads)
+      let isCritical = (mpi >= 64 || risk >= 8.0 || (overdue >= 25 && risk >= 6.5)) ? 1 : 0;
+      let isHigh = (!isCritical && (mpi >= 46 || risk >= 6.0 || overdue >= 18)) ? 1 : 0;
+      let isMedium = (!isCritical && !isHigh && (mpi >= 26 || risk >= 4.0 || overdue >= 7)) ? 1 : 0;
+      let isRoutine = (!isCritical && !isHigh && !isMedium) ? 1 : 0;
+
+      const l4_vals = [isCritical, isHigh, isMedium, isRoutine, 1, 1];
+
+      // Layer 5 Activations (Actuation & Shadow Clustering)
+      const l5_radius = 1; // Radius km +- 2.5
+      const l5_slot = 1;   // COA 01:00-04:00
+      const l5_signal = isCritical ? 1 : 0; // Red Danger
+      const l5_brake = (isCritical || isHigh) ? 1 : 0;
+
+      const l5_vals = [l5_radius, l5_slot, l5_signal, l5_brake];
+
+      const allLayerVals = [l1_vals, l2_vals, l3_vals, l4_vals, l5_vals];
+
+      // Update Node Text and Colors
+      allLayerVals.forEach((layerVals, lIdx) => {
+        layerVals.forEach((val, nIdx) => {
+          const el = document.getElementById(`val_${lIdx}_${nIdx}`);
+          const circle = document.getElementById(`circle_${lIdx}_${nIdx}`);
+          if (el) el.textContent = val;
+          if (circle) {
+            if (val === 1) {
+              circle.setAttribute('fill', LAYERS[lIdx].color);
+              circle.setAttribute('stroke-width', '3');
+              circle.setAttribute('opacity', '1.0');
+            } else {
+              circle.setAttribute('fill', '#0b1322');
+              circle.setAttribute('stroke-width', '1.5');
+              circle.setAttribute('opacity', '0.45');
+            }
+          }
+        });
+      });
+
+      // Update Output Label
+      txtMpiResult.textContent = `MPI: ${mpi.toFixed(1)} / 100`;
+
+      if (isCritical) {
+        txtUrgencyResult.textContent = 'CRITICAL EMERGENCY';
+        txtUrgencyResult.className = 'text-sm font-mono font-black text-red-400 uppercase tracking-wider';
+        outVal.textContent = '1';
+        outText.textContent = '"CRITICAL"';
+        outText.setAttribute('fill', '#f87171');
+        outSubText.textContent = 'Possession Mandatory (24-48h)';
+      } else if (isHigh) {
+        txtUrgencyResult.textContent = 'HIGH PRIORITY';
+        txtUrgencyResult.className = 'text-sm font-mono font-black text-amber-400 uppercase tracking-wider';
+        outVal.textContent = '1';
+        outText.textContent = '"HIGH"';
+        outText.setAttribute('fill', '#fbbf24');
+        outSubText.textContent = '72-Hour Slot Assigned';
+      } else if (isMedium) {
+        txtUrgencyResult.textContent = 'MEDIUM PLANNED';
+        txtUrgencyResult.className = 'text-sm font-mono font-black text-blue-400 uppercase tracking-wider';
+        outVal.textContent = '1';
+        outText.textContent = '"MEDIUM"';
+        outText.setAttribute('fill', '#60a5fa');
+        outSubText.textContent = 'Rolling RBP 14-Day Cycle';
+      } else {
+        txtUrgencyResult.textContent = 'ROUTINE CYCLE';
+        txtUrgencyResult.className = 'text-sm font-mono font-black text-emerald-400 uppercase tracking-wider';
+        outVal.textContent = '0';
+        outText.textContent = '"ROUTINE"';
+        outText.setAttribute('fill', '#4ade80');
+        outSubText.textContent = 'Off-Peak Cyclic Inspection';
+      }
+    }
+
+    inRisk.addEventListener('input', updateNeuralForwardPass);
+    inOverdue.addEventListener('input', updateNeuralForwardPass);
+    inAge.addEventListener('input', updateNeuralForwardPass);
+    selDept.addEventListener('change', updateNeuralForwardPass);
+
+    updateNeuralForwardPass();
+  </script>
+</body>
+</html>

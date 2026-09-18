@@ -8,6 +8,7 @@ import { CustomSelect } from '../../components/ui/CustomSelect';
 import { CustomCalendar } from '../../components/ui/CustomCalendar';
 import { Chatbot } from '../../components/chat/Chatbot';
 import { VoiceRecorder } from '../../components/audio/VoiceRecorder';
+import { EnterpriseHeader } from '../../components/ui/EnterpriseHeader';
 
 interface AIDecisionData {
   success: boolean;
@@ -79,33 +80,11 @@ export default function MaintenancePage() {
   });
 
   return (
-    <div className="h-screen w-full bg-[#09090b] text-zinc-300 font-sans flex flex-col selection:bg-amber-500/30 overflow-hidden relative">
+    <div className="h-screen w-full bg-slate-950 text-slate-200 font-sans flex flex-col selection:bg-blue-600/30 overflow-hidden relative">
       
-      {/* Background Subtle Noise/Light */}
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_-10%,rgba(245,158,11,0.08),rgba(255,255,255,0))] pointer-events-none" />
-
-      {/* Top Nav (Floating over map) */}
-      <div className="absolute top-0 left-0 right-0 z-50 flex w-full justify-between items-center p-8 pointer-events-none">
-        <div className="text-zinc-100 font-bold tracking-tight text-3xl pointer-events-auto">
-          Block<span className="text-zinc-500 font-medium">Train</span>
-        </div>
-        <div className="flex items-center gap-3 pointer-events-auto">
-          <Link href="/map" className="group flex items-center text-blue-400 font-mono text-[11px] tracking-widest hover:text-blue-200 transition-colors bg-blue-950/80 px-4 py-2 rounded-full border border-blue-800 backdrop-blur-md">
-            <span className="mr-2">🗺️</span> LIVE MAP
-          </Link>
-          <Link href="/rbms" className="group flex items-center text-amber-400 font-mono text-[11px] tracking-widest hover:text-amber-200 transition-colors bg-amber-950/80 px-4 py-2 rounded-full border border-amber-800 backdrop-blur-md shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-            <span className="mr-2">📅</span> RBMS SUITE
-          </Link>
-          <Link href="/ai-planner" className="group flex items-center text-cyan-400 font-mono text-[11px] tracking-widest hover:text-cyan-200 transition-colors bg-cyan-950/80 px-4 py-2 rounded-full border border-cyan-800 backdrop-blur-md shadow-[0_0_15px_rgba(34,211,238,0.2)]">
-            <span className="mr-2">⚡</span> AI PLANNER
-          </Link>
-          <Link href="/workers" className="group flex items-center text-emerald-400 font-mono text-[11px] tracking-widest hover:text-emerald-200 transition-colors bg-emerald-950/80 px-4 py-2 rounded-full border border-emerald-800 backdrop-blur-md">
-            <span className="mr-2">👷</span> WORKERS
-          </Link>
-          <Link href="/" className="group flex items-center text-zinc-400 font-mono text-[11px] tracking-widest hover:text-zinc-200 transition-colors bg-zinc-900/80 px-4 py-2 rounded-full border border-zinc-800 backdrop-blur-md">
-            <span className="mr-2 transition-transform duration-500 group-hover:-translate-x-1">&larr;</span> HUB
-          </Link>
-        </div>
+      {/* Top Header */}
+      <div className="relative z-50">
+        <EnterpriseHeader badgeText="Possession Control Active" />
       </div>
       
 

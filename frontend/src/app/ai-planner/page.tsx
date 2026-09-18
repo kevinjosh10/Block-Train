@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useMaintenanceStore } from '../../lib/store';
+import { EnterpriseHeader } from '../../components/ui/EnterpriseHeader';
 
 interface KPISummary {
   calendar_clock_hours_in_week?: number;
@@ -210,59 +211,41 @@ export default function AIBlockPlannerPage() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#070709] text-zinc-300 font-sans flex flex-col selection:bg-cyan-500/30">
-      {/* Top Header */}
-      <header className="border-b border-zinc-800/80 bg-black/60 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <div className="w-3 h-3 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_12px_#22d3ee]" />
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-mono tracking-widest text-cyan-400 uppercase font-bold">
-                Problem Statement ID: 26027
-              </span>
-              <span className="text-[10px] bg-cyan-950 text-cyan-300 border border-cyan-800/60 px-2 py-0.5 rounded-full font-mono">
-                All Accuracies &gt; 85%
-              </span>
+    <div className="min-h-screen w-full bg-slate-950 text-slate-200 font-sans flex flex-col selection:bg-blue-600/30">
+      <EnterpriseHeader badgeText="AI Core Online • 630 Trees" />
+
+      {/* Subheader Banner */}
+      <div className="border-b border-slate-800/80 bg-slate-900/60 backdrop-blur-md px-6 py-4">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse shadow-sm shadow-blue-500/50" />
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-mono tracking-widest text-blue-400 uppercase font-bold">
+                  Problem Statement ID: 26027
+                </span>
+                <span className="text-[10px] bg-blue-950 text-blue-300 border border-blue-800/80 px-2 py-0.5 rounded-full font-mono font-semibold">
+                  All Accuracies &gt; 85%
+                </span>
+              </div>
+              <h1 className="text-xl md:text-2xl font-black uppercase tracking-tight text-white mt-0.5">
+                AI Automatic Block Planner &amp; Decision Engine
+              </h1>
             </div>
-            <h1 className="text-xl md:text-2xl font-black uppercase tracking-tight text-white">
-              AI Automatic Block Planner & Decision Engine
-            </h1>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <a
+              href="/neural_network_layers.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-mono font-semibold px-3 py-1.5 rounded-lg bg-indigo-950 hover:bg-indigo-900 text-indigo-300 border border-indigo-800 transition-colors flex items-center gap-1.5"
+            >
+              <span>🔬</span> 5-Layer NN Visualizer &rarr;
+            </a>
           </div>
         </div>
-
-        <div className="flex items-center gap-3">
-          <Link
-            href="/rbms"
-            className="text-xs font-mono px-3 py-2 rounded-lg bg-amber-950/80 hover:bg-amber-900 text-amber-300 border border-amber-800/60 transition-colors flex items-center gap-1"
-          >
-            <span>📅</span> RBMS Suite (SR)
-          </Link>
-          <Link
-            href="/map"
-            className="text-xs font-mono px-3 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-700 transition-colors"
-          >
-            🗺️ Live Digital Twin
-          </Link>
-          <Link
-            href="/maintenance"
-            className="text-xs font-mono px-3 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-700 transition-colors"
-          >
-            🚧 Manual Blocks
-          </Link>
-          <Link
-            href="/workers"
-            className="text-xs font-mono px-3 py-2 rounded-lg bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 border border-emerald-800/60 transition-colors flex items-center gap-1"
-          >
-            <span>👷</span> Workers
-          </Link>
-          <Link
-            href="/"
-            className="text-xs font-mono px-3 py-2 rounded-lg bg-red-950/60 hover:bg-red-900/80 text-red-300 border border-red-800/60 transition-colors"
-          >
-            ✕ Hub
-          </Link>
-        </div>
-      </header>
+      </div>
 
       {/* Main Content Area */}
       <main className="flex-1 p-6 max-w-7xl mx-auto w-full space-y-8">

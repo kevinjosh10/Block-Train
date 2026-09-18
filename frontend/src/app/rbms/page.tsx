@@ -6,6 +6,7 @@ import { useMaintenanceStore } from '../../lib/store';
 import { STATIONS } from '../../lib/stations';
 import { Chatbot } from '../../components/chat/Chatbot';
 import { VoiceRecorder } from '../../components/audio/VoiceRecorder';
+import { EnterpriseHeader } from '../../components/ui/EnterpriseHeader';
 
 interface RollingBlockItem {
   id: string;
@@ -512,75 +513,53 @@ export default function RBMSPage() {
   });
 
   return (
-    <div className="min-h-screen w-full bg-[#070B12] text-zinc-300 font-sans flex flex-col selection:bg-amber-500/30 relative">
-      {/* Background Subtle Noise/Light Glow matching website style */}
-      <div className="fixed inset-0 z-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_-10%,rgba(245,158,11,0.08),rgba(255,255,255,0))] pointer-events-none" />
+    <div className="min-h-screen w-full bg-slate-950 text-slate-200 font-sans flex flex-col selection:bg-blue-600/30 relative">
+      {/* Enterprise Global Header */}
+      <EnterpriseHeader badgeText="RBMS Suite • 14-Day Rolling Horizon" />
 
-      {/* Top Header */}
-      <header className="border-b border-zinc-800 bg-[#070B12]/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <Link href="/" className="text-zinc-100 font-bold tracking-tight text-2xl hover:opacity-90 transition-opacity">
-            Block<span className="text-zinc-500 font-medium">Train</span>
-          </Link>
-          <div className="h-6 w-[1px] bg-zinc-800 hidden sm:block" />
+      {/* Subheader Banner */}
+      <div className="border-b border-slate-800 bg-slate-900/60 backdrop-blur-md px-6 py-4">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shadow-[0_0_12px_#f59e0b]" />
+            <div className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shadow-sm shadow-amber-500/50" />
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono tracking-widest text-amber-400 uppercase font-bold">
-                  SOUTHERN RAILWAY // CHENNAI DIVISION (MAS)
+                <span className="text-[11px] font-mono tracking-widest text-amber-400 uppercase font-bold">
+                  Southern Railway // Chennai Division (MAS)
                 </span>
-                <span className="text-[9px] bg-amber-950/80 text-amber-300 border border-amber-800/60 px-2 py-0.5 rounded-full font-mono font-bold">
-                  RBMS / BDMS SUITE
+                <span className="text-[10px] bg-amber-950 text-amber-300 border border-amber-800/80 px-2 py-0.5 rounded-full font-mono font-bold">
+                  RBMS Suite
                 </span>
               </div>
-              <h1 className="text-lg md:text-xl font-black uppercase tracking-tight text-white leading-tight">
+              <h1 className="text-xl md:text-2xl font-black uppercase tracking-tight text-white mt-0.5">
                 Rolling Block Management System
               </h1>
             </div>
           </div>
-        </div>
 
-        <div className="flex items-center gap-2.5">
-          <Link
-            href="/map"
-            className="group flex items-center text-zinc-300 font-mono text-xs tracking-wider hover:text-white transition-colors bg-zinc-900/80 px-3.5 py-1.5 rounded-full border border-zinc-700/80 backdrop-blur-md"
-          >
-            <span className="mr-1.5">🗺️</span> Digital Twin (26 Stn)
-          </Link>
-          <Link
-            href="/ai-planner"
-            className="group flex items-center text-cyan-400 font-mono text-xs tracking-wider hover:text-cyan-200 transition-colors bg-cyan-950/80 px-3.5 py-1.5 rounded-full border border-cyan-800/60 backdrop-blur-md shadow-[0_0_15px_rgba(34,211,238,0.15)]"
-          >
-            <span className="mr-1.5">⚡</span> AI Planner
-          </Link>
-          <button
-            onClick={handleSyncAISchedule}
-            className="group flex items-center text-emerald-300 font-mono text-xs tracking-wider hover:text-emerald-100 transition-all bg-emerald-950/80 px-3.5 py-1.5 rounded-full border border-emerald-700/80 backdrop-blur-md shadow-[0_0_15px_rgba(16,185,129,0.25)] hover:border-emerald-400 cursor-pointer"
-            title="Sync 6 Coordinated AI Shadow Blocks directly to Digital Twin and 4-Aspect Signals"
-          >
-            <span className="mr-1.5 animate-pulse text-emerald-400">🤖</span> Sync AI Blocks
-          </button>
-          <Link
-            href="/workers"
-            className="group flex items-center text-emerald-400 font-mono text-xs tracking-wider hover:text-emerald-200 transition-colors bg-emerald-950/80 px-3.5 py-1.5 rounded-full border border-emerald-800/80 backdrop-blur-md"
-          >
-            <span className="mr-1.5">👷</span> Workers
-          </Link>
-          <Link
-            href="/maintenance"
-            className="group flex items-center text-zinc-400 font-mono text-xs tracking-wider hover:text-white transition-colors bg-zinc-900/80 px-3.5 py-1.5 rounded-full border border-zinc-800 backdrop-blur-md"
-          >
-            Manual Dispatch
-          </Link>
-          <Link
-            href="/"
-            className="group flex items-center text-zinc-400 font-mono text-xs tracking-wider hover:text-white transition-colors bg-zinc-900/80 px-3.5 py-1.5 rounded-full border border-zinc-800 backdrop-blur-md"
-          >
-            ✕ Hub
-          </Link>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleSyncAISchedule}
+              className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-bold transition-all shadow-sm flex items-center gap-1.5"
+              title="Sync Coordinated AI Shadow Blocks directly to Digital Twin"
+            >
+              <span>🤖</span> Sync AI Shadow Blocks
+            </button>
+            <Link
+              href="/ai-planner"
+              className="px-3 py-1.5 rounded-lg bg-blue-950/80 text-blue-300 border border-blue-800 hover:bg-blue-900 font-mono text-xs transition-colors"
+            >
+              🧠 AI Triage
+            </Link>
+            <Link
+              href="/map"
+              className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 font-mono text-xs transition-colors"
+            >
+              🗺️ Map
+            </Link>
+          </div>
         </div>
-      </header>
+      </div>
 
       {/* Global Notification Banner */}
       {actionSuccessMessage && (

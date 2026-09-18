@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { EnterpriseHeader } from '../../components/ui/EnterpriseHeader';
 
 type Worker = {
   id: number;
@@ -84,95 +85,180 @@ export default function WorkersPage() {
     }
   };
 
+  const trackCount = workers.filter(w => w.department === "Track Maintenance Dept.").length;
+  const signalCount = workers.filter(w => w.department === "Signal & Telecom Dept.").length;
+  const elecCount = workers.filter(w => w.department === "Electrical Traction Dept.").length;
+
   return (
-    <div className="min-h-screen bg-[#1a1a1a] p-8 text-zinc-100 font-sans">
-      <div className="max-w-4xl mx-auto space-y-8">
-        
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-zinc-800 pb-4">
-          <div className="flex items-center gap-3">
-            <Link href="/" className="text-zinc-500 hover:text-white transition-colors text-sm font-mono flex items-center gap-1">
-              &larr; Hub
-            </Link>
-            <h1 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">Worker Directory</h1>
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans flex flex-col selection:bg-blue-600/30">
+      <EnterpriseHeader badgeText="Gang Logistics • Live Duty" />
+
+      {/* Subheader */}
+      <div className="border-b border-slate-800 bg-slate-900/60 backdrop-blur-md px-6 py-4">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] font-mono tracking-widest text-cyan-400 uppercase font-bold">
+                Field Gang Operations
+              </span>
+              <span className="text-[10px] bg-cyan-950 text-cyan-300 border border-cyan-800/80 px-2 py-0.5 rounded-full font-mono">
+                WhatsApp Safety Broadcast Sync
+              </span>
+            </div>
+            <h1 className="text-xl md:text-2xl font-black uppercase tracking-tight text-white mt-0.5">
+              Field Gangs &amp; Machinery Supervisors Directory
+            </h1>
           </div>
-          <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
-            <Link href="/map" className="px-3 py-1.5 rounded-lg bg-blue-950/80 text-blue-300 border border-blue-800 hover:bg-blue-900 transition-colors">
-              🗺️ Map
+          <div className="flex items-center gap-2 font-mono text-xs">
+            <Link
+              href="/ai-planner"
+              className="px-3 py-1.5 rounded-lg bg-blue-950/80 text-blue-300 border border-blue-800 hover:bg-blue-900 transition-colors"
+            >
+              🧠 AI Planner
             </Link>
-            <Link href="/rbms" className="px-3 py-1.5 rounded-lg bg-amber-950/80 text-amber-300 border border-amber-800 hover:bg-amber-900 transition-colors">
+            <Link
+              href="/rbms"
+              className="px-3 py-1.5 rounded-lg bg-amber-950/80 text-amber-300 border border-amber-800 hover:bg-amber-900 transition-colors"
+            >
               📅 RBMS
             </Link>
-            <Link href="/ai-planner" className="px-3 py-1.5 rounded-lg bg-cyan-950/80 text-cyan-300 border border-cyan-800 hover:bg-cyan-900 transition-colors">
-              ⚡ AI Planner
-            </Link>
-            <Link href="/maintenance" className="px-3 py-1.5 rounded-lg bg-zinc-900 text-zinc-300 border border-zinc-700 hover:bg-zinc-800 transition-colors">
-              🚧 Blocks
+            <Link
+              href="/map"
+              className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 transition-colors"
+            >
+              🗺️ Map
             </Link>
           </div>
         </div>
+      </div>
 
-        <div className="bg-zinc-900 border border-zinc-800 p-6 shadow-2xl rounded-sm">
-          <h2 className="text-xl font-bold mb-4 text-emerald-400 uppercase">Add New Worker</h2>
-          <form onSubmit={handleAddWorker} className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <select 
-              value={selectedDept}
-              onChange={(e) => setSelectedDept(e.target.value)}
-              className="bg-black border border-zinc-700 text-white px-4 py-2 focus:outline-none focus:border-emerald-500"
-            >
-              {DEPARTMENTS.map(d => <option key={d} value={d}>{d}</option>)}
-            </select>
-            <input 
-              type="text" 
-              placeholder="Full Name" 
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="bg-black border border-zinc-700 text-white px-4 py-2 focus:outline-none focus:border-emerald-500"
-              required
-            />
-            <input 
-              type="text" 
-              placeholder="Phone (e.g. +919876543210)" 
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="bg-black border border-zinc-700 text-white px-4 py-2 focus:outline-none focus:border-emerald-500"
-              required
-            />
-            <button 
-              type="submit"
-              className="bg-emerald-600 hover:bg-emerald-500 text-black font-bold py-2 px-4 transition-colors uppercase tracking-wider"
-            >
-              Deploy Worker
-            </button>
+      {/* Main Content */}
+      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        
+        {/* Quick Stats Ribbon */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-xl">
+            <span className="text-[10px] font-mono uppercase text-slate-400 block">Total Active Personnel</span>
+            <span className="text-2xl font-black text-white">{workers.length}</span>
+            <span className="text-[11px] text-slate-400 font-mono block">Across 3 Disciplines</span>
+          </div>
+          <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-xl">
+            <span className="text-[10px] font-mono uppercase text-slate-400 block">Civil Track Gangs</span>
+            <span className="text-2xl font-black text-blue-400">{trackCount}</span>
+            <span className="text-[11px] text-slate-400 font-mono block">TMS Registered</span>
+          </div>
+          <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-xl">
+            <span className="text-[10px] font-mono uppercase text-slate-400 block">Signal &amp; Telecom</span>
+            <span className="text-2xl font-black text-purple-400">{signalCount}</span>
+            <span className="text-[11px] text-slate-400 font-mono block">SMMS Registered</span>
+          </div>
+          <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-xl">
+            <span className="text-[10px] font-mono uppercase text-slate-400 block">OHE Traction Crews</span>
+            <span className="text-2xl font-black text-amber-400">{elecCount}</span>
+            <span className="text-[11px] text-slate-400 font-mono block">TDMS Registered</span>
+          </div>
+        </div>
+
+        {/* Add Worker Section */}
+        <div className="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl shadow-lg backdrop-blur-md">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="w-2 h-2 rounded-full bg-cyan-400" />
+            <h2 className="text-sm font-bold uppercase tracking-wider text-white">
+              Enroll Field Personnel / Machine Supervisor
+            </h2>
+          </div>
+          <form onSubmit={handleAddWorker} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div>
+              <label className="text-[11px] font-mono text-slate-400 block mb-1">Assigned Department</label>
+              <select 
+                value={selectedDept}
+                onChange={(e) => setSelectedDept(e.target.value)}
+                className="w-full bg-slate-950 border border-slate-700 rounded-xl text-white px-3.5 py-2.5 text-xs focus:outline-none focus:border-blue-500 transition-colors"
+              >
+                {DEPARTMENTS.map(d => <option key={d} value={d}>{d}</option>)}
+              </select>
+            </div>
+            <div>
+              <label className="text-[11px] font-mono text-slate-400 block mb-1">Supervisor Name &amp; Designation</label>
+              <input 
+                type="text" 
+                placeholder="e.g. K. R. Natarajan (Track Inspector)" 
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full bg-slate-950 border border-slate-700 rounded-xl text-white px-3.5 py-2.5 text-xs focus:outline-none focus:border-blue-500 transition-colors"
+                required
+              />
+            </div>
+            <div>
+              <label className="text-[11px] font-mono text-slate-400 block mb-1">CUG Mobile / Radio Telephony</label>
+              <input 
+                type="text" 
+                placeholder="+91 94440 12831" 
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="w-full bg-slate-950 border border-slate-700 rounded-xl text-white px-3.5 py-2.5 text-xs focus:outline-none focus:border-blue-500 transition-colors"
+                required
+              />
+            </div>
+            <div className="flex items-end">
+              <button 
+                type="submit"
+                className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition-all duration-200 shadow-md shadow-blue-600/20 flex items-center justify-center gap-1.5"
+              >
+                <span>➕</span> Enroll Supervisor
+              </button>
+            </div>
           </form>
         </div>
 
+        {/* Department Gangs Directory */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {DEPARTMENTS.map(dept => (
-            <div key={dept} className="bg-zinc-900 border border-zinc-800 p-6 flex flex-col shadow-xl">
-              <h3 className="text-lg font-bold text-white mb-4 pb-2 border-b border-zinc-800">{dept}</h3>
-              <div className="flex-1 space-y-3 overflow-y-auto">
-                {workers.filter(w => w.department === dept).length === 0 ? (
-                  <p className="text-zinc-600 text-sm italic">No active personnel.</p>
-                ) : (
-                  workers.filter(w => w.department === dept).map(w => (
-                    <div key={w.id} className="bg-black border border-zinc-800 p-3 flex flex-col justify-between group hover:border-emerald-500 transition-colors relative">
-                      <button 
-                        onClick={() => handleDeleteWorker(w.id)} 
-                        className="absolute top-2 right-2 text-zinc-500 opacity-0 group-hover:opacity-100 hover:text-red-400 transition-all text-xs"
+          {DEPARTMENTS.map(dept => {
+            const deptWorkers = workers.filter(w => w.department === dept);
+            const isTrack = dept.includes('Track');
+            const isSignal = dept.includes('Signal');
+            return (
+              <div key={dept} className="bg-slate-900/70 border border-slate-800 rounded-2xl p-5 flex flex-col shadow-md">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+                  <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                    <span className={`w-2.5 h-2.5 rounded-full ${isTrack ? 'bg-blue-400' : isSignal ? 'bg-purple-400' : 'bg-amber-400'}`} />
+                    {dept}
+                  </h3>
+                  <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300">
+                    {deptWorkers.length} Active
+                  </span>
+                </div>
+
+                <div className="flex-1 space-y-3 overflow-y-auto max-h-[420px]">
+                  {deptWorkers.length === 0 ? (
+                    <p className="text-slate-500 text-xs italic py-4 text-center">No registered supervisors.</p>
+                  ) : (
+                    deptWorkers.map(w => (
+                      <div
+                        key={w.id}
+                        className="bg-slate-950/80 border border-slate-800 hover:border-slate-700 p-3.5 rounded-xl flex items-center justify-between group transition-all"
                       >
-                        ✖
-                      </button>
-                      <span className="font-semibold text-zinc-300 pr-4">{w.name}</span>
-                      <span className="text-xs text-zinc-500 font-mono mt-1">{w.phone}</span>
-                    </div>
-                  ))
-                )}
+                        <div className="space-y-0.5">
+                          <span className="text-xs font-semibold text-slate-100 block">{w.name}</span>
+                          <span className="text-[11px] text-slate-400 font-mono block">{w.phone}</span>
+                        </div>
+                        <button 
+                          onClick={() => handleDeleteWorker(w.id)} 
+                          className="text-slate-600 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity p-1 text-xs"
+                          title="Remove supervisor"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    ))
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-      </div>
+      </main>
     </div>
   );
 }
