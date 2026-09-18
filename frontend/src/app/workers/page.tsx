@@ -109,26 +109,7 @@ export default function WorkersPage() {
               Field Gangs &amp; Machinery Supervisors Directory
             </h1>
           </div>
-          <div className="flex items-center gap-2 font-mono text-xs">
-            <Link
-              href="/ai-planner"
-              className="px-3 py-1.5 rounded-lg bg-blue-950/80 text-blue-300 border border-blue-800 hover:bg-blue-900 transition-colors"
-            >
-              AI Planner
-            </Link>
-            <Link
-              href="/rbms"
-              className="px-3 py-1.5 rounded-lg bg-amber-950/80 text-amber-300 border border-amber-800 hover:bg-amber-900 transition-colors"
-            >
-              RBMS
-            </Link>
-            <Link
-              href="/map"
-              className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 transition-colors"
-            >
-              Live Map
-            </Link>
-          </div>
+
         </div>
       </div>
 

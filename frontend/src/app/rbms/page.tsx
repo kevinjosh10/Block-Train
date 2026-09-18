@@ -548,18 +548,6 @@ export default function RBMSPage() {
             >
               Sync AI Shadow Blocks
             </button>
-            <Link
-              href="/ai-planner"
-              className="px-3 py-1.5 rounded-lg bg-blue-950/80 text-blue-300 border border-blue-800 hover:bg-blue-900 font-mono text-xs transition-colors"
-            >
-              AI Triage
-            </Link>
-            <Link
-              href="/map"
-              className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 font-mono text-xs transition-colors"
-            >
-              Live Map
-            </Link>
           </div>
         </div>
       </div>
