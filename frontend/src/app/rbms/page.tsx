@@ -725,16 +725,16 @@ export default function RBMSPage() {
                 >
                   <div className="space-y-1.5 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-xs font-mono font-bold text-amber-400 bg-amber-950/60 px-2.5 py-0.5 rounded border border-amber-800/40">
+                      <span className="text-xs font-mono font-bold text-amber-400 border border-amber-800/60 px-2 py-0.5 rounded">
                         {b.memoNo}
                       </span>
                       <span
-                        className={`text-[10px] font-mono font-black uppercase px-2 py-0.5 rounded-full ${
+                        className={`text-xs font-mono font-semibold uppercase px-2 py-0.5 rounded border ${
                           b.status === 'ACTIVE'
-                            ? 'bg-cyan-950 text-cyan-300 border border-cyan-500 animate-pulse'
+                            ? 'text-cyan-400 border-cyan-500'
                             : b.status === 'SANCTIONED'
-                            ? 'bg-emerald-950 text-emerald-300 border border-emerald-600/60'
-                            : 'bg-zinc-800 text-zinc-400'
+                            ? 'text-emerald-400 border-emerald-600/60'
+                            : 'text-zinc-400 border-zinc-700'
                         }`}
                       >
                         {b.status}
@@ -750,12 +750,12 @@ export default function RBMSPage() {
                     <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-zinc-400">
                       <span>Depts:</span>
                       {b.departments.map((d, i) => (
-                        <span key={i} className="bg-zinc-900 border border-zinc-700 px-2 py-0.5 rounded text-zinc-300 text-[11px]">
+                        <span key={i} className="border border-zinc-700/80 px-2 py-0.5 rounded text-zinc-300 text-xs">
                           {d}
                         </span>
                       ))}
                       {b.powerBlockRequired && (
-                        <span className="bg-red-950 text-red-300 border border-red-800 px-2 py-0.5 rounded text-[10px] font-bold">
+                        <span className="text-red-400 border border-red-800/80 px-2 py-0.5 rounded text-xs font-semibold">
                           ⚡ 25kV OHE Power Block
                         </span>
                       )}

@@ -215,17 +215,17 @@ export default function AIBlockPlannerPage() {
       <EnterpriseHeader badgeText="AI Core Online • 630 Trees" />
 
       {/* Subheader Banner */}
-      <div className="border-b border-slate-800/80 bg-slate-900/60 backdrop-blur-md px-6 py-4">
+      <div className="border-b border-slate-800/80 bg-slate-900/40 px-6 py-4">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse shadow-sm shadow-blue-500/50" />
+            <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-[11px] font-mono tracking-widest text-blue-400 uppercase font-bold">
+                <span className="text-xs font-mono tracking-widest text-blue-400 uppercase font-bold">
                   Problem Statement ID: 26027
                 </span>
-                <span className="text-[10px] bg-blue-950 text-blue-300 border border-blue-800/80 px-2 py-0.5 rounded-full font-mono font-semibold">
-                  All Accuracies &gt; 85%
+                <span className="text-xs font-mono text-slate-400">
+                  • All Model Accuracies &gt; 85%
                 </span>
               </div>
               <h1 className="text-xl md:text-2xl font-black uppercase tracking-tight text-white mt-0.5">
@@ -239,9 +239,9 @@ export default function AIBlockPlannerPage() {
               href="/neural_network_layers.html"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-mono font-semibold px-3 py-1.5 rounded-lg bg-indigo-950 hover:bg-indigo-900 text-indigo-300 border border-indigo-800 transition-colors flex items-center gap-1.5"
+              className="text-xs font-mono font-medium px-3 py-1.5 rounded-lg text-indigo-300 hover:text-white border border-indigo-700/50 hover:border-indigo-400 transition-colors flex items-center gap-1.5"
             >
-              <span>🔬</span> 5-Layer NN Visualizer &rarr;
+              5-Layer NN Visualizer &rarr;
             </a>
           </div>
         </div>
@@ -329,10 +329,10 @@ export default function AIBlockPlannerPage() {
             <div>
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-sm font-bold uppercase tracking-widest text-white flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                  <span className="w-2 h-2 rounded-full bg-blue-500" />
                   1. Real-Time Defect Simulator
                 </h2>
-                <span className="text-[11px] font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/40">
+                <span className="text-xs font-mono text-blue-400">
                   Module 1: ML Model
                 </span>
               </div>
@@ -553,25 +553,25 @@ export default function AIBlockPlannerPage() {
 
                     {/* Urgency Level Card */}
                     <div className="bg-zinc-900/90 border border-zinc-800 p-4 rounded-xl flex flex-col justify-between">
-                      <span className="text-[11px] font-mono text-zinc-400 uppercase block mb-1">
+                      <span className="text-xs font-mono text-zinc-400 uppercase block mb-1">
                         Assigned Urgency Tier
                       </span>
                       <div>
                         <span
-                          className={`inline-block px-3 py-1.5 rounded-lg text-sm font-black tracking-wider uppercase ${
+                          className={`inline-block px-3 py-1 rounded-md text-sm font-bold tracking-wider uppercase border ${
                             decision.urgency_level === 'CRITICAL_EMERGENCY'
-                              ? 'bg-red-950 text-red-400 border border-red-500/60 shadow-[0_0_15px_rgba(239,68,68,0.3)]'
+                              ? 'text-red-400 border-red-500/60'
                               : decision.urgency_level === 'HIGH_PRIORITY'
-                              ? 'bg-amber-950 text-amber-400 border border-amber-500/60'
+                              ? 'text-amber-400 border-amber-500/60'
                               : decision.urgency_level === 'MEDIUM_PLANNED'
-                              ? 'bg-blue-950 text-blue-400 border border-blue-500/60'
-                              : 'bg-emerald-950 text-emerald-400 border border-emerald-500/60'
+                              ? 'text-blue-400 border-blue-500/60'
+                              : 'text-emerald-400 border-emerald-500/60'
                           }`}
                         >
                           {decision.urgency_level.replace('_', ' ')}
                         </span>
                       </div>
-                      <span className="text-[10px] font-mono text-zinc-500 mt-2">
+                      <span className="text-xs font-mono text-zinc-400 mt-2">
                         Confidence: {decision.probabilities[decision.urgency_level] || 95}%
                       </span>
                     </div>
@@ -579,24 +579,24 @@ export default function AIBlockPlannerPage() {
 
                   {/* Mathematical Feature Influence */}
                   <div className="bg-zinc-900/60 border border-zinc-800/80 p-4 rounded-xl">
-                    <span className="text-[11px] font-mono text-zinc-400 uppercase block mb-3 font-bold">
+                    <span className="text-xs font-mono text-zinc-400 uppercase block mb-3 font-bold">
                       Mathematical Priority Drivers:
                     </span>
                     <div className="grid grid-cols-3 gap-3 text-center">
-                      <div className="bg-zinc-950 p-2.5 rounded-lg border border-zinc-800">
-                        <span className="text-[10px] text-zinc-500 font-mono block">Safety Criticality</span>
-                        <span className="text-sm font-bold text-cyan-400">
+                      <div className="p-2.5 rounded-lg border border-zinc-800">
+                        <span className="text-xs text-zinc-400 font-mono block">Safety Criticality</span>
+                        <span className="text-sm font-bold text-blue-400">
                           {decision.feature_influence.safety_risk_impact}%
                         </span>
                       </div>
-                      <div className="bg-zinc-950 p-2.5 rounded-lg border border-zinc-800">
-                        <span className="text-[10px] text-zinc-500 font-mono block">Overdue Penalty</span>
+                      <div className="p-2.5 rounded-lg border border-zinc-800">
+                        <span className="text-xs text-zinc-400 font-mono block">Overdue Penalty</span>
                         <span className="text-sm font-bold text-amber-400">
                           {decision.feature_influence.overdue_urgency_impact}%
                         </span>
                       </div>
-                      <div className="bg-zinc-950 p-2.5 rounded-lg border border-zinc-800">
-                        <span className="text-[10px] text-zinc-500 font-mono block">Asset Age Degradation</span>
+                      <div className="p-2.5 rounded-lg border border-zinc-800">
+                        <span className="text-xs text-zinc-400 font-mono block">Asset Age Degradation</span>
                         <span className="text-sm font-bold text-purple-400">
                           {decision.feature_influence.asset_age_factor}%
                         </span>
@@ -605,8 +605,8 @@ export default function AIBlockPlannerPage() {
                   </div>
 
                   {/* Action Directive */}
-                  <div className="border-l-4 border-cyan-500 pl-4 py-1">
-                    <span className="text-[10px] font-mono uppercase text-zinc-400 font-bold block mb-1">
+                  <div className="border-l-4 border-blue-500 pl-4 py-1">
+                    <span className="text-xs font-mono uppercase text-zinc-400 font-bold block mb-1">
                       System Action Directive
                     </span>
                     <p className="text-xs text-zinc-200 leading-relaxed font-sans">
@@ -615,20 +615,20 @@ export default function AIBlockPlannerPage() {
                   </div>
 
                   {/* Recommended Shadow Block Match */}
-                  <div className="bg-cyan-950/20 border border-cyan-800/40 p-4 rounded-xl flex items-center justify-between">
+                  <div className="border border-blue-800/50 p-4 rounded-xl flex items-center justify-between">
                     <div>
-                      <span className="text-[10px] font-mono uppercase text-cyan-400 block font-bold">
+                      <span className="text-xs font-mono uppercase text-blue-400 block font-bold">
                         AI Matched Shadow Block Slot
                       </span>
                       <p className="text-sm text-white font-bold">
                         {decision.shadow_block_decision.window}
                       </p>
-                      <p className="text-[11px] text-zinc-400 font-mono mt-0.5">
+                      <p className="text-xs text-zinc-400 font-mono mt-0.5">
                         {decision.shadow_block_decision.departments_clustered}
                       </p>
                     </div>
                     <div className="text-right">
-                      <span className="text-[10px] font-mono text-zinc-400 block">Downtime Saved</span>
+                      <span className="text-xs font-mono text-zinc-400 block">Downtime Saved</span>
                       <span className="text-base font-black text-emerald-400">
                         +{decision.shadow_block_decision.hours_saved_by_clustering} hrs
                       </span>
@@ -642,7 +642,7 @@ export default function AIBlockPlannerPage() {
               )}
             </div>
 
-            <div className="pt-4 border-t border-zinc-800 text-[11px] font-mono text-zinc-500 flex justify-between">
+            <div className="pt-4 border-t border-zinc-800 text-xs font-mono text-zinc-500 flex justify-between">
               <span>Benchmark: Regressor R² = 93.21% | Classifier = 87.66%</span>
               <span className="text-emerald-400">✓ All Targets &gt; 85% Satisfied</span>
             </div>
@@ -677,7 +677,7 @@ export default function AIBlockPlannerPage() {
               <button
                 type="button"
                 onClick={applyScheduleToLiveMap}
-                className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-black font-bold text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(16,185,129,0.4)] flex items-center gap-2 cursor-pointer"
+                className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-black font-bold text-xs uppercase tracking-wider transition-all shadow-sm flex items-center gap-2 cursor-pointer"
               >
                 <span>🚀</span> Apply Schedule to Live Digital Twin
               </button>
@@ -686,7 +686,7 @@ export default function AIBlockPlannerPage() {
 
           {/* Shadow Block Comparison Explainer */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-red-950/20 border border-red-900/40 p-4 rounded-xl">
+            <div className="border border-red-900/40 p-4 rounded-xl">
               <span className="text-xs font-bold text-red-400 uppercase font-mono block mb-2">
                 ❌ Traditional Decentralized Demand (BDMS Manual)
               </span>
@@ -697,7 +697,7 @@ export default function AIBlockPlannerPage() {
               </p>
             </div>
 
-            <div className="bg-emerald-950/20 border border-emerald-900/40 p-4 rounded-xl">
+            <div className="border border-emerald-900/40 p-4 rounded-xl">
               <span className="text-xs font-bold text-emerald-400 uppercase font-mono block mb-2">
                 ✓ AI Coordinated Shadow Blocks (PS 26027)
               </span>
@@ -726,7 +726,7 @@ export default function AIBlockPlannerPage() {
               <tbody className="divide-y divide-zinc-900">
                 {weeklyBlocks.map((b) => (
                   <tr key={b.block_plan_id} className="hover:bg-zinc-900/50 transition-colors">
-                    <td className="py-3 px-4 text-cyan-400 font-bold">{b.block_plan_id}</td>
+                    <td className="py-3 px-4 text-blue-400 font-bold">{b.block_plan_id}</td>
                     <td className="py-3 px-4">
                       <span className="text-white font-bold">{b.station_name}</span>
                       <span className="block text-[10px] text-zinc-500">{b.track_id}</span>
@@ -736,7 +736,7 @@ export default function AIBlockPlannerPage() {
                       <span className="block text-[10px] text-zinc-400">{b.time_window}</span>
                     </td>
                     <td className="py-3 px-4">
-                      <span className="bg-zinc-800 px-2 py-0.5 rounded text-[10px] text-zinc-300">
+                      <span className="text-xs text-zinc-300 font-medium">
                         {b.departments_count} Depts Clustered
                       </span>
                     </td>
@@ -746,7 +746,7 @@ export default function AIBlockPlannerPage() {
                       <span className="text-emerald-400 font-bold">{b.allocated_hours}h</span>
                     </td>
                     <td className="py-3 px-4 text-right">
-                      <span className="text-emerald-400 font-black text-sm">
+                      <span className="text-emerald-400 font-bold text-sm">
                         +{b.hours_saved.toFixed(1)} hrs
                       </span>
                     </td>
