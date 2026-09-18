@@ -224,7 +224,7 @@ export default function AIBlockPlannerPage() {
                 <span className="text-xs font-mono tracking-widest text-indigo-600 uppercase font-bold">
                   Automated Shadow Block Bundling
                 </span>
-                <span className="text-xs font-mono text-slate-500">
+                <span className="text-xs font-mono text-slate-600">
                   • System Accuracy &gt; 85%
                 </span>
               </div>
@@ -256,7 +256,7 @@ export default function AIBlockPlannerPage() {
             <div className="flex items-center gap-2">
               <button
                 onClick={clearAppliedSchedule}
-                className="text-xs font-mono px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-500 hover:text-slate-900 border border-slate-200 transition-colors"
+                className="text-xs font-mono px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200 transition-colors"
               >
                 ✕ Clear
               </button>
@@ -273,50 +273,50 @@ export default function AIBlockPlannerPage() {
         {/* Operational Scorecard Bar */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
           <div className="bg-slate-50 border border-slate-200 p-3 rounded-xl">
-            <span className="text-[10px] font-mono uppercase text-slate-500 block">Asset Availability</span>
+            <span className="text-[10px] font-mono uppercase text-slate-600 block">Asset Availability</span>
             <span className="text-xl font-black text-emerald-400">
               {kpis?.asset_availability_ai_optimized_pct ? `${kpis.asset_availability_ai_optimized_pct}%` : '97.59%'}
             </span>
-            <span className="text-[10px] text-slate-500 block font-mono">
+            <span className="text-[10px] text-slate-600 block font-mono">
               {kpis?.asset_availability_gain_pct ? `+${kpis.asset_availability_gain_pct}% Uptime Boost` : '+14.9% Uptime Boost'}
             </span>
           </div>
           <div className="bg-slate-50 border border-slate-200 p-3 rounded-xl">
-            <span className="text-[10px] font-mono uppercase text-slate-500 block">Downtime Saved</span>
+            <span className="text-[10px] font-mono uppercase text-slate-600 block">Downtime Saved</span>
             <span className="text-xl font-black text-indigo-600">
               {kpis?.net_track_possession_hours_saved ? `${kpis.net_track_possession_hours_saved} hrs` : '99.8 hrs'}
             </span>
-            <span className="text-[10px] text-slate-500 block font-mono">
+            <span className="text-[10px] text-slate-600 block font-mono">
               {kpis?.downtime_reduction_pct ? `${kpis.downtime_reduction_pct}% Line Reduction` : '86.06% Line Reduction'}
             </span>
           </div>
           <div className="bg-slate-50 border border-slate-200 p-3 rounded-xl">
-            <span className="text-[10px] font-mono uppercase text-slate-500 block">Priority Regressor R²</span>
+            <span className="text-[10px] font-mono uppercase text-slate-600 block">Priority Regressor R²</span>
             <span className="text-xl font-black text-indigo-600">
               {kpis?.regressor_r2_accuracy_pct ? `${kpis.regressor_r2_accuracy_pct}%` : '93.21%'}
             </span>
-            <span className="text-[10px] text-slate-500 block font-mono">MAE: ±3.4 pts</span>
+            <span className="text-[10px] text-slate-600 block font-mono">MAE: ±3.4 pts</span>
           </div>
           <div className="bg-slate-50 border border-slate-200 p-3 rounded-xl">
-            <span className="text-[10px] font-mono uppercase text-slate-500 block">Classifier Accuracy</span>
+            <span className="text-[10px] font-mono uppercase text-slate-600 block">Classifier Accuracy</span>
             <span className="text-xl font-black text-purple-400">
               {kpis?.classifier_overall_accuracy_pct ? `${kpis.classifier_overall_accuracy_pct}%` : '87.66%'}
             </span>
-            <span className="text-[10px] text-slate-500 block font-mono">Two-Stage Pipeline</span>
+            <span className="text-[10px] text-slate-600 block font-mono">Two-Stage Pipeline</span>
           </div>
           <div className="bg-slate-50 border border-slate-200 p-3 rounded-xl">
-            <span className="text-[10px] font-mono uppercase text-slate-500 block">Emergency Precision</span>
+            <span className="text-[10px] font-mono uppercase text-slate-600 block">Emergency Precision</span>
             <span className="text-xl font-black text-emerald-400">
               {kpis?.critical_emergency_precision_pct ? `${kpis.critical_emergency_precision_pct}%` : '100.0%'}
             </span>
-            <span className="text-[10px] text-slate-500 block font-mono">Zero False Alarms</span>
+            <span className="text-[10px] text-slate-600 block font-mono">Zero False Alarms</span>
           </div>
           <div className="bg-slate-50 border border-slate-200 p-3 rounded-xl">
-            <span className="text-[10px] font-mono uppercase text-slate-500 block">Timetable Conflicts</span>
+            <span className="text-[10px] font-mono uppercase text-slate-600 block">Timetable Conflicts</span>
             <span className="text-xl font-black text-amber-400">
               {kpis?.timetable_conflicts_avoided_pct === 100 ? '0 Clashes' : '0 Clashes'}
             </span>
-            <span className="text-[10px] text-slate-500 block font-mono">100% Conflict-Free</span>
+            <span className="text-[10px] text-slate-600 block font-mono">100% Conflict-Free</span>
           </div>
         </div>
 
@@ -340,7 +340,7 @@ export default function AIBlockPlannerPage() {
               <div className="space-y-4">
                 {/* Department */}
                 <div>
-                  <label className="block text-[10px] uppercase font-mono tracking-wider text-slate-500 mb-1">
+                  <label className="block text-[10px] uppercase font-mono tracking-wider text-slate-600 mb-1">
                     Department
                   </label>
                   <select
@@ -356,7 +356,7 @@ export default function AIBlockPlannerPage() {
 
                 {/* Defect Category */}
                 <div>
-                  <label className="block text-[10px] uppercase font-mono tracking-wider text-slate-500 mb-1">
+                  <label className="block text-[10px] uppercase font-mono tracking-wider text-slate-600 mb-1">
                     Defect Category
                   </label>
                   <select
@@ -375,7 +375,7 @@ export default function AIBlockPlannerPage() {
 
                 {/* Station Location */}
                 <div>
-                  <label className="block text-[10px] uppercase font-mono tracking-wider text-slate-500 mb-1">
+                  <label className="block text-[10px] uppercase font-mono tracking-wider text-slate-600 mb-1">
                     Corridor Station
                   </label>
                   <select
@@ -414,7 +414,7 @@ export default function AIBlockPlannerPage() {
 
                 {/* Safety Risk Slider */}
                 <div>
-                  <div className="flex justify-between text-[10px] font-mono text-slate-500 mb-1">
+                  <div className="flex justify-between text-[10px] font-mono text-slate-600 mb-1">
                     <span>Safety Risk Score (1-10)</span>
                     <span className="text-indigo-600 font-bold">{safetyRisk} / 10</span>
                   </div>
@@ -430,7 +430,7 @@ export default function AIBlockPlannerPage() {
 
                 {/* Overdue Days Slider */}
                 <div>
-                  <div className="flex justify-between text-[10px] font-mono text-slate-500 mb-1">
+                  <div className="flex justify-between text-[10px] font-mono text-slate-600 mb-1">
                     <span>Overdue Days Beyond Inspection</span>
                     <span className="text-amber-400 font-bold">{overdueDays} days</span>
                   </div>
@@ -446,7 +446,7 @@ export default function AIBlockPlannerPage() {
 
                 {/* Asset Age Slider */}
                 <div>
-                  <div className="flex justify-between text-[10px] font-mono text-slate-500 mb-1">
+                  <div className="flex justify-between text-[10px] font-mono text-slate-600 mb-1">
                     <span>Asset Operating Age</span>
                     <span className="text-slate-700 font-bold">{assetAge} years</span>
                   </div>
@@ -463,7 +463,7 @@ export default function AIBlockPlannerPage() {
 
                 {/* Estimated Repair Hours Slider */}
                 <div>
-                  <div className="flex justify-between text-[10px] font-mono text-slate-500 mb-1">
+                  <div className="flex justify-between text-[10px] font-mono text-slate-600 mb-1">
                     <span>Estimated Repair Duration</span>
                     <span className="text-cyan-300 font-bold">{repairHours} hrs</span>
                   </div>
@@ -503,13 +503,13 @@ export default function AIBlockPlannerPage() {
             <div>
               <div className="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
                 <div>
-                  <span className="text-[10px] font-mono uppercase text-slate-500 tracking-wider">
+                  <span className="text-[10px] font-mono uppercase text-slate-600 tracking-wider">
                     Model Output
                   </span>
                   <h3 className="text-lg font-bold text-slate-900">Automated Maintenance Decision</h3>
                 </div>
                 <div className="text-right">
-                  <span className="text-[10px] font-mono text-slate-500 block">Pipeline Source</span>
+                  <span className="text-[10px] font-mono text-slate-600 block">Pipeline Source</span>
                   <span className="text-xs font-mono text-indigo-600">
                     {decision?.source || 'GradientBoosting Two-Stage'}
                   </span>
@@ -522,14 +522,14 @@ export default function AIBlockPlannerPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* MPI Score Card */}
                     <div className="bg-white/90 border border-slate-200 p-4 rounded-xl">
-                      <span className="text-[11px] font-mono text-slate-500 uppercase block mb-1">
+                      <span className="text-[11px] font-mono text-slate-600 uppercase block mb-1">
                         Maintenance Priority Index (MPI)
                       </span>
                       <div className="flex items-baseline gap-2 mb-2">
                         <span className="text-4xl font-black text-slate-900 tracking-tight">
                           {decision.predicted_mpi}
                         </span>
-                        <span className="text-sm font-mono text-slate-500">/ 100.0</span>
+                        <span className="text-sm font-mono text-slate-600">/ 100.0</span>
                       </div>
                       {/* Gauge Bar */}
                       <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
@@ -548,7 +548,7 @@ export default function AIBlockPlannerPage() {
 
                     {/* Urgency Level Card */}
                     <div className="bg-white/90 border border-slate-200 p-4 rounded-xl flex flex-col justify-between">
-                      <span className="text-xs font-mono text-slate-500 uppercase block mb-1">
+                      <span className="text-xs font-mono text-slate-600 uppercase block mb-1">
                         Assigned Urgency Tier
                       </span>
                       <div>
@@ -566,7 +566,7 @@ export default function AIBlockPlannerPage() {
                           {decision.urgency_level.replace('_', ' ')}
                         </span>
                       </div>
-                      <span className="text-xs font-mono text-slate-500 mt-2">
+                      <span className="text-xs font-mono text-slate-600 mt-2">
                         Confidence: {decision.probabilities[decision.urgency_level] || 95}%
                       </span>
                     </div>
@@ -574,24 +574,24 @@ export default function AIBlockPlannerPage() {
 
                   {/* Mathematical Feature Influence */}
                   <div className="bg-white/60 border border-slate-200/80 p-4 rounded-xl">
-                    <span className="text-xs font-mono text-slate-500 uppercase block mb-3 font-bold">
+                    <span className="text-xs font-mono text-slate-600 uppercase block mb-3 font-bold">
                       Mathematical Priority Drivers:
                     </span>
                     <div className="grid grid-cols-3 gap-3 text-center">
                       <div className="p-2.5 rounded-lg border border-slate-200">
-                        <span className="text-xs text-slate-500 font-mono block">Safety Criticality</span>
+                        <span className="text-xs text-slate-600 font-mono block">Safety Criticality</span>
                         <span className="text-sm font-bold text-indigo-600">
                           {decision.feature_influence.safety_risk_impact}%
                         </span>
                       </div>
                       <div className="p-2.5 rounded-lg border border-slate-200">
-                        <span className="text-xs text-slate-500 font-mono block">Overdue Penalty</span>
+                        <span className="text-xs text-slate-600 font-mono block">Overdue Penalty</span>
                         <span className="text-sm font-bold text-amber-400">
                           {decision.feature_influence.overdue_urgency_impact}%
                         </span>
                       </div>
                       <div className="p-2.5 rounded-lg border border-slate-200">
-                        <span className="text-xs text-slate-500 font-mono block">Asset Age Degradation</span>
+                        <span className="text-xs text-slate-600 font-mono block">Asset Age Degradation</span>
                         <span className="text-sm font-bold text-purple-400">
                           {decision.feature_influence.asset_age_factor}%
                         </span>
@@ -601,7 +601,7 @@ export default function AIBlockPlannerPage() {
 
                   {/* Action Directive */}
                   <div className="border-l-4 border-blue-500 pl-4 py-1">
-                    <span className="text-xs font-mono uppercase text-slate-500 font-bold block mb-1">
+                    <span className="text-xs font-mono uppercase text-slate-600 font-bold block mb-1">
                       System Action Directive
                     </span>
                     <p className="text-xs text-slate-900 leading-relaxed font-sans">
@@ -618,12 +618,12 @@ export default function AIBlockPlannerPage() {
                       <p className="text-sm text-slate-900 font-bold">
                         {decision.shadow_block_decision.window}
                       </p>
-                      <p className="text-xs text-slate-500 font-mono mt-0.5">
+                      <p className="text-xs text-slate-600 font-mono mt-0.5">
                         {decision.shadow_block_decision.departments_clustered}
                       </p>
                     </div>
                     <div className="text-right">
-                      <span className="text-xs font-mono text-slate-500 block">Downtime Saved</span>
+                      <span className="text-xs font-mono text-slate-600 block">Downtime Saved</span>
                       <span className="text-base font-black text-emerald-400">
                         +{decision.shadow_block_decision.hours_saved_by_clustering} hrs
                       </span>
@@ -631,13 +631,13 @@ export default function AIBlockPlannerPage() {
                   </div>
                 </div>
               ) : (
-                <div className="text-center py-12 text-slate-500 font-mono text-xs">
+                <div className="text-center py-12 text-slate-600 font-mono text-xs">
                   Awaiting inference input...
                 </div>
               )}
             </div>
 
-            <div className="pt-4 border-t border-slate-200 text-xs font-mono text-slate-500 flex justify-between">
+            <div className="pt-4 border-t border-slate-200 text-xs font-mono text-slate-600 flex justify-between">
               <span>Benchmark: Regressor R² = 93.21% | Classifier = 87.66%</span>
               <span className="text-emerald-400">✓ All Targets &gt; 85% Satisfied</span>
             </div>
@@ -656,7 +656,7 @@ export default function AIBlockPlannerPage() {
                   2. Coordinated Multi-Department Shadow Block Schedule
                 </h2>
               </div>
-              <p className="text-xs text-slate-500 font-mono mt-1">
+              <p className="text-xs text-slate-600 font-mono mt-1">
                 Compresses 116.0 track-hours of uncoordinated manual closures into 16.2 track-hours (-86.06% line closure reduction).
               </p>
             </div>
@@ -665,7 +665,7 @@ export default function AIBlockPlannerPage() {
               <button
                 type="button"
                 onClick={clearAppliedSchedule}
-                className="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-500 hover:text-slate-900 font-mono text-xs uppercase tracking-wider border border-slate-200 transition-all cursor-pointer"
+                className="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-600 hover:text-slate-900 font-mono text-xs uppercase tracking-wider border border-slate-200 transition-all cursor-pointer"
               >
                 ✕ Clear
               </button>
@@ -682,7 +682,7 @@ export default function AIBlockPlannerPage() {
           {/* Table of Weekly Operational Blocks */}
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs text-slate-700 font-mono">
-              <thead className="bg-white text-slate-500 uppercase text-[10px] tracking-wider border-b border-slate-200">
+              <thead className="bg-white text-slate-600 uppercase text-[10px] tracking-wider border-b border-slate-200">
                 <tr>
                   <th className="py-3 px-4">Block ID</th>
                   <th className="py-3 px-4">Station & Track</th>
@@ -699,11 +699,11 @@ export default function AIBlockPlannerPage() {
                     <td className="py-3 px-4 text-indigo-600 font-bold">{b.block_plan_id}</td>
                     <td className="py-3 px-4">
                       <span className="text-slate-900 font-bold">{b.station_name}</span>
-                      <span className="block text-[10px] text-slate-500">{b.track_id}</span>
+                      <span className="block text-[10px] text-slate-600">{b.track_id}</span>
                     </td>
                     <td className="py-3 px-4">
                       <span className="text-amber-300">{b.day_of_week}</span>
-                      <span className="block text-[10px] text-slate-500">{b.time_window}</span>
+                      <span className="block text-[10px] text-slate-600">{b.time_window}</span>
                     </td>
                     <td className="py-3 px-4">
                       <span className="text-xs text-slate-700 font-medium">

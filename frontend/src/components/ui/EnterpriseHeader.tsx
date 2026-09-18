@@ -90,7 +90,7 @@ export function EnterpriseHeader({ currentModule, badgeText }: EnterpriseHeaderP
                     BLOCKTRAIN
                   </span>
                   {(badgeText || currentModule) && (
-                    <span className="text-[10px] text-slate-500 font-bold tracking-widest uppercase mt-0.5">
+                    <span className="text-[10px] text-slate-600 font-bold tracking-widest uppercase mt-0.5">
                       {badgeText || currentModule}
                     </span>
                   )}

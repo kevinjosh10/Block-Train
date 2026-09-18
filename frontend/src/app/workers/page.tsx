@@ -119,24 +119,24 @@ export default function WorkersPage() {
         {/* Quick Stats Ribbon */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-white/80 border border-slate-200 p-4 rounded-xl">
-            <span className="text-[10px] font-mono uppercase text-slate-500 block">Total Active Personnel</span>
+            <span className="text-[10px] font-mono uppercase text-slate-600 block">Total Active Personnel</span>
             <span className="text-2xl font-black text-slate-900">{workers.length}</span>
-            <span className="text-[11px] text-slate-500 font-mono block">Across 3 Disciplines</span>
+            <span className="text-[11px] text-slate-600 font-mono block">Across 3 Disciplines</span>
           </div>
           <div className="bg-white/80 border border-slate-200 p-4 rounded-xl">
-            <span className="text-[10px] font-mono uppercase text-slate-500 block">Civil Track Gangs</span>
+            <span className="text-[10px] font-mono uppercase text-slate-600 block">Civil Track Gangs</span>
             <span className="text-2xl font-black text-indigo-600">{trackCount}</span>
-            <span className="text-[11px] text-slate-500 font-mono block">TMS Registered</span>
+            <span className="text-[11px] text-slate-600 font-mono block">TMS Registered</span>
           </div>
           <div className="bg-white/80 border border-slate-200 p-4 rounded-xl">
-            <span className="text-[10px] font-mono uppercase text-slate-500 block">Signal &amp; Telecom</span>
+            <span className="text-[10px] font-mono uppercase text-slate-600 block">Signal &amp; Telecom</span>
             <span className="text-2xl font-black text-fuchsia-600">{signalCount}</span>
-            <span className="text-[11px] text-slate-500 font-mono block">SMMS Registered</span>
+            <span className="text-[11px] text-slate-600 font-mono block">SMMS Registered</span>
           </div>
           <div className="bg-white/80 border border-slate-200 p-4 rounded-xl">
-            <span className="text-[10px] font-mono uppercase text-slate-500 block">OHE Traction Crews</span>
+            <span className="text-[10px] font-mono uppercase text-slate-600 block">OHE Traction Crews</span>
             <span className="text-2xl font-black text-amber-600">{elecCount}</span>
-            <span className="text-[11px] text-slate-500 font-mono block">TDMS Registered</span>
+            <span className="text-[11px] text-slate-600 font-mono block">TDMS Registered</span>
           </div>
         </div>
 
@@ -150,7 +150,7 @@ export default function WorkersPage() {
           </div>
           <form onSubmit={handleAddWorker} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
-              <label className="text-[11px] font-mono text-slate-500 block mb-1">Assigned Department</label>
+              <label className="text-[11px] font-mono text-slate-600 block mb-1">Assigned Department</label>
               <select 
                 value={selectedDept}
                 onChange={(e) => setSelectedDept(e.target.value)}
@@ -160,7 +160,7 @@ export default function WorkersPage() {
               </select>
             </div>
             <div>
-              <label className="text-[11px] font-mono text-slate-500 block mb-1">Supervisor Name &amp; Designation</label>
+              <label className="text-[11px] font-mono text-slate-600 block mb-1">Supervisor Name &amp; Designation</label>
               <input 
                 type="text" 
                 placeholder="e.g. K. R. Natarajan (Track Inspector)" 
@@ -171,7 +171,7 @@ export default function WorkersPage() {
               />
             </div>
             <div>
-              <label className="text-[11px] font-mono text-slate-500 block mb-1">CUG Mobile / Radio Telephony</label>
+              <label className="text-[11px] font-mono text-slate-600 block mb-1">CUG Mobile / Radio Telephony</label>
               <input 
                 type="text" 
                 placeholder="+91 94440 12831" 
@@ -205,14 +205,14 @@ export default function WorkersPage() {
                     <span className={`w-2.5 h-2.5 rounded-full ${isTrack ? 'bg-indigo-500' : isSignal ? 'bg-fuchsia-500' : 'bg-amber-500'}`} />
                     {dept}
                   </h3>
-                  <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-400">
+                  <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
                     {deptWorkers.length} Active
                   </span>
                 </div>
 
                 <div className="flex-1 space-y-3 overflow-y-auto max-h-[420px]">
                   {deptWorkers.length === 0 ? (
-                    <p className="text-slate-500 text-xs italic py-4 text-center">No registered supervisors.</p>
+                    <p className="text-slate-600 text-xs italic py-4 text-center">No registered supervisors.</p>
                   ) : (
                     deptWorkers.map(w => (
                       <div
@@ -221,11 +221,11 @@ export default function WorkersPage() {
                       >
                         <div className="space-y-0.5">
                           <span className="text-xs font-semibold text-slate-900 block">{w.name}</span>
-                          <span className="text-[11px] text-slate-500 font-mono block">{w.phone}</span>
+                          <span className="text-[11px] text-slate-600 font-mono block">{w.phone}</span>
                         </div>
                         <button 
                           onClick={() => handleDeleteWorker(w.id)} 
-                          className="text-slate-400 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity p-1 text-xs"
+                          className="text-slate-600 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity p-1 text-xs"
                           title="Remove supervisor"
                         >
                           ✕
