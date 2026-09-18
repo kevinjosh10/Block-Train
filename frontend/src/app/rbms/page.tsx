@@ -709,38 +709,29 @@ export default function RBMSPage() {
                       )}
                     </div>
 
-                    <div className="text-[11px] font-mono text-zinc-500 flex flex-wrap gap-3 pt-1">
+                    <div className="text-[11px] font-mono text-zinc-500 flex flex-wrap gap-3 pt-1 mb-3">
                       <span>Machines: <strong className="text-zinc-300">{b.machinery.join(', ')}</strong></span>
                       <span>Imposed TSR: <strong className="text-amber-300">{b.tsrSpeedKm} km/h</strong></span>
                       {b.privateNumber && (
                         <span>Private Number: <strong className="text-cyan-300">{b.privateNumber}</strong></span>
                       )}
                     </div>
-                  </div>
 
-                  {/* Right Side Stats & Actions */}
-                  <div className="flex flex-row lg:flex-col items-end justify-between gap-3 w-full lg:w-auto border-t lg:border-t-0 border-slate-700 pt-3 lg:pt-0">
-                    <div className="text-right">
-                      <span className="text-[10px] font-mono uppercase text-zinc-500 block">Downtime Saved</span>
-                      <span className="text-base font-black text-emerald-400">+{b.hoursSaved.toFixed(1)} hrs</span>
-                      <span className="text-[10px] text-zinc-500 block font-mono">Compressed to {b.allocatedHours}h</span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 mt-2 pt-2 border-t border-slate-700/50">
                       {b.status !== 'ACTIVE' && b.status !== 'COMPLETED' && (
                         <button
                           onClick={() => handleGrantBlock(b)}
-                          className="px-3.5 py-1.5 rounded-sm bg-emerald-500 hover:bg-emerald-400 text-black font-mono font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
+                          className="px-3 py-1 rounded-sm bg-emerald-600 hover:bg-emerald-500 text-white font-mono font-bold text-[10px] uppercase tracking-wider transition-none cursor-pointer"
                         >
-                          ⚡ Grant Block
+                          GRANT BLOCK
                         </button>
                       )}
                       {b.status === 'ACTIVE' && (
                         <button
                           onClick={() => handleClearBlock(b)}
-                          className="px-3.5 py-1.5 rounded-sm bg-red-500 hover:bg-red-400 text-black font-mono font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
+                          className="px-3 py-1 rounded-sm bg-red-600 hover:bg-red-500 text-white font-mono font-bold text-[10px] uppercase tracking-wider transition-none cursor-pointer"
                         >
-                          ✓ Clear Track
+                          CLEAR TRACK
                         </button>
                       )}
                       <button
@@ -748,10 +739,19 @@ export default function RBMSPage() {
                           setSelectedBlockForControl(b);
                           setActiveTab('CONTROLLER');
                         }}
-                        className="px-3 py-1.5 rounded-sm bg-slate-700 hover:bg-zinc-700 text-zinc-300 font-mono text-xs transition-colors cursor-pointer"
+                        className="px-3 py-1 rounded-sm bg-slate-700 hover:bg-slate-600 text-zinc-300 font-mono text-[10px] uppercase font-bold tracking-wider transition-none cursor-pointer"
                       >
-                        Desk &rarr;
+                        CONTROLLER DESK &rarr;
                       </button>
+                    </div>
+                  </div>
+
+                  {/* Right Side Stats */}
+                  <div className="flex flex-row lg:flex-col items-end justify-between gap-3 w-full lg:w-auto border-t lg:border-t-0 border-slate-700 pt-3 lg:pt-0 pl-4">
+                    <div className="text-right">
+                      <span className="text-[10px] font-mono uppercase text-zinc-500 block">Downtime Saved</span>
+                      <span className="text-base font-black text-emerald-400">+{b.hoursSaved.toFixed(1)} hrs</span>
+                      <span className="text-[10px] text-zinc-500 block font-mono">Compressed to {b.allocatedHours}h</span>
                     </div>
                   </div>
                 </div>
