@@ -569,8 +569,8 @@ export default function RBMSPage() {
               onClick={() => setActiveTab(tab.id as any)}
               className={`px-4 py-1.5 font-mono text-[11px] font-bold uppercase tracking-wider transition-none border-t-2 border-l border-r ${
                 isActive
-                  ? 'text-white border-t-indigo-600 text-indigo-600 border-l-slate-700 border-r-slate-700 bg-slate-100 -mb-px border-b-0'
-                  : 'text-slate-600 border-t-transparent border-l-transparent border-r-transparent hover:text-white bg-white border-b border-b-slate-700 hover:bg-slate-100'
+                  ? 'text-indigo-600 bg-slate-50 border-t-indigo-600 border-l-slate-200 border-r-slate-200 -mb-[1px] border-b-slate-50'
+                  : 'text-slate-600 bg-white hover:text-indigo-600 hover:bg-slate-50 border-t-transparent border-l-transparent border-r-transparent border-b-transparent'
               }`}
             >
               <span>{tab.label}</span>
@@ -1077,7 +1077,7 @@ export default function RBMSPage() {
                     </span>
                     <button
                       onClick={() => setIsBurstSimulated(!isBurstSimulated)}
-                      className="text-[10px] font-mono underline text-slate-700 hover:text-white cursor-pointer"
+                      className="text-[10px] font-mono underline text-slate-700 hover:text-indigo-600 cursor-pointer"
                     >
                       {isBurstSimulated ? 'Reset Burst' : 'Simulate Burst'}
                     </button>
@@ -1448,7 +1448,7 @@ export default function RBMSPage() {
                 className={`px-3 py-1.5 rounded-sm font-mono text-xs transition-all cursor-pointer ${
                   selectedMemoType === 'SR_DOM'
                     ? 'bg-indigo-600 text-white font-bold shadow-sm'
-                    : 'text-slate-700 hover:text-white'
+                    : 'text-slate-700 hover:bg-slate-100 hover:text-indigo-600'
                 }`}
               >
                 📜 Sr. DOM Master Sanction Order
@@ -1458,7 +1458,7 @@ export default function RBMSPage() {
                 className={`px-3 py-1.5 rounded-sm font-mono text-xs transition-all cursor-pointer ${
                   selectedMemoType === 'T_B_1525'
                     ? 'bg-indigo-600 text-white font-bold shadow-sm'
-                    : 'text-slate-700 hover:text-white'
+                    : 'text-slate-700 hover:bg-slate-100 hover:text-indigo-600'
                 }`}
               >
                 🚦 Form T/B 1525 (Line Block Authority)
@@ -1468,7 +1468,7 @@ export default function RBMSPage() {
                 className={`px-3 py-1.5 rounded-sm font-mono text-xs transition-all cursor-pointer ${
                   selectedMemoType === 'FORM_E1_PTW'
                     ? 'bg-indigo-600 text-white font-bold shadow-sm'
-                    : 'text-slate-700 hover:text-white'
+                    : 'text-slate-700 hover:bg-slate-100 hover:text-indigo-600'
                 }`}
               >
                 ⚡ Form E-1 (PTW Traction Permit)
@@ -1478,7 +1478,7 @@ export default function RBMSPage() {
                 className={`px-3 py-1.5 rounded-sm font-mono text-xs transition-all cursor-pointer ${
                   selectedMemoType === 'ST_T351'
                     ? 'bg-indigo-600 text-white font-bold shadow-sm'
-                    : 'text-slate-700 hover:text-white'
+                    : 'text-slate-700 hover:bg-slate-100 hover:text-indigo-600'
                 }`}
               >
                 🔧 Form S&T (T/351 Disconnection Memo)
@@ -1488,7 +1488,7 @@ export default function RBMSPage() {
                 className={`px-3 py-1.5 rounded-sm font-mono text-xs transition-all cursor-pointer ${
                   selectedMemoType === 'FORM_T409'
                     ? 'bg-indigo-600 text-white font-bold shadow-sm'
-                    : 'text-slate-700 hover:text-white'
+                    : 'text-slate-700 hover:bg-slate-100 hover:text-indigo-600'
                 }`}
               >
                 ⚠️ Form T/409 (Caution Order)
