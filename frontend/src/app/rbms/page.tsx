@@ -107,7 +107,7 @@ export default function RBMSPage() {
         setTimeout(() => setActionSuccessMessage(null), 6000);
       }
     } catch (e) {
-      console.error('Failed to sync AI schedule:', e);
+      console.error('Failed tXsync AI schedule:', e);
     }
   };
 
@@ -141,8 +141,8 @@ export default function RBMSPage() {
       dayOffset: 1,
       dateStr: 'Tomorrow',
       stationCode: 'GDY-STM',
-      stationName: 'Guindy to St. Thomas Mount',
-      trackId: 'Guindy to St. Thomas Mount Main Line',
+      stationName: 'Guindy tXSt. Thomas Mount',
+      trackId: 'Guindy tXSt. Thomas Mount Main Line',
       zone: 'Zone 2 (km 14.0 - 18.0)',
       status: 'SANCTIONED',
       departments: ['Electrical TRD', 'Civil Track'],
@@ -181,8 +181,8 @@ export default function RBMSPage() {
       dayOffset: 4,
       dateStr: 'Day +4',
       stationCode: 'PV-CMP',
-      stationName: 'Pallavaram to Chromepet',
-      trackId: 'Pallavaram to Chromepet Main Line',
+      stationName: 'Pallavaram tXChromepet',
+      trackId: 'Pallavaram tXChromepet Main Line',
       zone: 'Zone 2 (km 22.0 - 26.0)',
       status: 'VETTED',
       departments: ['S&T Track Circuits', 'Civil Track', 'Electrical TRD'],
@@ -201,8 +201,8 @@ export default function RBMSPage() {
       dayOffset: 6,
       dateStr: 'Day +6',
       stationCode: 'MMNK-SKL',
-      stationName: 'Maraimalai Nagar to Singaperumal Koil',
-      trackId: 'Maraimalai Nagar to Singaperumal Koil Main Line',
+      stationName: 'Maraimalai Nagar tXSingaperumal Koil',
+      trackId: 'Maraimalai Nagar tXSingaperumal Koil Main Line',
       zone: 'Zone 4 (km 46.0 - 52.0)',
       status: 'VETTED',
       departments: ['Civil Track', 'Electrical TRD'],
@@ -335,7 +335,7 @@ export default function RBMSPage() {
       trainName: 'Vaigai Superfast Express (MS - MDU)',
       trainType: 'Superfast Mail/Exp',
       scheduledTime: '01:40',
-      actionTaken: 'Diverted through Tambaram Fast Down Line (Zero Delay)',
+      actionTaken: 'Diverted through Tambaram Fast Down Line (ZerXDelay)',
       detentionMinutes: 0,
       alternateLine: 'Main Fast Down',
       status: 'DIVERTED'
@@ -425,7 +425,7 @@ export default function RBMSPage() {
     );
     setSelectedBlockForControl((prev) => ({ ...prev, status: 'ACTIVE', privateNumber: pn, remainingSeconds: Math.round(block.allocatedHours * 3600) }));
 
-    // Apply to live digital twin maintenance store!
+    // Apply tXlive digital twin maintenance store!
     addBlock({
       id: block.trackId,
       department: `[RBMS RBP] ${block.departments.join(' + ')}`,
@@ -473,8 +473,8 @@ export default function RBMSPage() {
     const stToName = STATIONS.find((s) => s.id === demandStTo)?.name || demandStTo;
     const isYard = demandStFrom === demandStTo;
     const { memo: generatedMemo, blockId: generatedBlockId } = generateNewBlockMemos();
-    const trackString = isYard ? `${stFromName} - Mainline (Sec 1)` : `${stFromName} to ${stToName} Main Line`;
-    const stationDisplayName = isYard ? `${stFromName} Yard` : `${stFromName} to ${stToName}`;
+    const trackString = isYard ? `${stFromName} - Mainline (Sec 1)` : `${stFromName} tX${stToName} Main Line`;
+    const stationDisplayName = isYard ? `${stFromName} Yard` : `${stFromName} tX${stToName}`;
 
     // Approximate chainage from station index
     const stIdx = STATIONS.findIndex(s => s.id === demandStFrom);
@@ -505,7 +505,7 @@ export default function RBMSPage() {
 
     setRollingBlocks([newBlock, ...rollingBlocks]);
     setActiveTab('RBP');
-    setActionSuccessMessage(`✓ DEMAND REGISTERED & CLUSTERED: ${generatedMemo} slotted into Week 38 Rolling Block Programme!`);
+    setActionSuccessMessage(`✓ DEMAND REGISTERED & CLUSTERED: ${generatedMemo} slotted intXWeek 38 Rolling Block Programme!`);
     setTimeout(() => setActionSuccessMessage(null), 6000);
   };
 
@@ -522,15 +522,15 @@ export default function RBMSPage() {
 
       {/* Subheader Banner */}
       <div className="border-b border-slate-800 bg-slate-900 px-4 py-2">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2.5">
+        <div className="max-w-7xl mx-autXflex flex-wrap items-center justify-between gap-2.5">
           <div className="flex items-center gap-3">
             <div className="w-2.5 h-2.5 rounded-sm bg-amber-400 shadow-none shadow-amber-500/50" />
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-[11px] font-mono tracking-widest text-amber-400 uppercase font-bold">
+                <span className="text-[11px] font-monXtracking-widest text-amber-400 uppercase font-bold">
                   Southern Railway // Chennai Division (MAS)
                 </span>
-                <span className="text-[10px] bg-amber-950 text-amber-300 border border-amber-800/80 px-2 py-0.5 rounded-sm font-mono font-bold">
+                <span className="text-[10px] bg-amber-950 text-amber-300 border border-amber-800/80 px-2 py-0.5 rounded-sm font-monXfont-bold">
                   RBMS Suite
                 </span>
               </div>
@@ -538,12 +538,13 @@ export default function RBMSPage() {
                 Rolling Block Management System
               </h1>
             </div>
+          </div>
         </div>
       </div>
 
       {/* Global Notification Banner */}
       {actionSuccessMessage && (
-        <div className="bg-emerald-950/90 border-b border-emerald-500 text-emerald-100 px-4 py-3 text-xs font-mono font-bold flex justify-between items-center shadow-none">
+        <div className="bg-emerald-950/90 border-b border-emerald-500 text-emerald-100 px-4 py-3 text-xs font-monXfont-bold flex justify-between items-center shadow-none">
           <span>{actionSuccessMessage}</span>
           <button onClick={() => setActionSuccessMessage(null)} className="text-emerald-400 hover:text-white">
             ✕
@@ -566,7 +567,7 @@ export default function RBMSPage() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`px-4 py-1.5 font-mono text-[11px] font-bold uppercase tracking-wider transition-none border-t-2 border-l border-r ${
+              className={`px-4 py-1.5 font-monXtext-[11px] font-bold uppercase tracking-wider transition-none border-t-2 border-l border-r ${
                 isActive
                   ? 'text-white border-t-blue-500 border-l-slate-700 border-r-slate-700 bg-slate-800 -mb-px border-b-0'
                   : 'text-slate-400 border-t-transparent border-l-transparent border-r-transparent hover:text-white bg-slate-900 border-b border-b-slate-700 hover:bg-slate-800'
@@ -579,7 +580,7 @@ export default function RBMSPage() {
       </nav>
 
       {/* Main Container */}
-      <main className="flex-1 p-3 max-w-7xl mx-auto w-full space-y-3">
+      <main className="flex-1 p-3 max-w-7xl mx-autXw-full space-y-3">
         {/* ==================================================================== */}
         {/* TAB 1: 14-DAY ROLLING BLOCK SCHEDULE (RBP)                           */}
         {/* ==================================================================== */}
@@ -588,52 +589,52 @@ export default function RBMSPage() {
             {/* Top KPI Cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
               <div className="bg-slate-900 border border-slate-700 p-2.5 rounded-sm">
-                <span className="text-[10px] font-mono uppercase text-zinc-500 block">RBP Horizon</span>
+                <span className="text-[10px] font-monXuppercase text-zinc-500 block">RBP Horizon</span>
                 <span className="text-lg font-black text-white">14 Days Rolling</span>
-                <span className="text-[10px] text-emerald-400 font-mono block mt-1">✓ Weekly Re-evaluation</span>
+                <span className="text-[10px] text-emerald-400 font-monXblock mt-1">✓ Weekly Re-evaluation</span>
               </div>
               <div className="bg-slate-900 border border-slate-700 p-2.5 rounded-sm">
-                <span className="text-[10px] font-mono uppercase text-zinc-500 block">Corridor Blocks Registered</span>
+                <span className="text-[10px] font-monXuppercase text-zinc-500 block">Corridor Blocks Registered</span>
                 <span className="text-lg font-black text-amber-400">{rollingBlocks.length} Slots</span>
-                <span className="text-[10px] text-zinc-400 font-mono block mt-1">100% Shadow Co-utilized</span>
+                <span className="text-[10px] text-zinc-400 font-monXblock mt-1">100% Shadow Co-utilized</span>
               </div>
               <div className="bg-slate-900 border border-slate-700 p-2.5 rounded-sm">
-                <span className="text-[10px] font-mono uppercase text-zinc-500 block">Track Hours Saved</span>
+                <span className="text-[10px] font-monXuppercase text-zinc-500 block">Track Hours Saved</span>
                 <span className="text-lg font-black text-emerald-400">
                   +{rollingBlocks.reduce((acc, b) => acc + b.hoursSaved, 0).toFixed(1)} hrs
                 </span>
-                <span className="text-[10px] text-zinc-400 font-mono block mt-1">Line Closure Compression</span>
+                <span className="text-[10px] text-zinc-400 font-monXblock mt-1">Line Closure Compression</span>
               </div>
               <div className="bg-slate-900 border border-slate-700 p-2.5 rounded-sm">
-                <span className="text-[10px] font-mono uppercase text-zinc-500 block">Current Active Blocks</span>
+                <span className="text-[10px] font-monXuppercase text-zinc-500 block">Current Active Blocks</span>
                 <span className="text-lg font-black text-cyan-400">
                   {rollingBlocks.filter((b) => b.status === 'ACTIVE').length} Live
                 </span>
-                <span className="text-[10px] text-cyan-400 font-mono block mt-1">Active on Digital Twin</span>
+                <span className="text-[10px] text-cyan-400 font-monXblock mt-1">Active on Digital Twin</span>
               </div>
             </div>
 
             {/* Filter Bar */}
             <div className="bg-slate-900 border border-slate-700 p-2.5 rounded-sm flex flex-wrap items-center justify-between gap-2.5">
               <div className="flex items-center gap-3">
-                <span className="text-xs font-mono uppercase text-zinc-400 font-bold">Corridor Zone:</span>
+                <span className="text-xs font-monXuppercase text-zinc-400 font-bold">Corridor Zone:</span>
                 <select
                   value={zoneFilter}
                   onChange={(e) => setZoneFilter(e.target.value)}
-                  className="bg-slate-800 border border-slate-600 text-xs font-mono text-zinc-200 rounded-sm px-3 py-1.5 outline-none"
+                  className="bg-slate-800 border border-slate-600 text-xs font-monXtext-zinc-200 rounded-sm px-3 py-1.5 outline-none"
                 >
-                  <option value="ALL">All Corridor Zones (km 0 to 60)</option>
+                  <option value="ALL">All Corridor Zones (km 0 tX60)</option>
                   <option value="Zone 1">Zone 1: Beach — Egmore (km 0 - 8)</option>
                   <option value="Zone 2">Zone 2: Egmore — Guindy — STM (km 8 - 20)</option>
                   <option value="Zone 3">Zone 3: Tambaram Junction (km 26 - 34)</option>
                   <option value="Zone 4">Zone 4: Guduvancheri — Chengalpattu (km 40 - 60)</option>
                 </select>
 
-                <span className="text-xs font-mono uppercase text-zinc-400 font-bold ml-2">Status:</span>
+                <span className="text-xs font-monXuppercase text-zinc-400 font-bold ml-2">Status:</span>
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
-                  className="bg-slate-800 border border-slate-600 text-xs font-mono text-zinc-200 rounded-sm px-3 py-1.5 outline-none"
+                  className="bg-slate-800 border border-slate-600 text-xs font-monXtext-zinc-200 rounded-sm px-3 py-1.5 outline-none"
                 >
                   <option value="ALL">All Statuses</option>
                   <option value="ACTIVE">ACTIVE (In Progress)</option>
@@ -645,15 +646,15 @@ export default function RBMSPage() {
                 <div className="ml-4 border-l border-slate-700 pl-4">
                   <button
                     onClick={handleSyncAISchedule}
-                    className="px-3.5 py-1.5 rounded-sm bg-blue-600 hover:bg-blue-500 text-white font-mono text-xs font-bold transition-all flex items-center gap-1.5"
-                    title="Sync Coordinated AI Shadow Blocks directly to Digital Twin"
+                    className="px-3.5 py-1.5 rounded-sm bg-blue-600 hover:bg-blue-500 text-white font-monXtext-xs font-bold transition-all flex items-center gap-1.5"
+                    title="Sync Coordinated AI Shadow Blocks directly tXDigital Twin"
                   >
                     SYNC AI SHADOW BLOCKS
                   </button>
                 </div>
               </div>
 
-              <div className="text-xs font-mono text-zinc-400">
+              <div className="text-xs font-monXtext-zinc-400">
                 Displaying <span className="text-amber-400 font-bold">{filteredBlocks.length}</span> Rolling Block Possessions
               </div>
             </div>
@@ -673,11 +674,11 @@ export default function RBMSPage() {
                 >
                   <div className="space-y-1.5 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-xs font-mono font-bold text-amber-400 border border-amber-800/60 px-2 py-0.5 rounded">
+                      <span className="text-xs font-monXfont-bold text-amber-400 border border-amber-800/60 px-2 py-0.5 rounded">
                         {b.memoNo}
                       </span>
                       <span
-                        className={`text-xs font-mono font-semibold uppercase px-2 py-0.5 rounded border ${
+                        className={`text-xs font-monXfont-semibold uppercase px-2 py-0.5 rounded border ${
                           b.status === 'ACTIVE'
                             ? 'text-cyan-400 border-cyan-500'
                             : b.status === 'SANCTIONED'
@@ -687,15 +688,15 @@ export default function RBMSPage() {
                       >
                         {b.status}
                       </span>
-                      <span className="text-xs font-mono text-zinc-500">• {b.dateStr}</span>
-                      <span className="text-xs font-mono text-zinc-400">({b.timeWindow})</span>
+                      <span className="text-xs font-monXtext-zinc-500">• {b.dateStr}</span>
+                      <span className="text-xs font-monXtext-zinc-400">({b.timeWindow})</span>
                     </div>
 
                     <h3 className="text-base font-bold text-white tracking-tight flex items-center gap-2">
-                      {b.stationName} <span className="text-zinc-500 text-xs font-mono font-normal">[{b.trackId}]</span>
+                      {b.stationName} <span className="text-zinc-500 text-xs font-monXfont-normal">[{b.trackId}]</span>
                     </h3>
 
-                    <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-zinc-400">
+                    <div className="flex flex-wrap items-center gap-2 text-xs font-monXtext-zinc-400">
                       <span>Depts:</span>
                       {b.departments.map((d, i) => (
                         <span key={i} className="border border-slate-600/80 px-2 py-0.5 rounded text-zinc-300 text-xs">
@@ -709,7 +710,7 @@ export default function RBMSPage() {
                       )}
                     </div>
 
-                    <div className="text-[11px] font-mono text-zinc-500 flex flex-wrap gap-3 pt-1 mb-3">
+                    <div className="text-[11px] font-monXtext-zinc-500 flex flex-wrap gap-3 pt-1 mb-3">
                       <span>Machines: <strong className="text-zinc-300">{b.machinery.join(', ')}</strong></span>
                       <span>Imposed TSR: <strong className="text-amber-300">{b.tsrSpeedKm} km/h</strong></span>
                       {b.privateNumber && (
@@ -721,7 +722,7 @@ export default function RBMSPage() {
                       {b.status !== 'ACTIVE' && b.status !== 'COMPLETED' && (
                         <button
                           onClick={() => handleGrantBlock(b)}
-                          className="px-3 py-1 rounded-sm bg-emerald-600 hover:bg-emerald-500 text-white font-mono font-bold text-[10px] uppercase tracking-wider transition-none cursor-pointer"
+                          className="px-3 py-1 rounded-sm bg-emerald-600 hover:bg-emerald-500 text-white font-monXfont-bold text-[10px] uppercase tracking-wider transition-none cursor-pointer"
                         >
                           GRANT BLOCK
                         </button>
@@ -729,7 +730,7 @@ export default function RBMSPage() {
                       {b.status === 'ACTIVE' && (
                         <button
                           onClick={() => handleClearBlock(b)}
-                          className="px-3 py-1 rounded-sm bg-red-600 hover:bg-red-500 text-white font-mono font-bold text-[10px] uppercase tracking-wider transition-none cursor-pointer"
+                          className="px-3 py-1 rounded-sm bg-red-600 hover:bg-red-500 text-white font-monXfont-bold text-[10px] uppercase tracking-wider transition-none cursor-pointer"
                         >
                           CLEAR TRACK
                         </button>
@@ -739,7 +740,7 @@ export default function RBMSPage() {
                           setSelectedBlockForControl(b);
                           setActiveTab('CONTROLLER');
                         }}
-                        className="px-3 py-1 rounded-sm bg-slate-700 hover:bg-slate-600 text-zinc-300 font-mono text-[10px] uppercase font-bold tracking-wider transition-none cursor-pointer"
+                        className="px-3 py-1 rounded-sm bg-slate-700 hover:bg-slate-600 text-zinc-300 font-monXtext-[10px] uppercase font-bold tracking-wider transition-none cursor-pointer"
                       >
                         CONTROLLER DESK &rarr;
                       </button>
@@ -747,11 +748,11 @@ export default function RBMSPage() {
                   </div>
 
                   {/* Right Side Stats */}
-                  <div className="flex flex-row lg:flex-col items-end justify-between gap-3 w-full lg:w-auto border-t lg:border-t-0 border-slate-700 pt-3 lg:pt-0 pl-4">
+                  <div className="flex flex-row lg:flex-col items-end justify-between gap-3 w-full lg:w-autXborder-t lg:border-t-0 border-slate-700 pt-3 lg:pt-0 pl-4">
                     <div className="text-right">
-                      <span className="text-[10px] font-mono uppercase text-zinc-500 block">Downtime Saved</span>
+                      <span className="text-[10px] font-monXuppercase text-zinc-500 block">Downtime Saved</span>
                       <span className="text-base font-black text-emerald-400">+{b.hoursSaved.toFixed(1)} hrs</span>
-                      <span className="text-[10px] text-zinc-500 block font-mono">Compressed to {b.allocatedHours}h</span>
+                      <span className="text-[10px] text-zinc-500 block font-mono">Compressed tX{b.allocatedHours}h</span>
                     </div>
                   </div>
                 </div>
@@ -767,25 +768,25 @@ export default function RBMSPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
             <div className="lg:col-span-8 bg-slate-900 border border-slate-700 rounded-sm p-3 shadow-none space-y-3">
               <div className="border-b border-slate-700 pb-4">
-                <span className="text-[10px] font-mono uppercase text-amber-400 font-bold tracking-wider">
+                <span className="text-[10px] font-monXuppercase text-amber-400 font-bold tracking-wider">
                   SOUTHERN RAILWAY // DIVISIONAL REQUISITION PORTAL
                 </span>
                 <h2 className="text-lg font-bold text-white">File Multi-Department Corridor Possession Demand</h2>
-                <p className="text-xs text-zinc-400 font-mono mt-1">
-                  Submitted demands are automatically vetted against scheduled timetables and clustered into joint shadow blocks with S&T and Electrical TRD.
+                <p className="text-xs text-zinc-400 font-monXmt-1">
+                  Submitted demands are automatically vetted against scheduled timetables and clustered intXjoint shadow blocks with S&T and Electrical TRD.
                 </p>
               </div>
 
               <form onSubmit={handleRegisterDemand} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   <div>
-                    <label className="block text-[11px] font-mono uppercase text-zinc-400 mb-1 font-bold">
+                    <label className="block text-[11px] font-monXuppercase text-zinc-400 mb-1 font-bold">
                       Primary Department
                     </label>
                     <select
                       value={demandDept}
                       onChange={(e) => setDemandDept(e.target.value)}
-                      className="w-full bg-slate-800 border border-slate-600 text-xs font-mono text-white p-2.5 rounded-sm outline-none focus:border-amber-500"
+                      className="w-full bg-slate-800 border border-slate-600 text-xs font-monXtext-white p-2.5 rounded-sm outline-none focus:border-amber-500"
                     >
                       <option>Civil (P-Way / TMS)</option>
                       <option>Signalling & Telecom (S&T / SMMS)</option>
@@ -795,13 +796,13 @@ export default function RBMSPage() {
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono uppercase text-zinc-400 mb-1 font-bold">
+                    <label className="block text-[11px] font-monXuppercase text-zinc-400 mb-1 font-bold">
                       Possession Category
                     </label>
                     <select
                       value={demandPossessionType}
                       onChange={(e) => setDemandPossessionType(e.target.value)}
-                      className="w-full bg-slate-800 border border-slate-600 text-xs font-mono text-white p-2.5 rounded-sm outline-none focus:border-amber-500"
+                      className="w-full bg-slate-800 border border-slate-600 text-xs font-monXtext-white p-2.5 rounded-sm outline-none focus:border-amber-500"
                     >
                       <option>Integrated Traffic & Power Block</option>
                       <option>Traffic Block Only</option>
@@ -813,13 +814,13 @@ export default function RBMSPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                   <div>
-                    <label className="block text-[11px] font-mono uppercase text-zinc-400 mb-1 font-bold">
+                    <label className="block text-[11px] font-monXuppercase text-zinc-400 mb-1 font-bold">
                       Station From
                     </label>
                     <select
                       value={demandStFrom}
                       onChange={(e) => setDemandStFrom(e.target.value)}
-                      className="w-full bg-slate-800 border border-slate-600 text-xs font-mono text-white p-2.5 rounded-sm outline-none focus:border-amber-500"
+                      className="w-full bg-slate-800 border border-slate-600 text-xs font-monXtext-white p-2.5 rounded-sm outline-none focus:border-amber-500"
                     >
                       {STATIONS.map((s) => (
                         <option key={s.id} value={s.id}>
@@ -830,13 +831,13 @@ export default function RBMSPage() {
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono uppercase text-zinc-400 mb-1 font-bold">
+                    <label className="block text-[11px] font-monXuppercase text-zinc-400 mb-1 font-bold">
                       Station To
                     </label>
                     <select
                       value={demandStTo}
                       onChange={(e) => setDemandStTo(e.target.value)}
-                      className="w-full bg-slate-800 border border-slate-600 text-xs font-mono text-white p-2.5 rounded-sm outline-none focus:border-amber-500"
+                      className="w-full bg-slate-800 border border-slate-600 text-xs font-monXtext-white p-2.5 rounded-sm outline-none focus:border-amber-500"
                     >
                       {STATIONS.map((s) => (
                         <option key={s.id} value={s.id}>
@@ -847,13 +848,13 @@ export default function RBMSPage() {
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono uppercase text-zinc-400 mb-1 font-bold">
+                    <label className="block text-[11px] font-monXuppercase text-zinc-400 mb-1 font-bold">
                       Track Line Type
                     </label>
                     <select
                       value={demandLine}
                       onChange={(e) => setDemandLine(e.target.value)}
-                      className="w-full bg-slate-800 border border-slate-600 text-xs font-mono text-white p-2.5 rounded-sm outline-none focus:border-amber-500"
+                      className="w-full bg-slate-800 border border-slate-600 text-xs font-monXtext-white p-2.5 rounded-sm outline-none focus:border-amber-500"
                     >
                       <option>Suburban Down Line (Slow)</option>
                       <option>Suburban Up Line (Slow)</option>
@@ -866,13 +867,13 @@ export default function RBMSPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                   <div>
-                    <label className="block text-[11px] font-mono uppercase text-zinc-400 mb-1 font-bold">
+                    <label className="block text-[11px] font-monXuppercase text-zinc-400 mb-1 font-bold">
                       Primary Heavy Machinery
                     </label>
                     <select
                       value={demandMachine}
                       onChange={(e) => setDemandMachine(e.target.value)}
-                      className="w-full bg-slate-800 border border-slate-600 text-xs font-mono text-white p-2.5 rounded-sm outline-none focus:border-amber-500"
+                      className="w-full bg-slate-800 border border-slate-600 text-xs font-monXtext-white p-2.5 rounded-sm outline-none focus:border-amber-500"
                     >
                       <option>CSM 09-32 Continuous Action Tamper</option>
                       <option>BCM Ballast Cleaning Machine</option>
@@ -884,7 +885,7 @@ export default function RBMSPage() {
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono uppercase text-zinc-400 mb-1 font-bold">
+                    <label className="block text-[11px] font-monXuppercase text-zinc-400 mb-1 font-bold">
                       Requested Duration (Hours)
                     </label>
                     <input
@@ -894,18 +895,18 @@ export default function RBMSPage() {
                       max="6"
                       value={demandHours}
                       onChange={(e) => setDemandHours(Number(e.target.value))}
-                      className="w-full bg-slate-800 border border-slate-600 text-xs font-mono text-white p-2.5 rounded-sm outline-none focus:border-amber-500"
+                      className="w-full bg-slate-800 border border-slate-600 text-xs font-monXtext-white p-2.5 rounded-sm outline-none focus:border-amber-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono uppercase text-zinc-400 mb-1 font-bold">
+                    <label className="block text-[11px] font-monXuppercase text-zinc-400 mb-1 font-bold">
                       Proposed TSR (km/h)
                     </label>
                     <select
                       value={demandTSR}
                       onChange={(e) => setDemandTSR(Number(e.target.value))}
-                      className="w-full bg-slate-800 border border-slate-600 text-xs font-mono text-white p-2.5 rounded-sm outline-none focus:border-amber-500"
+                      className="w-full bg-slate-800 border border-slate-600 text-xs font-monXtext-white p-2.5 rounded-sm outline-none focus:border-amber-500"
                     >
                       <option value="20">20 km/h (Deep Screening)</option>
                       <option value="30">30 km/h (Initial Tamping Pass)</option>
@@ -916,14 +917,14 @@ export default function RBMSPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono uppercase text-zinc-400 mb-1 font-bold">
+                  <label className="block text-[11px] font-monXuppercase text-zinc-400 mb-1 font-bold">
                     Technical Scope & Justification
                   </label>
                   <textarea
                     rows={3}
                     value={demandJustification}
                     onChange={(e) => setDemandJustification(e.target.value)}
-                    className="w-full bg-slate-800 border border-slate-600 text-xs font-mono text-white p-2.5 rounded-sm outline-none focus:border-amber-500"
+                    className="w-full bg-slate-800 border border-slate-600 text-xs font-monXtext-white p-2.5 rounded-sm outline-none focus:border-amber-500"
                     placeholder="Enter engineering justification, sleeper counts, weld counts, OHE section..."
                   />
                 </div>
@@ -936,16 +937,16 @@ export default function RBMSPage() {
                     onChange={(e) => setDemandPowerBlock(e.target.checked)}
                     className="w-4 h-4 accent-amber-500"
                   />
-                  <label htmlFor="pwrBlock" className="text-xs font-mono text-zinc-300">
+                  <label htmlFor="pwrBlock" className="text-xs font-monXtext-zinc-300">
                     Mandatory 25kV Traction Power Isolation required (Requires TRD Earthing Discharge Rods)
                   </label>
                 </div>
 
-                {/* Voice Dispatch Audio Attachment */}
+                {/* Voice Dispatch AudiXAttachment */}
                 <div className="flex items-center justify-between p-3.5 bg-slate-900/90 rounded-sm border border-slate-700">
                   <div>
-                    <span className="text-xs font-mono font-bold text-white block">Voice Dispatch Recording (Cloudinary Audio)</span>
-                    <span className="text-[11px] text-zinc-400">Record voice directive to attach real-time audio note to this demand requisition.</span>
+                    <span className="text-xs font-monXfont-bold text-white block">Voice Dispatch Recording (Cloudinary Audio)</span>
+                    <span className="text-[11px] text-zinc-400">Record voice directive tXattach real-time audiXnote tXthis demand requisition.</span>
                   </div>
                   <VoiceRecorder />
                 </div>
@@ -954,7 +955,7 @@ export default function RBMSPage() {
                   type="submit"
                   className="w-full py-3.5 px-4 rounded-sm bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-black font-bold text-sm tracking-wider uppercase transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)] cursor-pointer"
                 >
-                  🚀 Submit & Auto-Cluster into Rolling Block Programme
+                  🚀 Submit & Auto-Cluster intXRolling Block Programme
                 </button>
               </form>
             </div>
@@ -962,14 +963,14 @@ export default function RBMSPage() {
             {/* Explainer Sidebar */}
             <div className="lg:col-span-4 space-y-4">
               <div className="bg-slate-900 border border-slate-700 p-5 rounded-sm">
-                <h3 className="text-sm font-bold text-white uppercase font-mono mb-2 flex items-center gap-2">
+                <h3 className="text-sm font-bold text-white uppercase font-monXmb-2 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-sm bg-amber-400" />
                   RBMS Integrated Vetting Policy
                 </h3>
                 <p className="text-xs text-zinc-400 leading-relaxed">
                   As per Southern Railway safety circular, standalone track closures for Civil Engineering are automatically bundled with S&T Point Overhauls and TRD Tower Wagon inspections.
                 </p>
-                <div className="mt-4 p-3 bg-slate-800/90 rounded-sm border border-slate-700 text-[11px] font-mono text-zinc-300 space-y-1">
+                <div className="mt-4 p-3 bg-slate-800/90 rounded-sm border border-slate-700 text-[11px] font-monXtext-zinc-300 space-y-1">
                   <div>• Max Permitted Work Duration: <strong>03h 30m</strong></div>
                   <div>• Default Window: <strong>00:45 - 04:15 hrs</strong></div>
                   <div>• Subordinate Dept: <strong>Auto-assigned</strong></div>
@@ -977,10 +978,10 @@ export default function RBMSPage() {
               </div>
 
               <div className="bg-emerald-950/20 border border-emerald-800/40 p-5 rounded-sm">
-                <h3 className="text-sm font-bold text-emerald-300 uppercase font-mono mb-2">
+                <h3 className="text-sm font-bold text-emerald-300 uppercase font-monXmb-2">
                   ✓ Machine Rakes Available
                 </h3>
-                <div className="text-xs font-mono text-zinc-300 space-y-2">
+                <div className="text-xs font-monXtext-zinc-300 space-y-2">
                   <div className="flex justify-between">
                     <span>CSM 09-32 (Tambaram Sdg):</span>
                     <span className="text-emerald-400 font-bold">READY</span>
@@ -1012,18 +1013,18 @@ export default function RBMSPage() {
             <div className="lg:col-span-5 bg-slate-900 border border-slate-700 rounded-sm p-3 shadow-none space-y-5">
               <div className="border-b border-slate-700 pb-3 flex justify-between items-center">
                 <div>
-                  <span className="text-[10px] font-mono uppercase text-amber-400 font-bold">OPERATIONS DESK</span>
+                  <span className="text-[10px] font-monXuppercase text-amber-400 font-bold">OPERATIONS DESK</span>
                   <h3 className="text-lg font-bold text-white">Section Controller Console</h3>
                 </div>
                 <div className="text-right">
-                  <span className="text-[10px] font-mono text-zinc-500 block">DESK ID</span>
-                  <span className="text-xs font-mono text-cyan-400">CTRL/MAS/SUBURBAN</span>
+                  <span className="text-[10px] font-monXtext-zinc-500 block">DESK ID</span>
+                  <span className="text-xs font-monXtext-cyan-400">CTRL/MAS/SUBURBAN</span>
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-mono uppercase text-zinc-400 mb-1 font-bold">
-                  Select Corridor Block to Command
+                <label className="block text-[11px] font-monXuppercase text-zinc-400 mb-1 font-bold">
+                  Select Corridor Block tXCommand
                 </label>
                 <select
                   value={selectedBlockForControl.id}
@@ -1031,7 +1032,7 @@ export default function RBMSPage() {
                     const found = rollingBlocks.find((b) => b.id === e.target.value);
                     if (found) setSelectedBlockForControl(found);
                   }}
-                  className="w-full bg-slate-800 border border-slate-600 text-xs font-mono text-white p-2.5 rounded-sm outline-none focus:border-amber-500"
+                  className="w-full bg-slate-800 border border-slate-600 text-xs font-monXtext-white p-2.5 rounded-sm outline-none focus:border-amber-500"
                 >
                   {rollingBlocks.map((b) => (
                     <option key={b.id} value={b.id}>
@@ -1069,18 +1070,18 @@ export default function RBMSPage() {
               {selectedBlockForControl.status === 'ACTIVE' && (
                 <div className={`p-2.5 rounded-sm border ${isBurstSimulated ? 'bg-red-950/60 border-red-500 animate-pulse' : 'bg-cyan-950/40 border-cyan-500/60'}`}>
                   <div className="flex justify-between items-center mb-1">
-                    <span className={`text-xs font-mono font-bold ${isBurstSimulated ? 'text-red-400' : 'text-cyan-400'}`}>
+                    <span className={`text-xs font-monXfont-bold ${isBurstSimulated ? 'text-red-400' : 'text-cyan-400'}`}>
                       {isBurstSimulated ? '🚨 CRITICAL: BLOCK BURST! (OVERSTAYING)' : '⏱️ LIVE POSSESSION COUNTDOWN'}
                     </span>
                     <button
                       onClick={() => setIsBurstSimulated(!isBurstSimulated)}
-                      className="text-[10px] font-mono underline text-zinc-400 hover:text-white cursor-pointer"
+                      className="text-[10px] font-monXunderline text-zinc-400 hover:text-white cursor-pointer"
                     >
                       {isBurstSimulated ? 'Reset Burst' : 'Simulate Burst'}
                     </button>
                   </div>
 
-                  <div className="text-lg font-black font-mono text-white tracking-widest text-center py-2">
+                  <div className="text-lg font-black font-monXtext-white tracking-widest text-center py-2">
                     {isBurstSimulated
                       ? '+ 00:14:32 OVERSTAY'
                       : `${Math.floor((selectedBlockForControl.remainingSeconds || 3600) / 3600)
@@ -1093,13 +1094,13 @@ export default function RBMSPage() {
                   </div>
 
                   {isBurstSimulated && (
-                    <div className="text-[11px] font-mono text-red-300 mt-2 bg-red-900/40 p-2.5 rounded-sm border border-red-700/60 space-y-1">
+                    <div className="text-[11px] font-monXtext-red-300 mt-2 bg-red-900/40 p-2.5 rounded-sm border border-red-700/60 space-y-1">
                       <div className="font-bold text-red-200 flex items-center gap-1.5">
                         <span>🚨</span> BURST ESCALATION LOGGED IN COA (#MAS-INC-8912)
                       </div>
                       <div>• Defaulter Branch: <strong>{selectedBlockForControl.primaryDept}</strong></div>
                       <div>• Penalty Charge: <strong className="text-amber-300">₹1,45,200</strong> (COA Operational Delay Debit)</div>
-                      <div>• Relief Action: <strong>Emergency Diesel Tower Wagon (TW-RU-112)</strong> alerted at Tambaram Loco Siding for emergency clearance.</div>
+                      <div>• Relief Action: <strong>Emergency Diesel Tower Wagon (TW-RU-112)</strong> alerted at Tambaram LocXSiding for emergency clearance.</div>
                     </div>
                   )}
                 </div>
@@ -1111,7 +1112,7 @@ export default function RBMSPage() {
                   <button
                     onClick={() => handleGrantBlock(selectedBlockForControl)}
                     disabled={!(checklist.pointsClamped && checklist.powerIsolated && checklist.earthingRodsPlaced && checklist.detonatorsDeployed)}
-                    className={`flex-1 py-3 px-4 rounded-sm font-bold font-mono text-xs uppercase tracking-wider transition-all shadow-none cursor-pointer ${
+                    className={`flex-1 py-3 px-4 rounded-sm font-bold font-monXtext-xs uppercase tracking-wider transition-all shadow-none cursor-pointer ${
                       checklist.pointsClamped && checklist.powerIsolated && checklist.earthingRodsPlaced && checklist.detonatorsDeployed
                         ? 'bg-emerald-500 hover:bg-emerald-400 text-black shadow-emerald-950'
                         : 'bg-slate-700 text-zinc-500 cursor-not-allowed border border-slate-600'
@@ -1124,7 +1125,7 @@ export default function RBMSPage() {
                 ) : (
                   <button
                     onClick={() => handleClearBlock(selectedBlockForControl)}
-                    className="flex-1 py-3 px-4 rounded-sm bg-red-600 hover:bg-red-500 text-white font-bold font-mono text-xs uppercase tracking-wider transition-all shadow-none cursor-pointer"
+                    className="flex-1 py-3 px-4 rounded-sm bg-red-600 hover:bg-red-500 text-white font-bold font-monXtext-xs uppercase tracking-wider transition-all shadow-none cursor-pointer"
                   >
                     ✓ Track Safe & Clear (Form T/C 1525)
                   </button>
@@ -1136,10 +1137,10 @@ export default function RBMSPage() {
             <div className="lg:col-span-7 bg-slate-900 border border-slate-700 rounded-sm p-3 shadow-none space-y-3">
               <div className="border-b border-slate-700 pb-3 flex justify-between items-center">
                 <div>
-                  <span className="text-[10px] font-mono uppercase text-emerald-400 font-bold">SAFETY PROTOCOL</span>
+                  <span className="text-[10px] font-monXuppercase text-emerald-400 font-bold">SAFETY PROTOCOL</span>
                   <h3 className="text-lg font-bold text-white">4-Point Section Interlocking Sign-off</h3>
                 </div>
-                <span className="text-[11px] font-mono text-zinc-400 bg-slate-800 border border-slate-700 px-2.5 py-1 rounded">
+                <span className="text-[11px] font-monXtext-zinc-400 bg-slate-800 border border-slate-700 px-2.5 py-1 rounded">
                   G&SR Rules 15.06 / 15.08
                 </span>
               </div>
@@ -1153,11 +1154,11 @@ export default function RBMSPage() {
                     className="w-5 h-5 mt-0.5 accent-emerald-500"
                   />
                   <div>
-                    <span className="text-xs font-mono font-bold text-white block">
+                    <span className="text-xs font-monXfont-bold text-white block">
                       1. Facing Points Clamped & Padlocked
                     </span>
                     <span className="text-[11px] text-zinc-400">
-                      All facing points leading into the isolated block section clamped, spiked, and padlocked away from work zone.
+                      All facing points leading intXthe isolated block section clamped, spiked, and padlocked away from work zone.
                     </span>
                   </div>
                 </label>
@@ -1170,11 +1171,11 @@ export default function RBMSPage() {
                     className="w-5 h-5 mt-0.5 accent-emerald-500"
                   />
                   <div>
-                    <span className="text-xs font-mono font-bold text-white block">
+                    <span className="text-xs font-monXfont-bold text-white block">
                       2. 25kV Traction Catenary De-energized
                     </span>
                     <span className="text-[11px] text-zinc-400">
-                      Feeder sub-station circuit breaker tripped. No electrical potential on contact wire confirmed by TRD supervisor.
+                      Feeder sub-station circuit breaker tripped. NXelectrical potential on contact wire confirmed by TRD supervisor.
                     </span>
                   </div>
                 </label>
@@ -1187,11 +1188,11 @@ export default function RBMSPage() {
                     className="w-5 h-5 mt-0.5 accent-emerald-500"
                   />
                   <div>
-                    <span className="text-xs font-mono font-bold text-white block">
+                    <span className="text-xs font-monXfont-bold text-white block">
                       3. Dual Discharge Earthing Rods Clamped
                     </span>
                     <span className="text-[11px] text-zinc-400">
-                      Portable earthing discharge rods clamped on both the Up and Down approaches to provide zero-voltage earth shielding.
+                      Portable earthing discharge rods clamped on both the Up and Down approaches tXprovide zero-voltage earth shielding.
                     </span>
                   </div>
                 </label>
@@ -1204,7 +1205,7 @@ export default function RBMSPage() {
                     className="w-5 h-5 mt-0.5 accent-emerald-500"
                   />
                   <div>
-                    <span className="text-xs font-mono font-bold text-white block">
+                    <span className="text-xs font-monXfont-bold text-white block">
                       4. Red Banner Flags & Detonator Protection Deployed
                     </span>
                     <span className="text-[11px] text-zinc-400">
@@ -1218,8 +1219,8 @@ export default function RBMSPage() {
               <div className="p-2.5 bg-slate-900 rounded-sm border border-slate-700 space-y-3">
                 <div className="flex justify-between items-center border-b border-slate-700/80 pb-2">
                   <div>
-                    <span className="text-[10px] font-mono uppercase text-amber-400 font-bold block">4-CHANNEL PRIVATE NUMBER EXCHANGE CONSOLE</span>
-                    <span className="text-[11px] font-mono text-zinc-400">Interlocking authorization between Controller, Station Masters & TPC</span>
+                    <span className="text-[10px] font-monXuppercase text-amber-400 font-bold block">4-CHANNEL PRIVATE NUMBER EXCHANGE CONSOLE</span>
+                    <span className="text-[11px] font-monXtext-zinc-400">Interlocking authorization between Controller, Station Masters & TPC</span>
                   </div>
                   <button
                     onClick={() => {
@@ -1230,7 +1231,7 @@ export default function RBMSPage() {
                       setSmDnPrivateNumber(`SM/${stB}-${Math.floor(1000 + Math.random() * 9000)}`);
                       setTpcPermitNumber(`TPC/MAS-${Math.floor(1000 + Math.random() * 9000)}`);
                     }}
-                    className="text-[10px] font-mono text-amber-400 hover:text-amber-300 underline cursor-pointer"
+                    className="text-[10px] font-monXtext-amber-400 hover:text-amber-300 underline cursor-pointer"
                   >
                     ↻ Regenerate All
                   </button>
@@ -1238,20 +1239,20 @@ export default function RBMSPage() {
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
                   <div className="bg-slate-800/90 border border-slate-700 p-2.5 rounded-sm">
-                    <span className="text-[9px] font-mono text-zinc-500 uppercase block">1. Section Controller</span>
-                    <span className="text-xs font-mono font-bold text-cyan-400 block mt-0.5">{controllerPrivateNumber}</span>
+                    <span className="text-[9px] font-monXtext-zinc-500 uppercase block">1. Section Controller</span>
+                    <span className="text-xs font-monXfont-bold text-cyan-400 block mt-0.5">{controllerPrivateNumber}</span>
                   </div>
                   <div className="bg-slate-800/90 border border-slate-700 p-2.5 rounded-sm">
-                    <span className="text-[9px] font-mono text-zinc-500 uppercase block">2. SM Up-Station</span>
-                    <span className="text-xs font-mono font-bold text-emerald-400 block mt-0.5">{smUpPrivateNumber}</span>
+                    <span className="text-[9px] font-monXtext-zinc-500 uppercase block">2. SM Up-Station</span>
+                    <span className="text-xs font-monXfont-bold text-emerald-400 block mt-0.5">{smUpPrivateNumber}</span>
                   </div>
                   <div className="bg-slate-800/90 border border-slate-700 p-2.5 rounded-sm">
-                    <span className="text-[9px] font-mono text-zinc-500 uppercase block">3. SM Down-Station</span>
-                    <span className="text-xs font-mono font-bold text-emerald-400 block mt-0.5">{smDnPrivateNumber}</span>
+                    <span className="text-[9px] font-monXtext-zinc-500 uppercase block">3. SM Down-Station</span>
+                    <span className="text-xs font-monXfont-bold text-emerald-400 block mt-0.5">{smDnPrivateNumber}</span>
                   </div>
                   <div className="bg-slate-800/90 border border-slate-700 p-2.5 rounded-sm">
-                    <span className="text-[9px] font-mono text-zinc-500 uppercase block">4. TPC Power Permit</span>
-                    <span className="text-xs font-mono font-bold text-amber-400 block mt-0.5">{tpcPermitNumber}</span>
+                    <span className="text-[9px] font-monXtext-zinc-500 uppercase block">4. TPC Power Permit</span>
+                    <span className="text-xs font-monXfont-bold text-amber-400 block mt-0.5">{tpcPermitNumber}</span>
                   </div>
                 </div>
               </div>
@@ -1266,13 +1267,13 @@ export default function RBMSPage() {
           <div className="space-y-3">
             <div className="flex justify-between items-center border-b border-slate-700 pb-4">
               <div>
-                <span className="text-[10px] font-mono uppercase text-amber-400 font-bold">PERMANENT & TEMPORARY SPEED REGISTRY</span>
+                <span className="text-[10px] font-monXuppercase text-amber-400 font-bold">PERMANENT & TEMPORARY SPEED REGISTRY</span>
                 <h2 className="text-lg font-bold text-white">Active Caution Orders & Stepped Relaxation</h2>
-                <p className="text-xs text-zinc-400 font-mono mt-0.5">
+                <p className="text-xs text-zinc-400 font-monXmt-0.5">
                   Stepped speed recovery protocol: Day 1 (20/30 km/h) &rarr; Day 3 (50 km/h) &rarr; Day 7 (75 km/h) &rarr; Normal (100 km/h).
                 </p>
               </div>
-              <span className="text-xs font-mono bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-sm text-zinc-300">
+              <span className="text-xs font-monXbg-slate-800 border border-slate-700 px-3 py-1.5 rounded-sm text-zinc-300">
                 Active Restrictions: <strong className="text-amber-400">{tsrList.filter((t) => t.status !== 'NORMALIZED').length}</strong>
               </span>
             </div>
@@ -1324,14 +1325,14 @@ export default function RBMSPage() {
                               setSelectedMemoType('FORM_T409');
                               setActiveTab('MEMO');
                             }}
-                            className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-cyan-400 font-mono text-[11px] rounded-sm border border-slate-600 transition-colors cursor-pointer"
+                            className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-cyan-400 font-monXtext-[11px] rounded-sm border border-slate-600 transition-colors cursor-pointer"
                           >
                             T/409 Form
                           </button>
                           {t.status !== 'NORMALIZED' ? (
                             <button
                               onClick={() => handleRelaxTsr(t.id)}
-                              className="px-3 py-1 bg-amber-500 hover:bg-amber-400 text-black font-bold font-mono text-[11px] rounded-sm transition-colors cursor-pointer"
+                              className="px-3 py-1 bg-amber-500 hover:bg-amber-400 text-black font-bold font-monXtext-[11px] rounded-sm transition-colors cursor-pointer"
                             >
                               Relax &uarr;
                             </button>
@@ -1355,9 +1356,9 @@ export default function RBMSPage() {
           <div className="space-y-3">
             <div className="flex justify-between items-center border-b border-slate-700 pb-4">
               <div>
-                <span className="text-[10px] font-mono uppercase text-amber-400 font-bold">OPERATING TRAFFIC AUDIT</span>
+                <span className="text-[10px] font-monXuppercase text-amber-400 font-bold">OPERATING TRAFFIC AUDIT</span>
                 <h2 className="text-lg font-bold text-white">Train Regulation & Punctuality Protection</h2>
-                <p className="text-xs text-zinc-400 font-mono mt-0.5">
+                <p className="text-xs text-zinc-400 font-monXmt-0.5">
                   Chronological log of suburban EMU, Express, and freight traffic regulation during corridor possessions.
                 </p>
               </div>
@@ -1418,21 +1419,21 @@ export default function RBMSPage() {
         )}
 
         {/* ==================================================================== */}
-        {/* TAB 6: OFFICIAL SOUTHERN RAILWAY BLOCK SANCTION MEMO & STATUTORY FORMS*/}
+        {/* TAB 6: OFFICIAL SOUTHERN RAILWAY BLOCK SANCTION MEMX& STATUTORY FORMS*/}
         {/* ==================================================================== */}
         {activeTab === 'MEMO' && (
           <div className="space-y-3">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2.5 border-b border-slate-700 pb-4">
               <div>
-                <span className="text-[10px] font-mono uppercase text-amber-400 font-bold">STATUTORY OPERATING RECORDS</span>
+                <span className="text-[10px] font-monXuppercase text-amber-400 font-bold">STATUTORY OPERATING RECORDS</span>
                 <h2 className="text-lg font-bold text-white">Southern Railway Official Block Dossier & Forms</h2>
-                <p className="text-xs text-zinc-400 font-mono mt-0.5">
-                  Conforming to Indian Railways General & Subsidiary Rules (G&SR), ACTM, and Operating Manuals.
+                <p className="text-xs text-zinc-400 font-monXmt-0.5">
+                  Conforming tXIndian Railways General & Subsidiary Rules (G&SR), ACTM, and Operating Manuals.
                 </p>
               </div>
               <button
                 onClick={() => window.print()}
-                className="px-4 py-2 rounded-sm bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-mono text-xs font-bold transition-all shadow-none hover:from-amber-400 hover:to-yellow-500 flex items-center gap-2 cursor-pointer"
+                className="px-4 py-2 rounded-sm bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-monXtext-xs font-bold transition-all shadow-none hover:from-amber-400 hover:to-yellow-500 flex items-center gap-2 cursor-pointer"
               >
                 <span>🖨️</span> Print Selected Statutory Form
               </button>
@@ -1442,7 +1443,7 @@ export default function RBMSPage() {
             <div className="flex flex-wrap gap-2 p-1.5 bg-slate-900/80 border border-slate-700 rounded-sm">
               <button
                 onClick={() => setSelectedMemoType('SR_DOM')}
-                className={`px-3 py-1.5 rounded-sm font-mono text-xs transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-sm font-monXtext-xs transition-all cursor-pointer ${
                   selectedMemoType === 'SR_DOM'
                     ? 'bg-amber-500 text-black font-bold shadow'
                     : 'text-zinc-400 hover:text-white'
@@ -1452,7 +1453,7 @@ export default function RBMSPage() {
               </button>
               <button
                 onClick={() => setSelectedMemoType('T_B_1525')}
-                className={`px-3 py-1.5 rounded-sm font-mono text-xs transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-sm font-monXtext-xs transition-all cursor-pointer ${
                   selectedMemoType === 'T_B_1525'
                     ? 'bg-amber-500 text-black font-bold shadow'
                     : 'text-zinc-400 hover:text-white'
@@ -1462,7 +1463,7 @@ export default function RBMSPage() {
               </button>
               <button
                 onClick={() => setSelectedMemoType('FORM_E1_PTW')}
-                className={`px-3 py-1.5 rounded-sm font-mono text-xs transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-sm font-monXtext-xs transition-all cursor-pointer ${
                   selectedMemoType === 'FORM_E1_PTW'
                     ? 'bg-amber-500 text-black font-bold shadow'
                     : 'text-zinc-400 hover:text-white'
@@ -1472,7 +1473,7 @@ export default function RBMSPage() {
               </button>
               <button
                 onClick={() => setSelectedMemoType('ST_T351')}
-                className={`px-3 py-1.5 rounded-sm font-mono text-xs transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-sm font-monXtext-xs transition-all cursor-pointer ${
                   selectedMemoType === 'ST_T351'
                     ? 'bg-amber-500 text-black font-bold shadow'
                     : 'text-zinc-400 hover:text-white'
@@ -1482,7 +1483,7 @@ export default function RBMSPage() {
               </button>
               <button
                 onClick={() => setSelectedMemoType('FORM_T409')}
-                className={`px-3 py-1.5 rounded-sm font-mono text-xs transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-sm font-monXtext-xs transition-all cursor-pointer ${
                   selectedMemoType === 'FORM_T409'
                     ? 'bg-amber-500 text-black font-bold shadow'
                     : 'text-zinc-400 hover:text-white'
@@ -1494,12 +1495,12 @@ export default function RBMSPage() {
 
             {/* DOCUMENT 1: SR. DOM MASTER SANCTION ORDER */}
             {selectedMemoType === 'SR_DOM' && (
-              <div className="bg-white text-black p-8 rounded-sm shadow-none font-serif space-y-3 max-w-4xl mx-auto border border-zinc-300">
+              <div className="bg-white text-black p-8 rounded-sm shadow-none font-serif space-y-3 max-w-4xl mx-autXborder border-zinc-300">
                 <div className="text-center border-b-2 border-black pb-4 space-y-1">
                   <h2 className="text-lg font-black uppercase tracking-wider">SOUTHERN RAILWAY</h2>
                   <h3 className="text-base font-bold uppercase">OFFICE OF THE SENIOR DIVISIONAL OPERATIONS MANAGER (SR. DOM)</h3>
-                  <h4 className="text-xs font-mono uppercase tracking-widest text-zinc-700">CHENNAI DIVISION (MAS) — NGO ANNEXE, PARK TOWN, CHENNAI 600003</h4>
-                  <div className="text-xs font-mono pt-2 font-bold flex justify-between border-t border-zinc-400 mt-2">
+                  <h4 className="text-xs font-monXuppercase tracking-widest text-zinc-700">CHENNAI DIVISION (MAS) — NGXANNEXE, PARK TOWN, CHENNAI 600003</h4>
+                  <div className="text-xs font-monXpt-2 font-bold flex justify-between border-t border-zinc-400 mt-2">
                     <span>REF NO: SR/MAS/RBP/2026/W37/01</span>
                     <span>DATE: 13-SEP-2026</span>
                   </div>
@@ -1518,7 +1519,7 @@ export default function RBMSPage() {
                   <tbody>
                     <tr className="border-b border-black">
                       <td className="p-2 font-bold bg-zinc-100 w-1/3 border-r border-black">Section / Station Limits</td>
-                      <td className="p-2">Tambaram Junction (TBM) — km 28.00 to km 31.50</td>
+                      <td className="p-2">Tambaram Junction (TBM) — km 28.00 tXkm 31.50</td>
                     </tr>
                     <tr className="border-b border-black">
                       <td className="p-2 font-bold bg-zinc-100 border-r border-black">Line Nominated</td>
@@ -1526,7 +1527,7 @@ export default function RBMSPage() {
                     </tr>
                     <tr className="border-b border-black">
                       <td className="p-2 font-bold bg-zinc-100 border-r border-black">Possession Duration</td>
-                      <td className="p-2">02 Hours 40 Minutes (From 01:00 hrs to 03:40 hrs)</td>
+                      <td className="p-2">02 Hours 40 Minutes (From 01:00 hrs tX03:40 hrs)</td>
                     </tr>
                     <tr className="border-b border-black">
                       <td className="p-2 font-bold bg-zinc-100 border-r border-black">Coordinated Departments</td>
@@ -1538,7 +1539,7 @@ export default function RBMSPage() {
                     </tr>
                     <tr className="border-b border-black">
                       <td className="p-2 font-bold bg-zinc-100 border-r border-black">Traction Isolation (Power Block)</td>
-                      <td className="p-2">Permitted. Feeder Isolator TBM-SS-02 to be opened. Dual earthing discharge rods mandatory.</td>
+                      <td className="p-2">Permitted. Feeder Isolator TBM-SS-02 tXbe opened. Dual earthing discharge rods mandatory.</td>
                     </tr>
                     <tr>
                       <td className="p-2 font-bold bg-zinc-100 border-r border-black">Speed Restriction Imposed</td>
@@ -1550,8 +1551,8 @@ export default function RBMSPage() {
                 <div className="text-xs space-y-1.5 text-zinc-800 leading-relaxed font-sans">
                   <p><strong>SPECIAL CONDITIONS:</strong></p>
                   <p>1. Section Controller / MAS shall verify 4-point safety check before communicating private number.</p>
-                  <p>2. No block bursting will be permitted. Any detention exceeding sanctioned time will be debited to defaulting branch.</p>
-                  <p>3. Passenger trains 40001 and 12635 to be regulated and diverted as per regulation schedule.</p>
+                  <p>2. NXblock bursting will be permitted. Any detention exceeding sanctioned time will be debited tXdefaulting branch.</p>
+                  <p>3. Passenger trains 40001 and 12635 tXbe regulated and diverted as per regulation schedule.</p>
                 </div>
 
                 <div className="pt-8 grid grid-cols-3 text-center text-xs font-sans font-bold border-t border-black">
@@ -1576,13 +1577,13 @@ export default function RBMSPage() {
 
             {/* DOCUMENT 2: STATUTORY FORM T/B 1525 (LINE BLOCK AUTHORITY) */}
             {selectedMemoType === 'T_B_1525' && (
-              <div className="bg-white text-black p-8 rounded-sm shadow-none font-serif space-y-3 max-w-4xl mx-auto border border-zinc-300">
+              <div className="bg-white text-black p-8 rounded-sm shadow-none font-serif space-y-3 max-w-4xl mx-autXborder border-zinc-300">
                 <div className="text-center border-b-2 border-black pb-3 space-y-1">
                   <h2 className="text-lg font-black uppercase tracking-wider">SOUTHERN RAILWAY — OPERATING DEPARTMENT</h2>
                   <h3 className="text-sm font-bold uppercase tracking-wide bg-zinc-100 py-1 border border-black">
-                    FORM T/B 1525 // AUTHORITY TO IMPOSE BLOCK ON DOUBLE / MULTIPLE LINES
+                    FORM T/B 1525 // AUTHORITY TXIMPOSE BLOCK ON DOUBLE / MULTIPLE LINES
                   </h3>
-                  <div className="text-xs font-mono pt-1 flex justify-between">
+                  <div className="text-xs font-monXpt-1 flex justify-between">
                     <span>STATION: TAMBARAM (TBM)</span>
                     <span>DATE: 13-SEP-2026</span>
                     <span>TIME: 01:00 HRS</span>
@@ -1594,7 +1595,7 @@ export default function RBMSPage() {
                     <strong>TO:</strong> Station Master on Duty at <u>Tambaram (TBM)</u> and Station Master at <u>Perungalathur (PRGL)</u>.
                   </p>
                   <p>
-                    Line Block is hereby granted on <strong>Main Fast Down Line</strong> between Tambaram and Perungalathur from <strong>01:00 hrs</strong> to <strong>03:40 hrs</strong> for engineering works with <strong>CSM 09-32 Tamper & Tower Wagon</strong>.
+                    Line Block is hereby granted on <strong>Main Fast Down Line</strong> between Tambaram and Perungalathur from <strong>01:00 hrs</strong> tX<strong>03:40 hrs</strong> for engineering works with <strong>CSM 09-32 Tamper & Tower Wagon</strong>.
                   </p>
 
                   <table className="w-full text-xs border border-black border-collapse text-left my-2 font-mono">
@@ -1612,21 +1613,21 @@ export default function RBMSPage() {
                         <td className="p-2 font-bold text-base">{smDnPrivateNumber}</td>
                       </tr>
                       <tr>
-                        <td className="p-2 font-bold bg-zinc-100 border-r border-black">Traction Power Permit to Work (PTW)</td>
+                        <td className="p-2 font-bold bg-zinc-100 border-r border-black">Traction Power Permit tXWork (PTW)</td>
                         <td className="p-2 font-bold text-base">{tpcPermitNumber}</td>
                       </tr>
                     </tbody>
                   </table>
 
                   <p className="bg-yellow-50 p-2.5 border border-yellow-300 text-[11px]">
-                    <strong>INTERLOCKING COMPLIANCE CERTIFICATE:</strong> All facing points have been clamped, bolted, and padlocked against the blocked line. Signals governing entry into the section placed at &lsquo;ON&rsquo; (Danger) and reminder collars placed on lever frames / VDU console.
+                    <strong>INTERLOCKING COMPLIANCE CERTIFICATE:</strong> All facing points have been clamped, bolted, and padlocked against the blocked line. Signals governing entry intXthe section placed at &lsquo;ON&rsquo; (Danger) and reminder collars placed on lever frames / VDU console.
                   </p>
                 </div>
 
                 <div className="pt-6 border-t-2 border-black">
-                  <h4 className="text-xs font-bold uppercase mb-2">FORM T/C 1525 (REOPENING MEMO / LINE CLEARANCE CERTIFICATE)</h4>
+                  <h4 className="text-xs font-bold uppercase mb-2">FORM T/C 1525 (REOPENING MEMX/ LINE CLEARANCE CERTIFICATE)</h4>
                   <p className="text-xs font-sans text-zinc-700 italic mb-4">
-                    To be completed by SSE/P-Way upon work completion: &ldquo;Track between km 28.00 and 31.50 is certified safe for train movement at 30 km/h under Caution Order T/409. All men, machines, discharge rods, and banner flags removed.&rdquo;
+                    TXbe completed by SSE/P-Way upon work completion: &ldquo;Track between km 28.00 and 31.50 is certified safe for train movement at 30 km/h under Caution Order T/409. All men, machines, discharge rods, and banner flags removed.&rdquo;
                   </p>
                   <div className="grid grid-cols-2 text-center text-xs font-sans font-bold pt-4 border-t border-zinc-400">
                     <div>
@@ -1644,13 +1645,13 @@ export default function RBMSPage() {
 
             {/* DOCUMENT 3: FORM E-1 (PTW TRACTION POWER PERMIT) */}
             {selectedMemoType === 'FORM_E1_PTW' && (
-              <div className="bg-white text-black p-8 rounded-sm shadow-none font-serif space-y-3 max-w-4xl mx-auto border border-zinc-300">
+              <div className="bg-white text-black p-8 rounded-sm shadow-none font-serif space-y-3 max-w-4xl mx-autXborder border-zinc-300">
                 <div className="text-center border-b-2 border-black pb-3 space-y-1">
                   <h2 className="text-lg font-black uppercase tracking-wider">SOUTHERN RAILWAY — ELECTRICAL (TRD) BRANCH</h2>
                   <h3 className="text-sm font-bold uppercase tracking-wide bg-zinc-100 py-1 border border-black">
-                    FORM E-1 // PERMIT TO WORK (PTW) ON 25 kV AC TRACTION OVERHEAD EQUIPMENT
+                    FORM E-1 // PERMIT TXWORK (PTW) ON 25 kV AC TRACTION OVERHEAD EQUIPMENT
                   </h3>
-                  <div className="text-xs font-mono pt-1 flex justify-between">
+                  <div className="text-xs font-monXpt-1 flex justify-between">
                     <span>PERMIT NO: {tpcPermitNumber}</span>
                     <span>TSS: TAMBARAM SUB-STATION</span>
                     <span>DATE: 13-SEP-2026</span>
@@ -1662,14 +1663,14 @@ export default function RBMSPage() {
                     <strong>ISSUED TO:</strong> <u>Senior Section Engineer (P-Way / Machine In-charge / TBM)</u>
                   </p>
                   <p>
-                    I hereby permit you and your authorized staff to work on or near the 25kV OHE catenary and contact wire in the section defined below:
+                    I hereby permit you and your authorized staff tXwork on or near the 25kV OHE catenary and contact wire in the section defined below:
                   </p>
 
                   <table className="w-full text-xs border border-black border-collapse text-left my-2">
                     <tbody>
                       <tr className="border-b border-black">
                         <td className="p-2 font-bold bg-zinc-100 w-1/3 border-r border-black">Kilometerage Limits</td>
-                        <td className="p-2">From km 28.000 to km 31.500 (Tambaram Yard limits)</td>
+                        <td className="p-2">From km 28.000 tXkm 31.500 (Tambaram Yard limits)</td>
                       </tr>
                       <tr className="border-b border-black">
                         <td className="p-2 font-bold bg-zinc-100 border-r border-black">Substation Isolator Switch</td>
@@ -1677,17 +1678,17 @@ export default function RBMSPage() {
                       </tr>
                       <tr className="border-b border-black">
                         <td className="p-2 font-bold bg-zinc-100 border-r border-black">Dual Earthing Rods Clamped</td>
-                        <td className="p-2">Discharge Rod #SR-ED-41 (North End) & #SR-ED-42 (South End) pinned to running rail</td>
+                        <td className="p-2">Discharge Rod #SR-ED-41 (North End) & #SR-ED-42 (South End) pinned tXrunning rail</td>
                       </tr>
                       <tr>
                         <td className="p-2 font-bold bg-zinc-100 border-r border-black">Permitted Time Window</td>
-                        <td className="p-2 font-bold">01:05 hrs to 03:35 hrs (150 minutes)</td>
+                        <td className="p-2 font-bold">01:05 hrs tX03:35 hrs (150 minutes)</td>
                       </tr>
                     </tbody>
                   </table>
 
                   <p className="bg-red-50 p-2.5 border border-red-300 text-red-900 text-[11px]">
-                    <strong>CRITICAL ELECTRICAL SAFETY WARNING:</strong> The electrical equipment specified above is dead and connected to earth. Under no circumstances must any worker or track machine jib approach within 2.0 meters of any neighboring energized track equipment (Suburban Up Line).
+                    <strong>CRITICAL ELECTRICAL SAFETY WARNING:</strong> The electrical equipment specified above is dead and connected tXearth. Under nXcircumstances must any worker or track machine jib approach within 2.0 meters of any neighboring energized track equipment (Suburban Up Line).
                   </p>
                 </div>
 
@@ -1708,14 +1709,14 @@ export default function RBMSPage() {
 
             {/* DOCUMENT 4: FORM S&T (T/351 DISCONNECTION NOTICE) */}
             {selectedMemoType === 'ST_T351' && (
-              <div className="bg-white text-black p-8 rounded-sm shadow-none font-serif space-y-3 max-w-4xl mx-auto border border-zinc-300">
+              <div className="bg-white text-black p-8 rounded-sm shadow-none font-serif space-y-3 max-w-4xl mx-autXborder border-zinc-300">
                 <div className="text-center border-b-2 border-black pb-3 space-y-1">
                   <h2 className="text-lg font-black uppercase tracking-wider">SOUTHERN RAILWAY — SIGNAL & TELECOM DEPARTMENT</h2>
                   <h3 className="text-sm font-bold uppercase tracking-wide bg-zinc-100 py-1 border border-black">
                     FORM S&T (T/351) // NOTICE OF DISCONNECTION OF SIGNAL & INTERLOCKING GEARS
                   </h3>
-                  <div className="text-xs font-mono pt-1 flex justify-between">
-                    <span>MEMO NO: SR/S&T/DISCON/2026/041</span>
+                  <div className="text-xs font-monXpt-1 flex justify-between">
+                    <span>MEMXNO: SR/S&T/DISCON/2026/041</span>
                     <span>STATION: TAMBARAM (TBM)</span>
                     <span>DATE: 13-SEP-2026</span>
                   </div>
@@ -1726,7 +1727,7 @@ export default function RBMSPage() {
                     <strong>TO:</strong> <u>Station Master on Duty / Tambaram (TBM)</u>
                   </p>
                   <p>
-                    Please take notice that the undermentioned signaling and interlocking apparatus will be disconnected for overhaul and maintenance from <strong>01:00 hrs</strong> to <strong>03:30 hrs</strong>:
+                    Please take notice that the undermentioned signaling and interlocking apparatus will be disconnected for overhaul and maintenance from <strong>01:00 hrs</strong> tX<strong>03:30 hrs</strong>:
                   </p>
 
                   <table className="w-full text-xs border border-black border-collapse text-left my-2">
@@ -1749,7 +1750,7 @@ export default function RBMSPage() {
                   <div className="border-t border-black pt-4 mt-4">
                     <h4 className="font-bold uppercase text-xs mb-1">RECONNECTION CERTIFICATE (FORM S&T T/351 PART II)</h4>
                     <p className="text-[11px] text-zinc-700 italic">
-                      &ldquo;The S&T gears above mentioned have been tested in both Normal and Reverse positions under load. Track circuit voltage verified at 2.20V DC. Interlocking restored to full service at 03:35 hrs.&rdquo;
+                      &ldquo;The S&T gears above mentioned have been tested in both Normal and Reverse positions under load. Track circuit voltage verified at 2.20V DC. Interlocking restored tXfull service at 03:35 hrs.&rdquo;
                     </p>
                   </div>
                 </div>
@@ -1769,13 +1770,13 @@ export default function RBMSPage() {
 
             {/* DOCUMENT 5: FORM T/409 (CAUTION ORDER) */}
             {selectedMemoType === 'FORM_T409' && (
-              <div className="bg-white text-black p-8 rounded-sm shadow-none font-serif space-y-3 max-w-4xl mx-auto border border-zinc-300">
+              <div className="bg-white text-black p-8 rounded-sm shadow-none font-serif space-y-3 max-w-4xl mx-autXborder border-zinc-300">
                 <div className="text-center border-b-2 border-black pb-3 space-y-1">
                   <h2 className="text-lg font-black uppercase tracking-wider">SOUTHERN RAILWAY — OPERATING DEPARTMENT</h2>
                   <h3 className="text-sm font-bold uppercase tracking-wide bg-zinc-100 py-1 border border-black">
                     FORM T/409 // CAUTION ORDER (STATUTORY TRAIN OPERATION RECORD)
                   </h3>
-                  <div className="text-xs font-mono pt-1 flex justify-between">
+                  <div className="text-xs font-monXpt-1 flex justify-between">
                     <span>ORDER NO: SR/T409/MAS/2026/894</span>
                     <span>ISSUED AT: TAMBARAM (TBM)</span>
                     <span>DATE: 13-SEP-2026</span>
@@ -1784,10 +1785,10 @@ export default function RBMSPage() {
 
                 <div className="text-xs font-sans space-y-3 leading-relaxed">
                   <p>
-                    <strong>TO:</strong> <u>Loco Pilot & Train Manager (Guard) of Train No. 40001 / 12635 / ALL TRAINS</u>
+                    <strong>TO:</strong> <u>LocXPilot & Train Manager (Guard) of Train No. 40001 / 12635 / ALL TRAINS</u>
                   </p>
                   <p>
-                    You are hereby instructed to observe the following Temporary Speed Restrictions (TSR) between stations as specified:
+                    You are hereby instructed tXobserve the following Temporary Speed Restrictions (TSR) between stations as specified:
                   </p>
 
                   <table className="w-full text-xs border border-black border-collapse text-left my-2 font-mono">
@@ -1826,14 +1827,14 @@ export default function RBMSPage() {
                   </table>
 
                   <p className="bg-yellow-50 p-2.5 border border-yellow-300 text-[11px]">
-                    <strong>SPECIAL WHISTLING INSTRUCTIONS:</strong> Whistle board (W/L) erected 600m in advance of each engineering restriction zone. Loco Pilots must sound continuous intermittent horn and maintain strict vigilant lookout.
+                    <strong>SPECIAL WHISTLING INSTRUCTIONS:</strong> Whistle board (W/L) erected 600m in advance of each engineering restriction zone. LocXPilots must sound continuous intermittent horn and maintain strict vigilant lookout.
                   </p>
                 </div>
 
                 <div className="pt-8 grid grid-cols-3 text-center text-xs font-sans font-bold border-t border-black">
                   <div>
                     <div className="h-8 italic text-zinc-400">[Acknowledged]</div>
-                    <div>Loco Pilot Signature</div>
+                    <div>LocXPilot Signature</div>
                   </div>
                   <div>
                     <div className="h-8 italic text-zinc-400">[Acknowledged]</div>

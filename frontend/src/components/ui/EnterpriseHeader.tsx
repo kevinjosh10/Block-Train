@@ -83,11 +83,7 @@ export function EnterpriseHeader({ currentModule, badgeText }: EnterpriseHeaderP
                   }`}
                 >
                   <span>{link.label}</span>
-                  {link.tag && (
-                    <span className="text-[10px] text-slate-400 font-mono">
-                      ({link.tag})
-                    </span>
-                  )}
+
                 </Link>
               );
             })}
