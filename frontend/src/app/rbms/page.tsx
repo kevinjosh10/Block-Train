@@ -538,17 +538,6 @@ export default function RBMSPage() {
                 Rolling Block Management System
               </h1>
             </div>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              onClick={handleSyncAISchedule}
-              className="px-3.5 py-1.5 rounded-sm bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-bold transition-all shadow-none flex items-center gap-1.5"
-              title="Sync Coordinated AI Shadow Blocks directly to Digital Twin"
-            >
-              Sync AI Shadow Blocks
-            </button>
-          </div>
         </div>
       </div>
 
@@ -563,7 +552,7 @@ export default function RBMSPage() {
       )}
 
       {/* Navigation Sub-Tabs */}
-      <nav className="border-b border-slate-800 bg-slate-900 px-4 flex flex-wrap gap-2 pt-3">
+      <nav className="border-b border-slate-700 bg-slate-900 px-4 flex flex-wrap pt-1">
         {[
           { id: 'RBP', label: '14-Day Rolling Schedule' },
           { id: 'DEMAND', label: 'Joint Requisition' },
@@ -577,10 +566,10 @@ export default function RBMSPage() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`px-3.5 py-2 font-mono text-xs font-semibold uppercase tracking-wider rounded-t-lg transition-colors border-b-2 flex items-center gap-1.5 ${
+              className={`px-4 py-1.5 font-mono text-[11px] font-bold uppercase tracking-wider transition-none border-t-2 border-l border-r ${
                 isActive
-                  ? 'text-white border-blue-500 bg-slate-800/80 font-bold'
-                  : 'text-slate-400 border-transparent hover:text-slate-200 hover:bg-slate-800/40'
+                  ? 'text-white border-t-blue-500 border-l-slate-700 border-r-slate-700 bg-slate-800 -mb-px border-b-0'
+                  : 'text-slate-400 border-t-transparent border-l-transparent border-r-transparent hover:text-white bg-slate-900 border-b border-b-slate-700 hover:bg-slate-800'
               }`}
             >
               <span>{tab.label}</span>
@@ -625,7 +614,7 @@ export default function RBMSPage() {
             </div>
 
             {/* Filter Bar */}
-            <div className="bg-[#0c1018] border border-slate-700 p-2.5 rounded-sm flex flex-wrap items-center justify-between gap-2.5">
+            <div className="bg-slate-900 border border-slate-700 p-2.5 rounded-sm flex flex-wrap items-center justify-between gap-2.5">
               <div className="flex items-center gap-3">
                 <span className="text-xs font-mono uppercase text-zinc-400 font-bold">Corridor Zone:</span>
                 <select
@@ -652,6 +641,16 @@ export default function RBMSPage() {
                   <option value="VETTED">VETTED (Co-utilized)</option>
                   <option value="PLANNED">PLANNED (Advance RBP)</option>
                 </select>
+
+                <div className="ml-4 border-l border-slate-700 pl-4">
+                  <button
+                    onClick={handleSyncAISchedule}
+                    className="px-3.5 py-1.5 rounded-sm bg-blue-600 hover:bg-blue-500 text-white font-mono text-xs font-bold transition-all flex items-center gap-1.5"
+                    title="Sync Coordinated AI Shadow Blocks directly to Digital Twin"
+                  >
+                    SYNC AI SHADOW BLOCKS
+                  </button>
+                </div>
               </div>
 
               <div className="text-xs font-mono text-zinc-400">
@@ -664,9 +663,9 @@ export default function RBMSPage() {
               {filteredBlocks.map((b) => (
                 <div
                   key={b.id}
-                  className={`bg-[#0c1018] border ${
+                  className={`bg-slate-900 border ${
                     b.status === 'ACTIVE'
-                      ? 'border-cyan-500/70 shadow-[0_0_20px_rgba(6,182,212,0.2)]'
+                      ? 'border-cyan-600 '
                       : b.status === 'SANCTIONED'
                       ? 'border-emerald-500/40'
                       : 'border-slate-700'
@@ -766,7 +765,7 @@ export default function RBMSPage() {
         {/* ==================================================================== */}
         {activeTab === 'DEMAND' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
-            <div className="lg:col-span-8 bg-[#0c1018] border border-slate-700 rounded-sm p-3 shadow-none space-y-3">
+            <div className="lg:col-span-8 bg-slate-900 border border-slate-700 rounded-sm p-3 shadow-none space-y-3">
               <div className="border-b border-slate-700 pb-4">
                 <span className="text-[10px] font-mono uppercase text-amber-400 font-bold tracking-wider">
                   SOUTHERN RAILWAY // DIVISIONAL REQUISITION PORTAL
@@ -1010,7 +1009,7 @@ export default function RBMSPage() {
         {activeTab === 'CONTROLLER' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
             {/* Left Column: Active Block Selector & Status */}
-            <div className="lg:col-span-5 bg-[#0c1018] border border-slate-700 rounded-sm p-3 shadow-none space-y-5">
+            <div className="lg:col-span-5 bg-slate-900 border border-slate-700 rounded-sm p-3 shadow-none space-y-5">
               <div className="border-b border-slate-700 pb-3 flex justify-between items-center">
                 <div>
                   <span className="text-[10px] font-mono uppercase text-amber-400 font-bold">OPERATIONS DESK</span>
@@ -1134,7 +1133,7 @@ export default function RBMSPage() {
             </div>
 
             {/* Right Column: 4-Point Safety Interlocking Checklist */}
-            <div className="lg:col-span-7 bg-[#0c1018] border border-slate-700 rounded-sm p-3 shadow-none space-y-3">
+            <div className="lg:col-span-7 bg-slate-900 border border-slate-700 rounded-sm p-3 shadow-none space-y-3">
               <div className="border-b border-slate-700 pb-3 flex justify-between items-center">
                 <div>
                   <span className="text-[10px] font-mono uppercase text-emerald-400 font-bold">SAFETY PROTOCOL</span>
