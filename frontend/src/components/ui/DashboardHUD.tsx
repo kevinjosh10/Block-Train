@@ -27,19 +27,19 @@ export const DashboardHUD = ({ time }: { time: string }) => {
           href="/ai-planner"
           className="text-blue-300 hover:text-white bg-slate-950/80 px-3 py-1.5 rounded-lg border border-slate-800 hover:border-blue-500 backdrop-blur-md transition-colors"
         >
-          🧠 AI Planner
+          AI Planner
         </Link>
         <Link
           href="/rbms"
           className="text-amber-300 hover:text-white bg-slate-950/80 px-3 py-1.5 rounded-lg border border-slate-800 hover:border-amber-500 backdrop-blur-md transition-colors"
         >
-          📅 RBMS
+          RBMS
         </Link>
         <Link
           href="/maintenance"
           className="text-slate-300 hover:text-white bg-slate-950/80 px-3 py-1.5 rounded-lg border border-slate-800 hover:border-slate-600 backdrop-blur-md transition-colors"
         >
-          🚧 Possessions
+          Possessions
         </Link>
         <Link
           href="/"
