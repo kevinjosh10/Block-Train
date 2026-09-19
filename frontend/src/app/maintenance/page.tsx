@@ -166,7 +166,7 @@ export default function MaintenancePage() {
 
                   // Trigger Twilio Call
                   const audioUrl = useMaintenanceStore.getState().dispatchAudioUrl;
-                  const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+                  const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://13.204.43.188:5000';
                   
                   try {
                     const notifyRes = await fetch(`${backendUrl}/api/dispatch/notify`, {

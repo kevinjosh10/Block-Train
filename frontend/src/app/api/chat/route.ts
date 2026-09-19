@@ -119,7 +119,7 @@ Respond in a crisp, highly professional, slightly futuristic dispatch-coordinato
         const args = JSON.parse(toolCall.function.arguments);
         
         try {
-          const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+          const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://13.204.43.188:5000';
           const dbRes = await fetch(`${backendUrl}/api/active_blocks`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -130,7 +130,7 @@ Respond in a crisp, highly professional, slightly futuristic dispatch-coordinato
             
             // Trigger automated Twilio dispatch
             try {
-              const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+              const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://13.204.43.188:5000';
               await fetch(`${backendUrl}/api/dispatch/notify`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
