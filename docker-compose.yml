@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  backend-api:
+    build: ./apps/api
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - NODE_ENV=production
+      # In AWS, we can pass these in via shell variables injected from SSM
+      - DATABASE_URL=${DATABASE_URL}
+      - JWT_SECRET=${JWT_SECRET}
+      - TWILIO_ACCOUNT_SID=${TWILIO_ACCOUNT_SID}
+      - TWILIO_AUTH_TOKEN=${TWILIO_AUTH_TOKEN}
+      - XAI_API_KEY=${XAI_API_KEY}
+    restart: always
+
+  ai-service:
+    build: ./model_implementation
+    ports:
+      - "5001:5001"
+    restart: always
