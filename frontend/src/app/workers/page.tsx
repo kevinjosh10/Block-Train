@@ -29,7 +29,7 @@ const DEFAULT_WORKERS: Worker[] = [
 ];
 
 export default function WorkersPage() {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://13.204.43.188:5000';
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
   const API_URL = `${baseUrl}/api`;
 
   const [workers, setWorkers] = useState<Worker[]>(DEFAULT_WORKERS);

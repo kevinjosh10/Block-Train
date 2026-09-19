@@ -46,7 +46,7 @@ const saveBlocks = (blocks: Block[]) => {
   }
 };
 
-const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://13.204.43.188:5000';
+const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 const API_URL = `${backendUrl}/api/active_blocks`;
 
 export const useMaintenanceStore = create<MaintenanceStore>((set, get) => ({

@@ -22,7 +22,7 @@ export default function LoginPage() {
     setError("");
 
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_API_URL || "http://13.204.43.188:5000";
+      const backendUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
       const res = await fetch(`${backendUrl}/api/auth/login`, {
         method: "POST",
         headers: {
