@@ -166,7 +166,7 @@ export async function POST(request: Request) {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 1200);
 
-      const pyRes = await fetch('http://127.0.0.1:5001/predict-priority', {
+      const pyRes = await fetch(process.env.NEXT_PUBLIC_ML_API_URL || 'http://13.204.43.188:5001/predict-priority', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
