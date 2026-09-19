@@ -87,7 +87,7 @@ BlockTrain is built using a production-grade, zero-capex, offline-capable archit
 └────────────────────────┴──────────────────────────────────────────┴──────────────────────────────┘
 ```
 
-### 2.1 Why We Rejected Expensive Cloud Dependencies (AWS/GCP)
+### 2.1 Production vs. Prototype Cloud Strategy
 * **Data Sovereignty & NATGRID Compliance:** Indian Railways operational telemetry is classified government infrastructure. Exporting live train paths and track fracture coordinates to foreign public clouds violates national security protocols.
 * **Zero Additional Capex:** Runs locally on existing Indian Railways Regional Data Centers (CRIS servers in Chennai and New Delhi) or on standard station master dual-core PCs (4GB RAM) with **zero cloud subscription fees** (saving ₹50+ Lakhs annually).
 * **Deterministic Execution & Sub-2ms Speed:** The entire inference and clustering pipeline runs locally in **$1.2\text{ milliseconds}$ per defect**, completely immune to internet downtime or bandwidth chokepoints in remote sections.
@@ -449,3 +449,39 @@ Block-Train/
 
 ---
 **END OF MASTER CONTEXT DOCUMENT**
+
+---
+
+# 12. HACKATHON PROTOTYPE ARCHITECTURE: ENTERPRISE HYBRID-CLOUD
+
+While the final production system is designed to run in air-gapped Indian Railways CRIS data centers for data sovereignty, the **Live Hackathon Prototype** is deployed using a production-grade **AWS Hybrid-Cloud Enterprise Architecture**. 
+
+This demonstrates our team's ability to orchestrate secure, scalable, zero-trust microservices.
+
+## 12.1 The Infrastructure Stack
+
+### 1. The Edge Frontend (Vercel)
+- **Tech:** Next.js 14, React 19, Zustand.
+- **Architecture:** Deployed on Vercel's Global Edge CDN.
+- **Purpose:** Ensures the React-based Digital Twin UI and Gantt charts render with absolute zero latency for judges and users.
+- **Security:** Enterprise headers injected via 
+ext.config.ts (XSS Protection in block mode, Strict HSTS, Clickjacking protection via X-Frame-Options DENY).
+
+### 2. The Compute Backend (Amazon EC2 	3.micro)
+- **Tech:** Docker, Docker Compose, Ubuntu Linux.
+- **Architecture:** We packaged the Node.js Express API and the Python Machine Learning engine into two separate, isolated Docker containers running side-by-side on an AWS EC2 instance.
+- **Security:**
+  - Protected by strict **AWS Security Groups (Firewalls)**.
+  - Hardened with **Helmet.js** to block payload-based attacks.
+  - **Anti-DDoS Rate Limiting:** Global limit of 300 requests/15m.
+  - **Anti-Brute-Force:** Login routes permanently lock out IPs after 10 failed attempts.
+
+### 3. The Data Layer (Amazon RDS PostgreSQL)
+- **Tech:** PostgreSQL 18, Managed Amazon RDS.
+- **Architecture:** We abandoned shared/mock databases for a dedicated AWS RDS instance with automated backups.
+- **Security:** Placed inside a Virtual Private Cloud (VPC). The database physically rejects all internet traffic, only accepting internal connections originating from the EC2 instance. All SQL queries use $1,  parameterized bindings, making SQL Injection mathematically impossible.
+
+### 4. Zero-Trust Secrets Management (AWS SSM)
+- **Tech:** AWS Systems Manager Parameter Store.
+- **Security:** A strict **Zero-Trust** code policy was enforced across the repository. There are **zero** hardcoded API keys, JWT secrets, or database passwords in our codebase or .env files. All credentials (including Twilio SMS keys and JWT signing secrets) are encrypted and injected dynamically at runtime by AWS.
+
