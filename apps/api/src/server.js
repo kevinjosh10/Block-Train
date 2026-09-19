@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 // For Hackathon Demo: Auto-fallback if the user didn't add it in Render yet.
-process.env.JWT_SECRET = process.env.JWT_SECRET || "super_secret_jwt_key_12345678901234567890";
+// The JWT_SECRET must be loaded from environment variables in production.
 
 // Refuse to start with a forgeable or missing signing key (except we provided a fallback).
 if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 32) {
