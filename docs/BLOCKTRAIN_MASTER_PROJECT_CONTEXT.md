@@ -53,84 +53,64 @@ Currently, field supervisors submit disconnection and block requests through the
 
 BlockTrain is built using a production-grade, zero-capex, offline-capable architecture specifically engineered for the security and regulatory constraints of Indian Railways:
 
-```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                                   BLOCKTRAIN TECHNOLOGY STACK                                    â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ SUBSYSTEM              â”‚ TECHNOLOGIES / LIBRARIES                 â”‚ OPERATIONAL PURPOSE          â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ 1. AI / ML Prioritizer â”‚ Python 3.11, Scikit-Learn, XGBoost,      â”‚ Two-Stage Stacked Ensemble:  â”‚
-â”‚                        â”‚ NumPy, Pandas, Joblib                    â”‚ 150 Regressor + 480 Classif. â”‚
-â”‚                        â”‚                                          â”‚ RÂ² = 93.21%, 100% Emerg Prec â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ 2. Exact Mathematical  â”‚ PuLP (CBC Solver), Google OR-Tools       â”‚ Solves spatial shadow block  â”‚
-â”‚    Optimization        â”‚ (CP-SAT Constraint Programming Solver)   â”‚ clustering (Â±2.5 km) and     â”‚
-â”‚                        â”‚                                          â”‚ discrete time intervals      â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ 3. Spatial & Conflict  â”‚ NetworkX, PostGIS / PostgreSQL,          â”‚ Graph-theoretic track sectionâ”‚
-â”‚    Topology            â”‚ SpatialIndex                             â”‚ conflict modeling (G=(V, E)) â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ 4. Timetable Ingestion â”‚ Custom WTT / COA Parser, Regex           â”‚ Parses Working Time Tables,  â”‚
-â”‚    & Simulation        â”‚ Timetable Engine, Monte Carlo Simulator  â”‚ headways, 45+ daily runs     â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ 5. Backend REST API    â”‚ FastAPI, Uvicorn, Pydantic, Python-LDAP  â”‚ High-throughput REST API     â”‚
-â”‚                        â”‚                                          â”‚ (Port 5001, 1.2ms latency)   â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ 6. Dispatch Console &  â”‚ Next.js 14 (App Router), Tailwind CSS,   â”‚ Interactive yard dispatcher, â”‚
-â”‚    UI Visualizations   â”‚ React Gantt Timeline, Streamlit, Plotly  â”‚ track map, neural visualizer â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ 7. Legal & Regulatory  â”‚ ReportLab PDF Engine, G&SR Template      â”‚ Auto-generates legal Indian  â”‚
-â”‚    Automation          â”‚ Parser, Signal Interlocking Emulation    â”‚ Railways Form T/409 Memos    â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ 8. Hardware & Field    â”‚ Kavach 4.0 Packet Encoder (IR-TCAS-01),  â”‚ Broadcasts TSR to locos;     â”‚
-â”‚    Grassroots Safety   â”‚ Twilio WhatsApp API, OpenCV Weld Audit   â”‚ bilingual gang alerts + photoâ”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-```
+### 2.0 BLOCKTRAIN TECHNOLOGY STACK
+
+| SUBSYSTEM | TECHNOLOGIES / LIBRARIES | OPERATIONAL PURPOSE |
+|---|---|---|
+| **1. AI / ML Prioritizer** | Python 3.11, Scikit-Learn, XGBoost, NumPy, Pandas | Two-Stage Stacked Ensemble: 150 Regressor + 480 Classif. |
+| **2. Exact Mathematical Optimization** | PuLP (CBC Solver), Google OR-Tools | Solves spatial shadow block clustering (Δ2.5 km) |
+| **3. Spatial & Conflict Topology** | NetworkX, PostGIS / PostgreSQL, SpatialIndex | Graph-theoretic track section conflict modeling |
+| **4. Timetable Ingestion & Simulation** | Custom WTT / COA Parser, Regex Timetable Engine | Parses Working Time Tables, headways, 45+ daily runs |
+| **5. Backend REST API** | Node.js (Express), Python (Flask/HTTP) | High-throughput REST API (Port 5000/5001) |
+| **6. Dispatch Console & UI Visualizations** | Next.js 14 (App Router), Tailwind CSS, React Gantt | Interactive yard dispatcher, track map, neural visualizer |
+| **7. Legal & Regulatory Automation** | PDF Engine, G&SR Template Parser | Auto-generates legal Indian Railways Form T/409 Memos |
+| **8. Hardware & Field Grassroots Safety** | Kavach 4.0 Packet Encoder, Twilio SMS API | Broadcasts TSR to locos; bilingual gang alerts |
+| **9. Cloud & Security Infrastructure** | AWS EC2, AWS RDS, AWS VPC, AWS SSM, Docker, Vercel, Helmet.js | Zero-Trust Hybrid Cloud, Anti-DDoS rate limits, Edge caching |
 
 ### 2.1 Cloud Architecture & AWS Integration (Hackathon Prototype)
 To demonstrate our ability to build secure, enterprise-grade cloud software, this prototype is deployed using a cutting-edge AWS Hybrid-Cloud stack:
 * **Edge Delivery (Frontend):** Vercel Global Edge Network with strict Zero-Trust HTTP security headers (HSTS, X-Frame-Options DENY).
-* **Compute Engine (Backend):** Amazon EC2 (	3.micro Ubuntu) orchestrating dual Dockerized microservices (Node.js API & Python AI Engine).
+* **Compute Engine (Backend):** Amazon EC2 (`t3.micro` Ubuntu) orchestrating dual Dockerized microservices (Node.js API & Python AI Engine).
 * **Data Layer (Database):** Amazon RDS (Managed PostgreSQL) deployed with automated backups.
 * **Network Security:** Housed inside an AWS Virtual Private Cloud (VPC) with strict Security Groups. The RDS database physically rejects all public internet traffic, only accepting internal connections from the EC2 instance.
-* **Secrets Management:** Zero-Trust architecture utilizing AWS Systems Manager (SSM) Parameter Store. There are absolutely zero hardcoded .env files.
+* **Secrets Management:** Zero-Trust architecture utilizing AWS Systems Manager (SSM) Parameter Store. There are absolutely zero hardcoded `.env` files.
 
 ### 2.2 Production Rollout Strategy (CRIS Data Centers)
 * **Data Sovereignty & NATGRID Compliance:** Indian Railways operational telemetry is classified government infrastructure. Exporting live train paths and track fracture coordinates to foreign public clouds violates national security protocols.
-* **Zero Additional Capex:** Runs locally on existing Indian Railways Regional Data Centers (CRIS servers in Chennai and New Delhi) or on standard station master dual-core PCs (4GB RAM) with **zero cloud subscription fees** (saving â‚¹50+ Lakhs annually).
-* **Deterministic Execution & Sub-2ms Speed:** The entire inference and clustering pipeline runs locally in **$1.2\text{ milliseconds}$ per defect**, completely immune to internet downtime or bandwidth chokepoints in remote sections.
+* **Zero Additional Capex:** Runs locally on existing Indian Railways Regional Data Centers (CRIS servers in Chennai and New Delhi) or on standard station master dual-core PCs (4GB RAM) with **zero cloud subscription fees** (saving ₹150+ Lakhs annually).
+* **Deterministic Execution & Sub-2ms Speed:** The entire inference and clustering pipeline runs locally in **1.2 milliseconds per defect**, completely immune to internet downtime or bandwidth chokepoints in remote sections.
 
 ---
 
 # 3. Deep Technical Approach & AI Model Architecture
 
-```
+```text
                                THE TWO-STAGE INFERENCE FLOW
                                
- [TMS Track Defect] â”€â”€â”
- [SMMS Signal Fault] â”€â”¼â”€â”€> [ 39-Dimensional Input Tensor X ]
- [TDMS OHE Wear] â”€â”€â”€â”€â”˜               â”‚
-                                     â”‚
-    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-    â”‚ STAGE 1: CONTINUOUS MPI REGRESSOR                               â”‚
-    â”‚ â€¢ Algorithm: GradientBoostingRegressor (150 Trees, Depth = 5)   â”‚
-    â”‚ â€¢ Learning Rate: Î· = 0.07 | Subsample = 0.85                   â”‚
-    â”‚ â€¢ Feature Synergy: Risk Ã— Overdue, Compound Asset Age           â”‚
-    â”‚ â€¢ Output: Maintenance Priority Index (MPI: 0.0 to 100.0)        â”‚
-    â”‚ â€¢ Performance: RÂ² = 93.21%, MAE = 3.41 points                  â”‚
-    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                                     â”‚
-                                     â–¼ Predicted MPI Score (Feature #40)
-    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-    â”‚ STAGE 2: STACKED SAFETY URGENCY CLASSIFIER                      â”‚
-    â”‚ â€¢ Algorithm: Multi-Class GradientBoostingClassifier             â”‚
-    â”‚ â€¢ Trees: 120 Stages Ã— 4 Classes = 480 Decision Trees (Depth = 4)â”‚
-    â”‚ â€¢ Loss Function: Multi-Class Cross-Entropy + Asymmetric Shield  â”‚
-    â”‚ â€¢ Classes: CRITICAL_EMERGENCY | HIGH | MEDIUM | ROUTINE         â”‚
-    â”‚ â€¢ Performance: Overall Acc = 87.66%, Emergency Prec = 100.00%   â”‚
-    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                                     â”‚
-                                     â–¼
+ [TMS Track Defect] -----
+ [SMMS Signal Fault] ---> [ 39-Dimensional Input Tensor X ]
+ [TDMS OHE Wear] --------               |
+                                        |
+    +-----------------------------------------------------------------------------------------+
+    | STAGE 1: CONTINUOUS MPI REGRESSOR                                                       |
+    | • Algorithm: GradientBoostingRegressor (150 Trees, Depth = 5)                           |
+    | • Learning Rate: 0.07 | Subsample = 0.85                                                |
+    | • Feature Synergy: Risk × Overdue, Compound Asset Age                                   |
+    | • Output: Maintenance Priority Index (MPI: 0.0 to 100.0)                                |
+    | • Performance: R² = 93.21%, MAE = 3.41 points                                           |
+    +-----------------------------------------------------------------------------------------+
+                                        |
+                                        V Predicted MPI Score (Feature #40)
+    +-----------------------------------------------------------------------------------------+
+    | STAGE 2: STACKED SAFETY URGENCY CLASSIFIER                                              |
+    | • Algorithm: Multi-Class GradientBoostingClassifier                                     |
+    | • Trees: 120 Stages × 4 Classes = 480 Decision Trees (Depth = 4)                        |
+    | • Loss Function: Multi-Class Cross-Entropy + Asymmetric Shield                          |
+    | • Classes: CRITICAL_EMERGENCY | HIGH | MEDIUM | ROUTINE                                 |
+    | • Performance: Overall Acc = 87.66%, Emergency Prec = 100.00%                           |
+    +-----------------------------------------------------------------------------------------+
+                                        |
+                                        V
  [ FINAL DECISION BUNDLE: Ranked Order + Shadow Cluster ID + Slot Recommendation ]
 ```
 
@@ -492,5 +472,6 @@ ext.config.ts (XSS Protection in block mode, Strict HSTS, Clickjacking protectio
 ### 4. Zero-Trust Secrets Management (AWS SSM)
 - **Tech:** AWS Systems Manager Parameter Store.
 - **Security:** A strict **Zero-Trust** code policy was enforced across the repository. There are **zero** hardcoded API keys, JWT secrets, or database passwords in our codebase or .env files. All credentials (including Twilio SMS keys and JWT signing secrets) are encrypted and injected dynamically at runtime by AWS.
+
 
 
