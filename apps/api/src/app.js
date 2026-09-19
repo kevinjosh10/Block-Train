@@ -37,6 +37,8 @@
 
 const express = require("express");
 const cors    = require("cors");
+const helmet  = require("helmet");
+const rateLimit = require("express-rate-limit");
 
 // ── Middleware imports ────────────────────────────────────────────────────────
 const { authenticateToken } = require('./core/middleware/auth');
@@ -62,8 +64,24 @@ const pool = require('./core/db');
 
 const app = express();
 
-// Add low-cost browser protections before parsing or routing any request.
-app.use(securityHeaders);
+// Add industry-standard browser protections (XSS, Clickjacking, Sniffing)
+app.use(helmet());
+
+// Anti-DDoS Global Rate Limiter
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 300, // Limit each IP to 300 requests per window
+  message: { success: false, error: "Too many requests, please try again later." }
+});
+app.use("/api/", globalLimiter);
+
+// Anti-Brute-Force Login Rate Limiter
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // Max 10 login attempts
+  message: { success: false, error: "Too many login attempts. Account locked for 15 minutes." }
+});
+app.use("/api/auth/login", authLimiter);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // STEP 1 — Global Middleware
