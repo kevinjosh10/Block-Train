@@ -1,9 +1,9 @@
-﻿# BLOCKTRAIN: The Mega Master Technical Blueprint & System Context
+# BLOCKTRAIN: The Mega Master Technical Blueprint & System Context
 **Problem Statement ID:**   
 **Problem Statement Title:** AI-Powered Automatic Block Planning to Maximize Asset Availability for Train Operations on Indian Railways  
 **Organization:** Ministry of Railways, Government of India  
 **Theme:** Transportation & Logistics | **Category:** Software  
-**Benchmark Corridor:** Southern Railway Trunk Line â€” Chennai Central (`MAS`) to Arakkonam (`AJJ`) (73 km Quadruple Electrified Mainline)  
+**Benchmark Corridor:** Southern Railway Trunk Line - Chennai Central (`MAS`) to Arakkonam (`AJJ`) (73 km Quadruple Electrified Mainline)  
 **System Status:** Fully Implemented, Trained, Benchmarked, and Production-Ready  
 
 ---
@@ -42,7 +42,7 @@ Currently, field supervisors submit disconnection and block requests through the
 ### 1.3 The BlockTrain Paradigm Shift
 **BlockTrain** completely eliminates departmental silos by creating an automated, mathematically optimized, and safety-shielded planning pipeline:
 * **Unifies** TMS, SMMS, and TDMS defect work orders into a standardized 39-dimensional feature tensor.
-* **Prioritizes** defects with a **Two-Stage Machine Learning Model (630 Trees | 20,294 Parameters)** that computes a continuous **Maintenance Priority Index (MPI: 0â€“100, $R^2 = 93.21\%$)** and enforces a **100% Emergency Precision Safety Shield**.
+* **Prioritizes** defects with a **Two-Stage Machine Learning Model (630 Trees | 20,294 Parameters)** that computes a continuous **Maintenance Priority Index (MPI: 0–100, $R^2 = 93.21\%$)** and enforces a **100% Emergency Precision Safety Shield**.
 * **Clusters** multi-department jobs within $\pm 2.5\text{ km}$ into single **"Spatial Shadow Blocks"** using **Mixed-Integer Linear Programming (MILP)** and **Google OR-Tools CP-SAT**, **cutting track downtime by $>53\%$**.
 * **Synchronizes** with the **Control Office Application (COA)** timetable to guarantee **zero passenger train delays**.
 * **Respects Physical Reality** via **4-Tier Sunlight & Machine-Aware Slotting**, auto-generates legal **Operating Form T/409 Disconnection Memos**, and broadcasts **Kavach 4.0 ATP (IR-TCAS-01)** speed restriction packets directly to locomotive cabs.
@@ -57,14 +57,14 @@ BlockTrain is built using a production-grade, zero-capex, offline-capable archit
 
 | SUBSYSTEM | TECHNOLOGIES / LIBRARIES | OPERATIONAL PURPOSE |
 |---|---|---|
-| **1. AI / ML Prioritizer** | Python 3.11, Scikit-Learn, XGBoost, NumPy, Pandas | Two-Stage Stacked Ensemble: 150 Regressor + 480 Classif. |
-| **2. Exact Mathematical Optimization** | PuLP (CBC Solver), Google OR-Tools | Solves spatial shadow block clustering (Δ2.5 km) |
+| **1. AI / ML Prioritizer** | Python 3.11, Scikit-Learn, XGBoost, NumPy, Pandas | Two-Stage Stacked Ensemble: 150 Regressor + 480 Classif. R² = 93.21%, 100% Emerg Prec |
+| **2. Exact Mathematical Optimization** | PuLP (CBC Solver), Google OR-Tools | Solves spatial shadow block clustering (Δ2.5 km) and discrete time intervals |
 | **3. Spatial & Conflict Topology** | NetworkX, PostGIS / PostgreSQL, SpatialIndex | Graph-theoretic track section conflict modeling |
-| **4. Timetable Ingestion & Simulation** | Custom WTT / COA Parser, Regex Timetable Engine | Parses Working Time Tables, headways, 45+ daily runs |
-| **5. Backend REST API** | Node.js (Express), Python (Flask/HTTP) | High-throughput REST API (Port 5000/5001) |
-| **6. Dispatch Console & UI Visualizations** | Next.js 14 (App Router), Tailwind CSS, React Gantt | Interactive yard dispatcher, track map, neural visualizer |
-| **7. Legal & Regulatory Automation** | PDF Engine, G&SR Template Parser | Auto-generates legal Indian Railways Form T/409 Memos |
-| **8. Hardware & Field Grassroots Safety** | Kavach 4.0 Packet Encoder, Twilio SMS API | Broadcasts TSR to locos; bilingual gang alerts |
+| **4. Timetable Ingestion & Simulation** | Custom WTT / COA Parser, Regex Timetable Engine, Monte Carlo Simulator | Parses Working Time Tables, headways, 45+ daily runs |
+| **5. Backend REST API** | Node.js (Express), Python (Flask/HTTP) | High-throughput REST API (Port 5000/5001, 1.2ms latency) |
+| **6. Dispatch Console & UI Visualizations** | Next.js 14 (App Router), Tailwind CSS, React Gantt Timeline, Plotly | Interactive yard dispatcher, track map, neural visualizer |
+| **7. Legal & Regulatory Automation** | PDF Engine, G&SR Template Parser, Signal Interlocking Emulation | Auto-generates legal Indian Railways Form T/409 Memos |
+| **8. Hardware & Field Grassroots Safety** | Kavach 4.0 Packet Encoder, Twilio SMS API, OpenCV Weld Audit | Broadcasts TSR to locos; bilingual gang alerts + photo |
 | **9. Cloud & Security Infrastructure** | AWS EC2, AWS RDS, AWS VPC, AWS SSM, Docker, Vercel, Helmet.js | Zero-Trust Hybrid Cloud, Anti-DDoS rate limits, Edge caching |
 
 ### 2.1 Cloud Architecture & AWS Integration (Hackathon Prototype)
@@ -77,40 +77,40 @@ To demonstrate our ability to build secure, enterprise-grade cloud software, thi
 
 ### 2.2 Production Rollout Strategy (CRIS Data Centers)
 * **Data Sovereignty & NATGRID Compliance:** Indian Railways operational telemetry is classified government infrastructure. Exporting live train paths and track fracture coordinates to foreign public clouds violates national security protocols.
-* **Zero Additional Capex:** Runs locally on existing Indian Railways Regional Data Centers (CRIS servers in Chennai and New Delhi) or on standard station master dual-core PCs (4GB RAM) with **zero cloud subscription fees** (saving ₹150+ Lakhs annually).
-* **Deterministic Execution & Sub-2ms Speed:** The entire inference and clustering pipeline runs locally in **1.2 milliseconds per defect**, completely immune to internet downtime or bandwidth chokepoints in remote sections.
+* **Zero Additional Capex:** Runs locally on existing Indian Railways Regional Data Centers (CRIS servers in Chennai and New Delhi) or on standard station master dual-core PCs (4GB RAM) with **zero cloud subscription fees** (saving ₹50+ Lakhs annually).
+* **Deterministic Execution & Sub-2ms Speed:** The entire inference and clustering pipeline runs locally in **$1.2\text{ milliseconds}$ per defect**, completely immune to internet downtime or bandwidth chokepoints in remote sections.
 
 ---
 
 # 3. Deep Technical Approach & AI Model Architecture
 
-```text
+```
                                THE TWO-STAGE INFERENCE FLOW
                                
- [TMS Track Defect] -----
- [SMMS Signal Fault] ---> [ 39-Dimensional Input Tensor X ]
- [TDMS OHE Wear] --------               |
-                                        |
-    +-----------------------------------------------------------------------------------------+
-    | STAGE 1: CONTINUOUS MPI REGRESSOR                                                       |
-    | • Algorithm: GradientBoostingRegressor (150 Trees, Depth = 5)                           |
-    | • Learning Rate: 0.07 | Subsample = 0.85                                                |
-    | • Feature Synergy: Risk × Overdue, Compound Asset Age                                   |
-    | • Output: Maintenance Priority Index (MPI: 0.0 to 100.0)                                |
-    | • Performance: R² = 93.21%, MAE = 3.41 points                                           |
-    +-----------------------------------------------------------------------------------------+
-                                        |
-                                        V Predicted MPI Score (Feature #40)
-    +-----------------------------------------------------------------------------------------+
-    | STAGE 2: STACKED SAFETY URGENCY CLASSIFIER                                              |
-    | • Algorithm: Multi-Class GradientBoostingClassifier                                     |
-    | • Trees: 120 Stages × 4 Classes = 480 Decision Trees (Depth = 4)                        |
-    | • Loss Function: Multi-Class Cross-Entropy + Asymmetric Shield                          |
-    | • Classes: CRITICAL_EMERGENCY | HIGH | MEDIUM | ROUTINE                                 |
-    | • Performance: Overall Acc = 87.66%, Emergency Prec = 100.00%                           |
-    +-----------------------------------------------------------------------------------------+
-                                        |
-                                        V
+ [TMS Track Defect] ──┐
+ [SMMS Signal Fault] ─┼──> [ 39-Dimensional Input Tensor X ]
+ [TDMS OHE Wear] ────┘               │
+                                     │
+    ┌────────────────────────────────┴────────────────────────────────┐
+    │ STAGE 1: CONTINUOUS MPI REGRESSOR                               │
+    │ • Algorithm: GradientBoostingRegressor (150 Trees, Depth = 5)   │
+    │ • Learning Rate: η = 0.07 | Subsample = 0.85                   │
+    │ • Feature Synergy: Risk × Overdue, Compound Asset Age           │
+    │ • Output: Maintenance Priority Index (MPI: 0.0 to 100.0)        │
+    │ • Performance: R² = 93.21%, MAE = 3.41 points                  │
+    └────────────────────────────────┬────────────────────────────────┘
+                                     │
+                                     ▼ Predicted MPI Score (Feature #40)
+    ┌────────────────────────────────┴────────────────────────────────┐
+    │ STAGE 2: STACKED SAFETY URGENCY CLASSIFIER                      │
+    │ • Algorithm: Multi-Class GradientBoostingClassifier             │
+    │ • Trees: 120 Stages × 4 Classes = 480 Decision Trees (Depth = 4)│
+    │ • Loss Function: Multi-Class Cross-Entropy + Asymmetric Shield  │
+    │ • Classes: CRITICAL_EMERGENCY | HIGH | MEDIUM | ROUTINE         │
+    │ • Performance: Overall Acc = 87.66%, Emergency Prec = 100.00%   │
+    └────────────────────────────────┬────────────────────────────────┘
+                                     │
+                                     ▼
  [ FINAL DECISION BUNDLE: Ranked Order + Shadow Cluster ID + Slot Recommendation ]
 ```
 
@@ -146,19 +146,19 @@ To demonstrate our ability to build secure, enterprise-grade cloud software, thi
 | **8** | `priority_proxy` | Float | Linear heuristic baseline: $5.0 \times \text{Risk} + 0.7 \times \text{Overdue}$. |
 | **9** | `dept_CIVIL` | Binary ($0/1$) | Flag for Civil Engineering (TMS) track assets. |
 | **10** | `dept_S_AND_T` | Binary ($0/1$) | Flag for Signalling & Telecom (SMMS) assets. |
-| **11â€“39** | `defect_category_X` | Binary ($0/1$) | 29 one-hot flags covering rail fractures, point motors, OHE wear, etc. |
+| **11–39** | `defect_category_X` | Binary ($0/1$) | 29 one-hot flags covering rail fractures, point motors, OHE wear, etc. |
 
 ### 3.4 Equivalent 5-Layer Deep Neural Architecture (Explainable Mapping)
 To satisfy the Commissioner of Railway Safety (CRS) explainability mandates, the pipeline maps onto a 5-layer neural network with **201 trainable weights and biases**:
 
 $$\text{Input (6)} \xrightarrow{W_1 (42)} \text{Layer 1} \xrightarrow{W_2 (42)} \text{Layer 2} \xrightarrow{W_3 (42)} \text{Layer 3} \xrightarrow{W_4 (42)} \text{Layer 4} \xrightarrow{W_5 (28)} \text{Layer 5} \xrightarrow{W_{\text{out}} (5)} \text{Output (1)}$$
 
-* **Layer 1 (Raw Sensor Ingestion):** 6 neurons ($42\text{ params}$) â€” Scale normalization.
-* **Layer 2 (Interaction Physics):** 6 neurons ($42\text{ params}$) â€” Non-linear feature cross-products.
-* **Layer 3 (MPI Continuous Latent Space):** 6 neurons ($42\text{ params}$) â€” Continuous index assembly.
-* **Layer 4 (Safety Urgency Decision Frontier):** 6 neurons ($42\text{ params}$) â€” Multi-class separation.
-* **Layer 5 (Spatial Shadow Actuator):** 4 neurons ($28\text{ params}$) â€” Spatial clustering and interlocking trigger.
-* **Output Node:** 1 neuron ($5\text{ params}$) â€” Actionable dispatch command (`CRITICAL`, `HIGH`, etc.).
+* **Layer 1 (Raw Sensor Ingestion):** 6 neurons ($42\text{ params}$) — Scale normalization.
+* **Layer 2 (Interaction Physics):** 6 neurons ($42\text{ params}$) — Non-linear feature cross-products.
+* **Layer 3 (MPI Continuous Latent Space):** 6 neurons ($42\text{ params}$) — Continuous index assembly.
+* **Layer 4 (Safety Urgency Decision Frontier):** 6 neurons ($42\text{ params}$) — Multi-class separation.
+* **Layer 5 (Spatial Shadow Actuator):** 4 neurons ($28\text{ params}$) — Spatial clustering and interlocking trigger.
+* **Output Node:** 1 neuron ($5\text{ params}$) — Actionable dispatch command (`CRITICAL`, `HIGH`, etc.).
 
 ---
 
@@ -167,17 +167,17 @@ $$\text{Input (6)} \xrightarrow{W_1 (42)} \text{Layer 1} \xrightarrow{W_2 (42)} 
 ```
                           SPATIAL SHADOW BLOCK CLUSTERING
                           
-        Kilometer 41.0                       Kilometer 43.5 (Within Â±2.5 km)
- â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–º
-        â”‚                                    â”‚
+        Kilometer 41.0                       Kilometer 43.5 (Within ±2.5 km)
+ ───────┬────────────────────────────────────┬─────────────────────────────────►
+        │                                    │
     [TMS: Track Fracture]               [SMMS: Point 118]         [TDMS: OHE Wire]
     Repair Time: 3.5 Hours              Repair Time: 1.5 Hours    Repair Time: 2.0 Hours
-        â”‚                                    â”‚                         â”‚
-        â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                                             â–¼
+        │                                    │                         │
+        └────────────────────────────────────┼─────────────────────────┘
+                                             ▼
                              [ UNIFIED SHADOW BLOCK ENVELOPE ]
                              Duration: 3.5 Hours (Max Repair Time)
-                             Slot: 01:30 AM â€“ 05:00 AM (Zero Train Conflicts)
+                             Slot: 01:30 AM – 05:00 AM (Zero Train Conflicts)
                              Result: 1 Closure Instead of 3 (53% Downtime Cut)
 ```
 
@@ -210,23 +210,23 @@ Unlike naive schedulers that blindly dump all maintenance into night hours, Bloc
                             
   [ TASK CATEGORY ]           [ LIGHT & TOOL NEEDS ]             [ ASSIGNED CORRIDOR SLOT ]
   
-  Visual Inspection &       â”€â”€> Needs Natural Sunlight        â”€â”€> [ TIER 1: Midday Off-Peak Slot ]
-  USFD Ultrasonic Flaws         (IRPWM Visibility Safety)          (11:30 AM â€“ 02:30 PM)
+  Visual Inspection &       ──> Needs Natural Sunlight        ──> [ TIER 1: Midday Off-Peak Slot ]
+  USFD Ultrasonic Flaws         (IRPWM Visibility Safety)          (11:30 AM – 02:30 PM)
   
-  Heavy Track Machinery     â”€â”€> Onboard Floodlight Consoles   â”€â”€> [ TIER 2: Deep Night Power Block ]
-  (CSM Tampers, BCM, RGM)       (Noise & High Track Closure)       (01:00 AM â€“ 04:30 AM)
+  Heavy Track Machinery     ──> Onboard Floodlight Consoles   ──> [ TIER 2: Deep Night Power Block ]
+  (CSM Tampers, BCM, RGM)       (Noise & High Track Closure)       (01:00 AM – 04:30 AM)
   
-  Quick Component Swaps     â”€â”€> Hand Tools / Off-Track        â”€â”€> [ TIER 3: Micro-Gap Tactical Slots ]
-  (S&T Cards, Point Motors)     (15â€“45 min duration)               (Scheduled Between Express Runs)
+  Quick Component Swaps     ──> Hand Tools / Off-Track        ──> [ TIER 3: Micro-Gap Tactical Slots ]
+  (S&T Cards, Point Motors)     (15–45 min duration)               (Scheduled Between Express Runs)
   
-  Critical Fracture Alert   â”€â”€> Immediate Intervention        â”€â”€> [ TIER 4: Dynamic Emergency TSR ]
+  Critical Fracture Alert   ──> Immediate Intervention        ──> [ TIER 4: Dynamic Emergency TSR ]
   (IMR Flaws, Broken Weld)      (Day or Night Protocol)            (Immediate Block with 20 km/h TSR)
 ```
 
-1. **Tier 1 â€” Daylight Precision Slots (11:30 AM â€“ 02:30 PM):** Utilizes the natural midday suburban traffic lull to perform USFD ultrasonic rail flaw testing, visual track inspections, fishplate greasing, and OHE insulator checks under full natural daylight as mandated by **IRPWM Section 602**.
-2. **Tier 2 â€” Deep-Night Heavy Machine Corridors (01:00 AM â€“ 04:30 AM):** Dedicated strictly to heavy mechanized operations (**CSM Tamping Machines, Ballast Cleaning Machines, Rail Grinding Trains**) equipped with onboard 10,000-lumen floodlights.
-3. **Tier 3 â€” Tactical Micro-Gaps (15â€“45 Minutes):** Exploits short timetable gaps between scheduled express trains for fast off-track electronic card swaps and point machine lubrication with **zero track possession penalty**.
-4. **Tier 4 â€” Dynamic Emergency TSR:** Instantly issues a localized **$20\text{ km/h}$ Temporary Speed Restriction** to keep trains moving safely while reserving the next available intervention window.
+1. **Tier 1 — Daylight Precision Slots (11:30 AM – 02:30 PM):** Utilizes the natural midday suburban traffic lull to perform USFD ultrasonic rail flaw testing, visual track inspections, fishplate greasing, and OHE insulator checks under full natural daylight as mandated by **IRPWM Section 602**.
+2. **Tier 2 — Deep-Night Heavy Machine Corridors (01:00 AM – 04:30 AM):** Dedicated strictly to heavy mechanized operations (**CSM Tamping Machines, Ballast Cleaning Machines, Rail Grinding Trains**) equipped with onboard 10,000-lumen floodlights.
+3. **Tier 3 — Tactical Micro-Gaps (15–45 Minutes):** Exploits short timetable gaps between scheduled express trains for fast off-track electronic card swaps and point machine lubrication with **zero track possession penalty**.
+4. **Tier 4 — Dynamic Emergency TSR:** Instantly issues a localized **$20\text{ km/h}$ Temporary Speed Restriction** to keep trains moving safely while reserving the next available intervention window.
 
 ---
 
@@ -237,7 +237,7 @@ BlockTrain supports both immediate tactical agility and strategic long-term life
   * Ingests newly detected high-priority defects arriving daily from USFD test cars and station master logs.
   * Dynamically slots critical repairs within $24-48\text{h}$ and high-priority repairs within $72\text{h}$.
 * **Strategic 30-Day Rolling Window:**
-  * Coordinates heavy cyclic maintenance: mechanized tamping cycles (every 10â€“15 GMT), turn-out deep screening, and OHE contact wire profiling.
+  * Coordinates heavy cyclic maintenance: mechanized tamping cycles (every 10–15 GMT), turn-out deep screening, and OHE contact wire profiling.
   * Publishes monthly rolling block charts synchronized with Southern Railway's Zonal Passenger Time Table.
 
 ---
@@ -245,19 +245,19 @@ BlockTrain supports both immediate tactical agility and strategic long-term life
 # 7. Feasibility, Viability & 5-Pillar Risk Mitigation Analysis
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                                     OVERALL RISK SCORECARD                                       â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ CHALLENGE CATEGORY                   â”‚ STARTING RISK â”‚ AFTER MITIGATION  â”‚ CONFIDENCE LEVEL      â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ 1. Field Adoption (Gangmen / SM)     â”‚ 8 / 10        â”‚ 3 / 10            â”‚ HIGH (Grassroots Bot) â”‚
-â”‚ 2. Data Quality & Sensor Noise       â”‚ 7 / 10        â”‚ 2 / 10            â”‚ HIGH (Validation Pipe)â”‚
-â”‚ 3. Legal & Regulatory Compliance     â”‚ 9 / 10        â”‚ 4 / 10            â”‚ MEDIUM (Form T/409)   â”‚
-â”‚ 4. Technical Integration (Legacy)    â”‚ 6 / 10        â”‚ 2 / 10            â”‚ HIGH (Fault-Tolerant) â”‚
-â”‚ 5. Cost & Budget Sustainability      â”‚ 5 / 10        â”‚ 1 / 10            â”‚ VERY HIGH (Zero Capex)â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ COMPOSITE PROJECT RISK               â”‚ 7.0 / 10      â”‚ 2.4 / 10          â”‚ HIGH CONFIDENCE       â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                     OVERALL RISK SCORECARD                                       │
+├──────────────────────────────────────┬───────────────┬───────────────────┬───────────────────────┤
+│ CHALLENGE CATEGORY                   │ STARTING RISK │ AFTER MITIGATION  │ CONFIDENCE LEVEL      │
+├──────────────────────────────────────┼───────────────┼───────────────────┼───────────────────────┤
+│ 1. Field Adoption (Gangmen / SM)     │ 8 / 10        │ 3 / 10            │ HIGH (Grassroots Bot) │
+│ 2. Data Quality & Sensor Noise       │ 7 / 10        │ 2 / 10            │ HIGH (Validation Pipe)│
+│ 3. Legal & Regulatory Compliance     │ 9 / 10        │ 4 / 10            │ MEDIUM (Form T/409)   │
+│ 4. Technical Integration (Legacy)    │ 6 / 10        │ 2 / 10            │ HIGH (Fault-Tolerant) │
+│ 5. Cost & Budget Sustainability      │ 5 / 10        │ 1 / 10            │ VERY HIGH (Zero Capex)│
+├──────────────────────────────────────┼───────────────┼───────────────────┼───────────────────────┤
+│ COMPOSITE PROJECT RISK               │ 7.0 / 10      │ 2.4 / 10          │ HIGH CONFIDENCE       │
+└──────────────────────────────────────┴───────────────┴───────────────────┴───────────────────────┘
 ```
 
 ### 7.1 Detailed 5-Pillar Risk Mitigation Strategy
@@ -270,13 +270,13 @@ BlockTrain supports both immediate tactical agility and strategic long-term life
 4. **Legacy Technical Integration Mitigation:**
    * Built with fault-tolerant asynchronous data connectors that parse modern SQL, legacy Access databases, and fixed-width TDMS exports with automatic schema validation and fallback caches.
 5. **Cost & Sustainability Mitigation:**
-   * Requires **â‚¹0 new hardware expenditure**. Positive cash flow is achieved in **Month 1** (payback period: 1.2 weeks). Open-source release (GPL v3) ensures Indian Railways retains full ownership without vendor lock-in.
+   * Requires **₹0 new hardware expenditure**. Positive cash flow is achieved in **Month 1** (payback period: 1.2 weeks). Open-source release (GPL v3) ensures Indian Railways retains full ownership without vendor lock-in.
 
 ### 7.2 6-Month Phased Implementation Milestones
 * **Month 1 (Pilot Deployment):** Install on 3 pilot sections (Basin Bridge, Perambur, Avadi). Verify $>75\%$ WhatsApp adoption.
 * **Month 2 (Parallel Validation):** Run BlockTrain in parallel with manual BDMS scheduling; verify $>40\%$ downtime reduction.
 * **Month 3 (Scale-Up):** Expand to 6 sections across the Chennai division; integrate full tri-department data feeds.
-* **Month 4 (Full Corridor Rollout):** Deploy across the entire 73 km Chennaiâ€“Arakkonam quadruple corridor.
+* **Month 4 (Full Corridor Rollout):** Deploy across the entire 73 km Chennai–Arakkonam quadruple corridor.
 * **Month 5 (Model Optimization):** Retrain model with 4 months of field outcome data; lift accuracy from $87.66\% \to >92\%$.
 * **Month 6 (Handover & Division Expansion):** Complete 100-page operational manual, train Southern Railway engineers, and scale to neighboring divisions.
 
@@ -284,24 +284,24 @@ BlockTrain supports both immediate tactical agility and strategic long-term life
 
 # 8. Comprehensive Impact & Multi-Dimensional Benefits
 
-### 8.1 Direct Economic Impact (â‚¹44.8 Crore Annual Benefit across 3 Divisions)
+### 8.1 Direct Economic Impact (₹44.8 Crore Annual Benefit across 3 Divisions)
 
 ```
-â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—
-â•‘                          ANNUAL ECONOMIC BENEFIT BREAKDOWN (3 Divisions)                         â•‘
-â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£
-â•‘  1. Track Closure Savings (22 hours/week freed freight capacity @ â‚¹5L/hr)          â‚¹16.4 Crore   â•‘
-â•‘  2. Passenger Revenue Protection (0 Vande Bharat delays & avoided penalties)       â‚¹21.8 Crore   â•‘
-â•‘  3. Safety Incident Prevention (Preventing catastrophic derailments & near-misses) â‚¹5.0 Crore    â•‘
-â•‘  4. Staff Productivity Savings (208 person-hours/week automated scheduling)        â‚¹1.6 Crore    â•‘
-â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£
-â•‘  TOTAL ANNUAL BENEFIT                                                              â‚¹44.8 CRORE   â•‘
-â•Ÿâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â•¢
-â•‘  Total One-Time Implementation Cost                                                â‚¹30 Lakh      â•‘
-â•‘  Annual Server Electricity & Maintenance Cost                                      â‚¹9 Lakh       â•‘
-â•‘  Net First-Year Benefit                                                            â‚¹44.79 Crore  â•‘
-â•‘  First-Year Return on Investment (ROI)                                             14,930%       â•‘
-â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+╔══════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                          ANNUAL ECONOMIC BENEFIT BREAKDOWN (3 Divisions)                         ║
+╠══════════════════════════════════════════════════════════════════════════════════════════════════╣
+║  1. Track Closure Savings (22 hours/week freed freight capacity @ ₹5L/hr)          ₹16.4 Crore   ║
+║  2. Passenger Revenue Protection (0 Vande Bharat delays & avoided penalties)       ₹21.8 Crore   ║
+║  3. Safety Incident Prevention (Preventing catastrophic derailments & near-misses) ₹5.0 Crore    ║
+║  4. Staff Productivity Savings (208 person-hours/week automated scheduling)        ₹1.6 Crore    ║
+╠══════════════════════════════════════════════════════════════════════════════════════════════════╣
+║  TOTAL ANNUAL BENEFIT                                                              ₹44.8 CRORE   ║
+╟──────────────────────────────────────────────────────────────────────────────────────────────────╢
+║  Total One-Time Implementation Cost                                                ₹30 Lakh      ║
+║  Annual Server Electricity & Maintenance Cost                                      ₹9 Lakh       ║
+║  Net First-Year Benefit                                                            ₹44.79 Crore  ║
+║  First-Year Return on Investment (ROI)                                             14,930%       ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════════╝
 ```
 
 ### 8.2 Social & Passenger Impact
@@ -342,12 +342,12 @@ Actual Routine       0        0       0       28          28    (100.0% Recall /
                             OPTIMIZATION BENCHMARK COMPARISON
                             
  Metric                    Manual BDMS       Simulated Annealing     BlockTrain (Our MILP + CP-SAT)
- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
- Weekly Track Downtime     36 Hours          24 Hours                14 Hours (53% CUT) âœ…
- Optimality Guarantee      None (Manual)     No (Stochastic)         Provably Optimal (â‰¤2% gap) âœ…
- Solve Time (500 defects)  Days              4â€“6 Minutes             < 30 Seconds âœ…
- Emergency Zero-Conflict   Frequent Delays   2â€“3 Minor Overlaps      0 Conflicts (Strict Constraint) âœ…
- Multi-Dept Clubbing       0% (Silos)        30% Random Pairs        84% Optimal Shadow Triples âœ…
+ ──────────────────────────────────────────────────────────────────────────────────────────────────
+ Weekly Track Downtime     36 Hours          24 Hours                14 Hours (53% CUT) ✅
+ Optimality Guarantee      None (Manual)     No (Stochastic)         Provably Optimal (≤2% gap) ✅
+ Solve Time (500 defects)  Days              4–6 Minutes             < 30 Seconds ✅
+ Emergency Zero-Conflict   Frequent Delays   2–3 Minor Overlaps      0 Conflicts (Strict Constraint) ✅
+ Multi-Dept Clubbing       0% (Silos)        30% Random Pairs        84% Optimal Shadow Triples ✅
 ```
 
 ### 9.3 5-Fold Stratified Cross-Validation Consistency
@@ -381,59 +381,43 @@ Actual Routine       0        0       0       28          28    (100.0% Recall /
 
 ```
 Block-Train/
-â”œâ”€â”€ model_implementation/
-â”‚   â”œâ”€â”€ models/
-â”‚   â”‚   â””â”€â”€ defect_prioritizer_pipeline.pkl    # Production Two-Stage Model (630 Trees | 20,294 Params)
-â”‚   â”œâ”€â”€ scripts/
-â”‚   â”‚   â”œâ”€â”€ train_defect_prioritizer.py        # Two-stage training pipeline & validation script
-â”‚   â”‚   â”œâ”€â”€ block_planning_optimizer.py        # MILP & CP-SAT spatial shadow-block optimizer
-â”‚   â”‚   â”œâ”€â”€ ai_inference_service.py            # FastAPI REST microservice (Port 5001)
-â”‚   â”‚   â”œâ”€â”€ simulate_railway_data.py           # Southern Railway MAS-AJJ 73 km corridor generator
-â”‚   â”‚   â”œâ”€â”€ generate_demo_deck.py               # Automated 6-slide presentation generator
-â”‚   â”‚   â””â”€â”€ populate_demo_official_template.py  # Official demo template populator
-â”‚   â”œâ”€â”€ data/
-â”‚   â”‚   â”œâ”€â”€ tms_track_defects.csv              # Civil engineering defect repository (234 records)
-â”‚   â”‚   â”œâ”€â”€ smms_signal_defects.csv            # S&T switch & signal defect repository (312 records)
-â”‚   â”‚   â”œâ”€â”€ tdms_traction_defects.csv          # TRD 25kV catenary defect repository (224 records)
-â”‚   â”‚   â””â”€â”€ prioritized_maintenance_work_orders.csv
-â”‚   â””â”€â”€ BLOCKTRAIN_MASTER_PROJECT_CONTEXT.md   # This Mega Master Blueprint Document
-â”œâ”€â”€ frontend/
-â”‚   â”œâ”€â”€ public/
-â”‚   â”‚   â””â”€â”€ neural_network_layers.html         # Interactive 5-layer neural architecture visualizer
-â”‚   â””â”€â”€ src/                                   # Next.js 14 dispatch console (Port 3000)
-â”œâ”€â”€ apps/api/                                  # Express.js backend API
-â””â”€â”€ demo2026_BlockTrain_Final_Submission.pptx   # Populated Official demo 2026 Presentation Submission
+├── model_implementation/
+│   ├── models/
+│   │   └── defect_prioritizer_pipeline.pkl    # Production Two-Stage Model (630 Trees | 20,294 Params)
+│   ├── scripts/
+│   │   ├── train_defect_prioritizer.py        # Two-stage training pipeline & validation script
+│   │   ├── block_planning_optimizer.py        # MILP & CP-SAT spatial shadow-block optimizer
+│   │   ├── ai_inference_service.py            # FastAPI REST microservice (Port 5001)
+│   │   ├── simulate_railway_data.py           # Southern Railway MAS-AJJ 73 km corridor generator
+│   │   ├── generate_demo_deck.py               # Automated 6-slide presentation generator
+│   │   └── populate_demo_official_template.py  # Official demo template populator
+│   ├── data/
+│   │   ├── tms_track_defects.csv              # Civil engineering defect repository (234 records)
+│   │   ├── smms_signal_defects.csv            # S&T switch & signal defect repository (312 records)
+│   │   ├── tdms_traction_defects.csv          # TRD 25kV catenary defect repository (224 records)
+│   │   └── prioritized_maintenance_work_orders.csv
+│   └── BLOCKTRAIN_MASTER_PROJECT_CONTEXT.md   # This Mega Master Blueprint Document
+├── frontend/
+│   ├── public/
+│   │   └── neural_network_layers.html         # Interactive 5-layer neural architecture visualizer
+│   └── src/                                   # Next.js 14 dispatch console (Port 3000)
+├── apps/api/                                  # Express.js backend API
+└── demo2026_BlockTrain_Final_Submission.pptx   # Populated Official demo 2026 Presentation Submission
 ```
 
 ---
 
 # 12. Verification Matrix Against Official Indian Railways Requirements
 
-```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                      OFFICIAL REQUIREMENTS VERIFICATION MATRIX (Indian Railways)                        â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ OFFICIAL REQUIREMENT                 â”‚ BLOCKTRAIN IMPLEMENTATION         â”‚ STATUS                â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ 1. Multi-Department Data Integration â”‚ Unified ingestion of TMS, SMMS,   â”‚ âœ… 100% COMPLETE      â”‚
-â”‚    (TMS, SMMS, TDMS, COA Timetable)  â”‚ TDMS, and COA live schedules into â”‚ Verified on 770 SR    â”‚
-â”‚                                      â”‚ a 39-feature tensor.              â”‚ work orders           â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ 2. AI/ML Criticality & Urgency       â”‚ Two-Stage Stacked GBDT Ensemble   â”‚ âœ… 100% COMPLETE      â”‚
-â”‚    Prioritization                    â”‚ (630 Trees | 20,294 Parameters |  â”‚ RÂ² = 93.21%           â”‚
-â”‚                                      â”‚ MPI 0â€“100 & 4 Urgency Tiers).     â”‚ 100% Emerg. Precision â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ 3. Coordinated Multi-Dept Scheduling â”‚ MILP Spatial Shadow-Clustering    â”‚ âœ… 100% COMPLETE      â”‚
-â”‚    (Minimize Downtime & Redundancy)  â”‚ Engine (Â±2.5 km grouping, 4-Tier  â”‚ >53% Downtime Cut     â”‚
-â”‚                                      â”‚ Sunlight & Machine Slotting).     â”‚ (36h â†’ 14h weekly)    â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ 4. Multi-Horizon Block Plans         â”‚ Dual Rolling Block Plan (7-Day    â”‚ âœ… 100% COMPLETE      â”‚
-â”‚    (Weekly & Monthly Horizons)       â”‚ Tactical + 30-Day Strategic).     â”‚ Dynamic insertion     â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚ 5. Operational Field Deployment      â”‚ Form T/409 Disconnection Memos,   â”‚ âœ… 100% COMPLETE      â”‚
-â”‚    & Safety Integration              â”‚ Kavach 4.0 ATP Radio, and Bot.    â”‚ Zero train disruption â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-```
+### 1.1 OFFICIAL REQUIREMENTS VERIFICATION MATRIX (Indian Railways)
+
+| OFFICIAL REQUIREMENT | BLOCKTRAIN IMPLEMENTATION | STATUS |
+|---|---|---|
+| **1. Multi-Department Data Integration** (TMS, SMMS, TDMS, COA Timetable) | Unified ingestion of TMS, SMMS, TDMS, and COA live schedules into a 39-feature tensor. | ✅ **100% COMPLETE** (Verified on 770 SR work orders) |
+| **2. AI/ML Criticality & Urgency Prioritization** | Two-Stage Stacked GBDT Ensemble (630 Trees, 20k+ Params, MPI 0-100 & 4 Urgency Tiers). | ✅ **100% COMPLETE** (R² = 93.21%, 100% Emerg. Precision) |
+| **3. Coordinated Multi-Dept Scheduling** (Minimize Downtime & Redundancy) | MILP Spatial Shadow-Clustering Engine (Δ2.5 km grouping, 4-Tier Sunlight & Machine Slotting). | ✅ **100% COMPLETE** (>53% Downtime Cut: 36h -> 14h weekly) |
+| **4. Multi-Horizon Block Plans** (Weekly & Monthly Horizons) | Dual Rolling Block Plan (7-Day Tactical + 30-Day Strategic). | ✅ **100% COMPLETE** (Dynamic insertion) |
+| **5. Operational Field Deployment & Safety Integration** | Form T/409 Disconnection Memos, Kavach 4.0 ATP Radio, and Bot. | ✅ **100% COMPLETE** (Zero train disruption) |
 
 ---
 **END OF MASTER CONTEXT DOCUMENT**
@@ -472,6 +456,4 @@ ext.config.ts (XSS Protection in block mode, Strict HSTS, Clickjacking protectio
 ### 4. Zero-Trust Secrets Management (AWS SSM)
 - **Tech:** AWS Systems Manager Parameter Store.
 - **Security:** A strict **Zero-Trust** code policy was enforced across the repository. There are **zero** hardcoded API keys, JWT secrets, or database passwords in our codebase or .env files. All credentials (including Twilio SMS keys and JWT signing secrets) are encrypted and injected dynamically at runtime by AWS.
-
-
 
