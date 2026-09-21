@@ -28,12 +28,39 @@ export default function LandingPage() {
         }
       `}</style>
       <div className="absolute top-[35%] left-0 w-full overflow-hidden pointer-events-none z-0">
-        <div className="train-slider w-48 text-indigo-900/10">
-          <svg viewBox="0 0 64 64" fill="currentColor" className="w-full h-full">
-            <path d="M62,34c0-4-10-8-16-8H6c-2.2,0-4,1.8-4,4v12h62V34z M16,30h8v4h-8V30z M32,30h8v4h-8V30z M48,30h8v4h-8V30z" />
-            <circle cx="16" cy="48" r="4" />
-            <circle cx="32" cy="48" r="4" />
-            <circle cx="48" cy="48" r="4" />
+        <div className="train-slider w-[800px] text-indigo-900/10">
+          <svg viewBox="0 0 256 64" fill="currentColor" className="w-full h-full">
+            {/* Locomotive */}
+            <g transform="translate(192, 0)">
+              <path d="M62,34c0-4-10-8-16-8H6c-2.2,0-4,1.8-4,4v12h62V34z M16,30h8v4h-8V30z M32,30h8v4h-8V30z M48,30h8v4h-8V30z" />
+              <circle cx="16" cy="48" r="4" />
+              <circle cx="32" cy="48" r="4" />
+              <circle cx="48" cy="48" r="4" />
+            </g>
+            {/* Car 1 */}
+            <g transform="translate(128, 0)">
+              <path d="M62,42V30c0-2.2-1.8-4-4-4H6c-2.2,0-4,1.8-4,4v12H62z M16,30h8v4h-8V30z M32,30h8v4h-8V30z M48,30h8v4h-8V30z" />
+              <circle cx="16" cy="48" r="4" />
+              <circle cx="32" cy="48" r="4" />
+              <circle cx="48" cy="48" r="4" />
+              <rect x="62" y="38" width="4" height="2" />
+            </g>
+            {/* Car 2 */}
+            <g transform="translate(64, 0)">
+              <path d="M62,42V30c0-2.2-1.8-4-4-4H6c-2.2,0-4,1.8-4,4v12H62z M16,30h8v4h-8V30z M32,30h8v4h-8V30z M48,30h8v4h-8V30z" />
+              <circle cx="16" cy="48" r="4" />
+              <circle cx="32" cy="48" r="4" />
+              <circle cx="48" cy="48" r="4" />
+              <rect x="62" y="38" width="4" height="2" />
+            </g>
+            {/* Car 3 */}
+            <g transform="translate(0, 0)">
+              <path d="M62,42V30c0-2.2-1.8-4-4-4H6c-2.2,0-4,1.8-4,4v12H62z M16,30h8v4h-8V30z M32,30h8v4h-8V30z M48,30h8v4h-8V30z" />
+              <circle cx="16" cy="48" r="4" />
+              <circle cx="32" cy="48" r="4" />
+              <circle cx="48" cy="48" r="4" />
+              <rect x="62" y="38" width="4" height="2" />
+            </g>
           </svg>
         </div>
       </div>
