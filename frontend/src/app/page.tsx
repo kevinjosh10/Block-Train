@@ -17,16 +17,33 @@ export default function LandingPage() {
       />
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/95 via-white/85 to-slate-100/95" />
 
+      {/* Small Light Train Moving Background */}
+      <style>{`
+        @keyframes slideTrain {
+          0% { transform: translateX(-20vw); }
+          100% { transform: translateX(120vw); }
+        }
+        .train-slider {
+          animation: slideTrain 20s linear infinite;
+        }
+      `}</style>
+      <div className="absolute top-[35%] left-0 w-full overflow-hidden pointer-events-none z-0">
+        <div className="train-slider w-48 text-indigo-900/10">
+          <svg viewBox="0 0 64 64" fill="currentColor" className="w-full h-full">
+            <path d="M62,34c0-4-10-8-16-8H6c-2.2,0-4,1.8-4,4v12h62V34z M16,30h8v4h-8V30z M32,30h8v4h-8V30z M48,30h8v4h-8V30z" />
+            <circle cx="16" cy="48" r="4" />
+            <circle cx="32" cy="48" r="4" />
+            <circle cx="48" cy="48" r="4" />
+          </svg>
+        </div>
+      </div>
+
       {/* Main Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-12 flex flex-col items-center">
         
         {/* Header */}
         <div className="text-center mb-16 space-y-4 animate-fade-in-up">
-          <div className="inline-flex items-center space-x-2 bg-indigo-50 border border-indigo-100 px-4 py-2 rounded-full mb-4 shadow-sm">
-            <span className="flex h-2 w-2 rounded-full bg-indigo-600 animate-pulse"></span>
-            <span className="text-xs font-bold uppercase tracking-widest text-indigo-800">System Online</span>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-slate-900 drop-shadow-sm">
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-slate-900 drop-shadow-sm mt-4">
             Block<span className="text-indigo-600">Train</span>
           </h1>
           <p className="text-lg md:text-xl text-slate-700 font-medium max-w-2xl mx-auto leading-relaxed">
