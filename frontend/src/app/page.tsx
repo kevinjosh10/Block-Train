@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import Link from 'next/link';
@@ -108,17 +108,17 @@ export default function LandingPage() {
           </Link>
 
           {/* Login */}
-          <Link href="/login" className="group bg-slate-900 border border-slate-800 p-8 rounded-2xl hover:bg-black hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+          <Link href="/login" className="group bg-white/80 backdrop-blur-md border border-slate-200/60 p-8 rounded-2xl hover:bg-white hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
             <div>
-              <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6 text-violet-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
               </div>
-              <h2 className="text-2xl font-bold text-white mb-2">Admin Portal</h2>
-              <p className="text-slate-400 mb-6 line-clamp-2">Secure access for Ministry of Railways and Division Controllers.</p>
+              <h2 className="text-2xl font-bold text-slate-900 mb-2">Admin Portal</h2>
+              <p className="text-slate-600 mb-6 line-clamp-2">Secure access for Ministry of Railways and Division Controllers.</p>
             </div>
-            <div className="flex items-center text-sm font-semibold text-white">
+            <div className="flex items-center text-sm font-semibold text-violet-600">
               Secure Login <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
             </div>
           </Link>
