@@ -257,6 +257,44 @@ export default function RBMSPage() {
     }
   ]);
 
+  const activeBlocks = useMaintenanceStore((state) => state.activeBlocks);
+
+  useEffect(() => {
+    setRollingBlocks(prev => {
+      const newRollingBlocks = [...prev];
+      let changed = false;
+
+      activeBlocks.forEach(ab => {
+        const exists = prev.some(rb => rb.id === ab.id);
+        if (!exists) {
+          newRollingBlocks.push({
+            id: ab.id,
+            memoNo: `AI-SYNC-${Math.floor(Math.random() * 10000)}`,
+            dayOffset: 0,
+            dateStr: ab.date || 'Today',
+            stationCode: 'AI-SYNC',
+            stationName: ab.id,
+            trackId: ab.id,
+            zone: 'Auto-Mapped AI Zone',
+            status: 'SANCTIONED',
+            departments: [ab.department],
+            primaryDept: ab.department,
+            allocatedHours: 2.5,
+            uncoordinatedHours: 8.0,
+            hoursSaved: 5.5,
+            machinery: ['AI Allocated Machinery'],
+            timeWindow: `${ab.fromTime || '00:00'} - ${ab.toTime || '23:59'}`,
+            powerBlockRequired: false,
+            tsrSpeedKm: 30
+          });
+          changed = true;
+        }
+      });
+
+      return changed ? newRollingBlocks : prev;
+    });
+  }, [activeBlocks]);
+
   // Section Controller State
   const [selectedBlockForControl, setSelectedBlockForControl] = useState<RollingBlockItem>(rollingBlocks[0]);
   const [controllerPrivateNumber, setControllerPrivateNumber] = useState('CTRL/MAS-8124');

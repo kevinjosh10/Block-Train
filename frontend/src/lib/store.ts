@@ -128,7 +128,7 @@ export const useMaintenanceStore = create<MaintenanceStore>((set, get) => ({
     }
   },
 
-  applyAISchedule: (blocks) => {
+  applyAISchedule: async (blocks) => {
     set((state) => {
       const existingMap = new Map(state.activeBlocks.map((b) => [b.id, b]));
       for (const b of blocks) {
@@ -138,6 +138,18 @@ export const useMaintenanceStore = create<MaintenanceStore>((set, get) => ({
       saveBlocks(combined);
       return { activeBlocks: combined };
     });
+
+    for (const b of blocks) {
+      try {
+        await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(b)
+        });
+      } catch {
+        // Backend optional
+      }
+    }
   },
 
   clearAllBlocks: () => {
